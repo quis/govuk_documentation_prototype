@@ -4,11 +4,22 @@ html, body {
 	@include core-19;
 }
 
+#global-header .header-wrapper {
+	margin: 0;
+}
+
 .tocify-wrapper {
 	@include core-19;
+
 	ul, li {
 		line-height: 40px;
 	}
+	> img {
+		display: none;
+	}
+	
+	position: fixed;
+	top: 53px; //below GOV.UK header
 
 	border-right: 1px solid $panel-colour;
 
@@ -27,4 +38,21 @@ html, body {
 			line-height: inherit !important;
 		}
 	}
+}
+
+.sticky {
+  position: fixed;
+  // width: 100%;
+  // left: 0;
+  top: 0;
+  // z-index: 100;
+  // border-top: 0;
+}
+
+table {
+	width: inherit;
+}
+
+aside {
+	clear: both;
 }

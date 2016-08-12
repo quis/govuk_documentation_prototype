@@ -35,6 +35,28 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+    <header role="banner" id="global-header" class="with-proposition">
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="https://www.gov.uk/" title="Go to the GOV.UK homepage" id="logo" class="content">
+              <img src="" width="35" height="31" alt=""> GOV.UK Elements
+            </a>
+          </div>
+          
+        </div>
+        <div class="header-proposition">
+          <div class="content">
+            <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+            <nav id="proposition-menu">
+              <!-- <a href="/" id="proposition-name"> Product name </a> -->
+
+            </nav>
+          </div>
+        </div>
+
+      </div>
+    </header>
     <a href="#" id="nav-button">
       <span>
         NAV

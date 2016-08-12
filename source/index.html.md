@@ -2,9 +2,8 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - html
+  - sass
   - javascript
 
 toc_footers:

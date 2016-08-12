@@ -1,0 +1,30 @@
+// Custom changes to make more GOV.UK like
+
+html, body {
+	@include core-19;
+}
+
+.tocify-wrapper {
+	@include core-19;
+	ul, li {
+		line-height: 40px;
+	}
+
+	border-right: 1px solid $panel-colour;
+
+	.tocify-focus {
+		// remove box shadow
+		box-shadow: none;
+	}
+
+	a:hover {
+		text-decoration: underline;
+	}
+
+	.tocify-subheader {
+		.tocify-item>a{
+			@include core-16;
+			line-height: inherit !important;
+		}
+	}
+}

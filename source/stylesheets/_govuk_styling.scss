@@ -14,12 +14,22 @@ html, body {
 	ul, li {
 		line-height: 40px;
 	}
-	> img {
-		display: none;
+	.docs-name {
+		img {
+			width: 50px;
+			float: left;
+		}
+		h3 {
+			@include bold-24;
+			float: left;
+		}
+		padding: 25px;
+		// height: 100px;
+		// display: none;
 	}
 	
 	position: fixed;
-	top: 53px; //below GOV.UK header
+	// top: 53px; //below GOV.UK header
 
 	border-right: 1px solid $panel-colour;
 
@@ -55,4 +65,73 @@ table {
 
 aside {
 	clear: both;
+}
+
+
+
+.content {
+
+	.example {
+		h1, h2, h3, p {
+			border: none;
+		}
+		
+	}
+
+	h1{
+		background-image: none;
+		border-bottom: none;
+	}
+
+	h2 {
+		background-image: none;
+		margin-top: 1em;
+		border: 0;
+	}
+
+	h3 {
+		@include bold-24;
+		clear: both;
+	}
+	
+
+
+}
+
+.highlight {
+	background-color: transparent;
+}
+
+.docs-name{
+	@include bold-24;
+}
+
+.toc-footer{
+	display: none;
+}
+
+.content a {
+	color: $govuk-blue;
+}
+
+.sizer {
+	// margin-right: 30%;
+	width: 60%;
+	float: left;
+	padding: 0 28px;
+    box-sizing: border-box;
+    display: block;
+    text-shadow: 0px 0px 0px #fff;
+}
+
+.page-wrapper .dark-box, .content pre {
+	width: 40%;
+}
+
+pre > code {
+	white-space: pre-wrap;
+}
+
+input:focus {
+	outline: 3px solid $focus-colour;
 }

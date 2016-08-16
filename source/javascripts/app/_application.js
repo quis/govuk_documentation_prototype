@@ -115,7 +115,7 @@ function ShowHideContent() {
 $(document).ready(function() {
 
   // Turn off jQuery animation
-  jQuery.fx.off = true;
+  // jQuery.fx.off = true;
 
   // Use GOV.UK selection-buttons.js to set selected
   // and focused states for block labels
@@ -154,3 +154,5 @@ $(window).load(function() {
   }
 
 });
+
+

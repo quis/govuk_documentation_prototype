@@ -2,9 +2,9 @@
 title: API Reference
 
 language_tabs:
-  - html
-  - sass
-  - javascript
+  - HTML
+  - Sass
+  - Javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,7 +19,7 @@ includes:
 search: true
 ---
 
-# GOV.UK elements
+# GOV.UK Elements
 
 This guide shows how to make your service look consistent with the rest of GOV.UK.
 

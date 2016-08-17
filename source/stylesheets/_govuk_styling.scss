@@ -4,16 +4,31 @@ html, body {
 	@include core-19;
 }
 
+.breadcrumbs{
+	margin-left: $gutter;
+	padding-bottom: 10px;
+}
+
 #global-header .header-wrapper {
 	margin: 0;
 }
 
+#global-header-bar{
+	max-width: none; // Full width blue bar
+}
+
 .tocify-wrapper {
-	@include core-19;
+	@include core-16;
+    border-right: 1px solid $border-colour;
 
 	ul, li {
 		line-height: 40px;
 	}
+
+	li{
+		padding-left: 15px;
+	}
+
 	.docs-name {
 		img {
 			width: 50px;
@@ -29,7 +44,7 @@ html, body {
 	}
 	
 	position: fixed;
-	// top: 53px; //below GOV.UK header
+	top: 107px; //below GOV.UK header
 
 	border-right: 1px solid $panel-colour;
 
@@ -48,6 +63,36 @@ html, body {
 			line-height: inherit !important;
 		}
 	}
+
+    // margin-top: 114px;
+    border-top: 1px solid $border-colour;
+
+    .search{
+
+    	input{
+    		padding: 16px 0 16px 30px;
+    		margin: 0;
+    		width: 100%;
+    		color: $secondary-text-colour;
+    		border: 0;
+    	}
+    	&::before{
+    		top: 16px;
+    		left: 10px;
+    	}
+    }
+
+    .search-results{
+    	background: $grey-4;
+    	&.visible{
+    		border-bottom: 1px solid $border-colour;
+    		border-top: 1px solid $border-colour;
+    	}
+    }
+}
+
+.page-wrapper{
+    border-top: 1px solid $border-colour;
 }
 
 .sticky {
@@ -57,6 +102,10 @@ html, body {
   top: 0;
   // z-index: 100;
   // border-top: 0;
+
+  .lang-selector {
+  	top: 0;
+  }
 }
 
 table {

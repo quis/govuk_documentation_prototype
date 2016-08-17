@@ -69,16 +69,20 @@ html, body {
 
     .search{
 
+    	background: $grey-4;
+
     	input{
-    		padding: 16px 0 16px 30px;
-    		margin: 0;
-    		width: 100%;
+    		//padding: 16px 0 16px 30px;
+    		padding: 10px 0 10px 20px;
+    		margin: 10px;
+    		width: 210px;
     		color: $secondary-text-colour;
     		border: 0;
     	}
     	&::before{
     		top: 16px;
     		left: 10px;
+    		display: none;
     	}
     }
 
@@ -86,7 +90,7 @@ html, body {
     	background: $grey-4;
     	&.visible{
     		border-bottom: 1px solid $border-colour;
-    		border-top: 1px solid $border-colour;
+    		//border-top: 1px solid $border-colour;
     	}
     }
 }

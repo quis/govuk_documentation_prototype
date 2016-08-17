@@ -14,7 +14,7 @@ var stickyNav = function(){
 	} else {
 		if (bottom > 0){
 			$('.tocify-wrapper').css("top", bottom + "px");
-			$('.dark-box').css("top", (bottom - 107) + "px");
+			$('.dark-box').css("top", (bottom - 114) + "px");
 		}
   		
 	    $('.tocify-wrapper').removeClass('sticky'); 

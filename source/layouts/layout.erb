@@ -35,7 +35,7 @@ under the License.
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
-    <% if true %>
+
     <header role="banner" id="global-header" class="with-proposition">
       <div class="header-wrapper">
         <div class="header-global">
@@ -67,8 +67,6 @@ under the License.
         <li><a href="/">GOV.UK Elements</a></li>   
       </ol>
     </div>
-
-  <% end %>
     
     <a href="#" id="nav-button">
       <span>

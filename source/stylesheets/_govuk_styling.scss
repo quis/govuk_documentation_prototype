@@ -46,8 +46,6 @@ html, body {
 	position: fixed;
 	top: 107px; //below GOV.UK header
 
-	border-right: 1px solid $panel-colour;
-
 	.tocify-focus {
 		// remove box shadow
 		box-shadow: none;
@@ -58,6 +56,9 @@ html, body {
 	}
 
 	.tocify-subheader {
+    	background: $grey-4;
+    	border-top: 1px solid $border-colour;
+    	border-bottom: 1px solid $border-colour;
 		.tocify-item>a{
 			@include core-16;
 			line-height: inherit !important;
@@ -76,6 +77,11 @@ html, body {
     		width: 210px;
     		color: $text-colour;
     		border: 0;
+    		border: 1px solid $border-colour;
+    		&::-webkit-input-placeholder {
+			   color: $secondary-text-colour;
+			}
+
     	}
     	&::before{
     		top: 16px;
@@ -172,9 +178,36 @@ aside {
     text-shadow: 0px 0px 0px #fff;
 }
 
-.page-wrapper .dark-box, .content pre {
+.page-wrapper .dark-box, .content pre,
+.page-wrapper .dark-box, .content code {
 	width: 40%;
+	background: $grey-4;
+	text-shadow: none;
+	font-size: 16px;
 }
+
+.page-wrapper .dark-box{
+	background: $grey-4;
+
+
+	.lang-selector{
+		background: $white;
+		border-bottom: 5px solid $grey-4;
+    	font-size: 16px;
+	    font-weight: normal;
+
+		a{
+	    	color: $text-colour;
+    		padding: 5px 20px;		
+		}
+
+		a.active {
+	    	background-color: $grey-4;
+	    	font-weight: bold;
+		}
+	}
+}
+
 
 pre > code {
 	white-space: pre-wrap;

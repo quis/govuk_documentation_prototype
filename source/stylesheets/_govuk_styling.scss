@@ -64,7 +64,6 @@ html, body {
 		}
 	}
 
-    // margin-top: 114px;
     border-top: 1px solid $border-colour;
 
     .search{
@@ -72,11 +71,10 @@ html, body {
     	background: $grey-4;
 
     	input{
-    		//padding: 16px 0 16px 30px;
     		padding: 10px 0 10px 20px;
     		margin: 10px;
     		width: 210px;
-    		color: $secondary-text-colour;
+    		color: $text-colour;
     		border: 0;
     	}
     	&::before{
@@ -88,10 +86,7 @@ html, body {
 
     .search-results{
     	background: $grey-4;
-    	&.visible{
-    		border-bottom: 1px solid $border-colour;
-    		//border-top: 1px solid $border-colour;
-    	}
+    	border-bottom: 1px solid $border-colour;
     }
 }
 

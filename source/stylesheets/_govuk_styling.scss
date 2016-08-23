@@ -158,13 +158,14 @@ aside {
 	}
 
 	h2 {
+		@include bold-24;
 		background-image: none;
 		margin-top: 1em;
 		border: 0;
 	}
 
 	h3 {
-		@include bold-24;
+		@include bold-19;
 		clear: both;
 	}
 	

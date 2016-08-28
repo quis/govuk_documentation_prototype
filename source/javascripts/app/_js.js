@@ -13,7 +13,7 @@ var stickyNav = function(){
 	    $('.dark-box').css("top", 0);
 	} else {
 		if (bottom > 0){
-			$('.tocify-wrapper').css("top", bottom + "px");
+			$('.tocify-wrapper').css("top", (bottom - 15) + "px");
 			$('.dark-box').css("top", (bottom - 114) + "px");
 		}
   		

@@ -2,9 +2,7 @@
 title: API Reference
 
 language_tabs:
-  - HTML
-  - Sass
-  - Javascript
+  - bash
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>

@@ -106,7 +106,7 @@
 
             // **theme**: Accepts a string: "bootstrap", "jqueryui", or "none"
             // Determines if Twitter Bootstrap, jQueryUI, or Tocify classes should be added to the table of contents
-            theme: "bootstrap",
+            theme: "none",
 
             // **extendPage**: Accepts a boolean: true or false
             // If a user scrolls to the bottom of the page and the page is not tall enough to scroll to the last table of contents item, then the page height is increased
@@ -780,6 +780,10 @@
             // Stores the plugin context in the `self` variable
             var self = this,
                 element = elem;
+
+            // TIM
+
+            elem.parent().addClass("current-section");
 
             // If the sub-header is not already visible
             if (!elem.is(":visible")) {

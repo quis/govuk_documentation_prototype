@@ -1,4 +1,4 @@
-## Orgs, Spaces and Targets
+## Orgs, spaces and targets
 
 Your tenant account belongs to at least one **organisation** ("org" for short) within the PaaS. This typically represents the real-world organisation or department you work for. Your co-workers' tenant accounts will belong to the same org. 
 

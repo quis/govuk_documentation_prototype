@@ -88,10 +88,15 @@
     </style>
     <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+
+<!--[if gte IE 9]><!--><link href="stylesheets/fonts.css" media="all" rel="stylesheet" type="text/css">
+<!--<![endif]-->
+
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;html&quot;,&quot;sass&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;bash&quot;]">
+
     <header role="banner" id="global-header" class="with-proposition">
       <div class="header-wrapper">
         <div class="header-global">
@@ -120,10 +125,9 @@
     <div class="breadcrumbs" id="breadcrumb">
       <ol>
         <li><a href="/">Home</a></li>  
-        <li><a href="/">GOV.UK Elements</a></li>   
+        <li><a href="/">Government PaaS</a></li>   
       </ol>
     </div>
-
     
     <a href="#" id="nav-button">
       <span>
@@ -140,12 +144,10 @@
       -->
       
         <div class="lang-selector">
-              <a href="#" data-language-name="html">html</a>
-              <a href="#" data-language-name="sass">sass</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="bash">bash</a>
         </div>
         <div class="search">
-          <input type="text" class="search" id="input-search" placeholder="Search">
+          <input type="text" class="search" id="input-search" placeholder="Search...">
         </div>
         <ul class="search-results"></ul>
       <div id="toc">
@@ -158,1316 +160,1118 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="gov-uk-elements">GOV.UK elements</h1>
+        
+          <h1 id="government-paas">Government PaaS</h1>
 
-<p>This guide shows how to make your service look consistent with the rest of GOV.UK.</p>
+<p>Government PaaS is a cloud-hosting platform being built by the Government Digital Service (GDS). PaaS manages the deployment of your apps, services and background tasks so you don’t need to hire specialist cloud skills to do so.</p>
 
-          <h1 id="form-elements">Form elements</h1>
+<p>Government PaaS is currently in private beta.</p>
 
-<p>Keep forms as simple as possible &ndash; only ask what&rsquo;s needed to run your service.</p>
+<p>If you’d like to be one of the early applications going live on the platform, please contact us by emailing <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>. There is limited availability for these early applications.</p>
 
-<h2 id="optional-and-mandatory-fields">Optional and mandatory fields</h2>
+<h1 id="overview">Overview</h1>
 
-<div class="sizer">
-  <ul class="text list list-bullet">
-    <li>only ask for the information you absolutely need</li>
-    <li>if you do ask for optional information, mark the labels of optional fields with &rsquo;(optional)&rsquo;</li>
-    <li>don&rsquo;t mark mandatory fields with asterisks</li>
-  </ul>
-</div>
+          <h2 id="benefits-of-paas">Benefits of PaaS</h2>
 
-<h2 id="labels">Labels</h2>
+<p>Right now, development teams spend considerable time and money setting up all the components required to host a government service (eg, application monitoring, logging and alerting techniques). With Government PaaS, development teams can save on this effort by using a hosting stack that’s already been developed.</p>
 
-<div class="sizer">
-  <ul class="text list list-bullet">
-    <li>all form fields should be given labels</li>
-    <li>don&rsquo;t hide labels, unless the surrounding context makes them unnecessary</li>
-    <li>labels should be aligned above their fields</li>
-    <li>label text should be short, direct and in sentence case</li>
-    <li>avoid colons at the end of labels</li>
-    <li>labels should be associated with form fields using the <code class="code">for</code> attribute</li>
-  </ul>
-</div>
+<p>Your development team can use PaaS to deploy and run government applications written in a range of languages and web frameworks. You’ll simply need to push your source code to the PaaS environment and the code will be compiled and deployed for you.</p>
 
-<div class="sizer">
-  <div class="example">
-    <label class="form-label" for="full-name-f1">Full name</label>
-    <input class="form-control" id="full-name-f1" type="text">
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"full-name-f1"</span><span class="nt">&gt;</span>Full name<span class="nt">&lt;/label&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"full-name-f1"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
+<p>PaaS makes user management easy by providing development teams with privilege separation options, eg an ‘admin’ user will be able to assign other team members certain permissions from their PaaS console.</p>
+
+<p>PaaS is deployed to multiple availability zones, making it resilient and accredited for information up to OFFICIAL.</p>
+
+<p>The platform itself will be supported 24/7 by GDS, although this does not include application support.</p>
+
+<p>Features of the PaaS platform currently include:</p>
+
+<ul>
+<li>  PostgreSQL and will include database back-ups</li>
+<li>  language support as provided by the <a href="http://docs.cloudfoundry.org/buildpacks/">default Cloud Foundry buildpacks</a></li>
+<li>  ability to stream application logs to Software as a Service logging platforms</li>
+</ul>
+
+<h3 id="coding-in-the-open">Coding in the open</h3>
+
+<p>We are making all new source code open and reusable at PaaS. You can use our source code if you want to prioritise different backing services (any networked attached service that your application consumes to do its job, eg a MongoDB instance or a PostgreSQL database).</p>
+
+<h3 id="characteristics-of-paas">Characteristics of PaaS</h3>
+
+<p>This table summarises the core characteristics of the PaaS offering.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">PaaS characteristic</th>
+<th style="text-align: left">Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Multi-tenant architecture</td>
+<td style="text-align: left">Applications running on the platform are isolated from each other and can’t read or change each others’ code, data or logs (eg the Digital Marketplace application can’t access the data of the GOV.UK publishing platform).</td>
+</tr>
+<tr>
+<td style="text-align: left">Application development teams manage their own user support</td>
+<td style="text-align: left">A platform where <a href="http://www.infoq.com/presentations/gov-uk-devops">people developing applications also support the application out of hours</a> leads to better software and a better user experience.</td>
+</tr>
+<tr>
+<td style="text-align: left">Self-service model</td>
+<td style="text-align: left">PaaS makes it easy for development teams to get started, and to make frequent changes to their applications without requiring support from a member of the PaaS team (eg they can create a Postgres instance). Because application teams have this complete control, they won’t experience any unnecessary delays.</td>
+</tr>
+<tr>
+<td style="text-align: left">Runs on multiple public clouds</td>
+<td style="text-align: left">PaaS isn’t locked into a single provider in order to encourage price competition, and to also remove the risk of a<a href="https://www.google.com/url?q=https://en.wikipedia.org/wiki/Single_point_of_failure">single point of failure</a></td>
+</tr>
+</tbody></table>
+
+          <h2 id="technology">Technology</h2>
+
+<p>PaaS uses Cloud Foundry and Amazon Web Services (AWS).</p>
+
+<h3 id="cloud-foundry">Cloud Foundry</h3>
+
+<p>The PaaS platform is built using the open source <a href="https://www.cloudfoundry.org/">Cloud Foundry</a> project. Multiple open source products were evaluated before Cloud Foundry was selected as the best fit for PaaS.</p>
+
+<p>We chose Cloud Foundry due to its maturity and because it offered:</p>
+
+<ul>
+<li>  a selection of user permissions</li>
+<li>  support for a wide variety of languages and frameworks through buildpacks</li>
+<li>  a very active community</li>
+<li>  an ability to scale easily, performing well under heavy load</li>
+</ul>
+
+<p>For more information on why we chose Cloud Foundry, <a href="https://governmentasaplatform.blog.gov.uk/2015/12/17/choosing-cloudfoundry/">read our blog post</a>.</p>
+
+<p>Government PaaS addresses common usability, security, compliance and scalability concerns experienced by government development teams. This makes the platform a superior option to your development team deploying their own version of the Cloud Foundry software, where they’d need to address cloud security implications and build a continuous integration pipeline.</p>
+
+<h3 id="amazon-web-services">Amazon Web Services</h3>
+
+<p>Currently PaaS runs on <a href="https://aws.amazon.com/">Amazon Web Services</a>. As a tenant, you do not have to interact with AWS directly; all interactions required to deploy and manage your service are carried out through Cloud Foundry commands.</p>
+
+<p>The platform may change cloud provider in the future, depending on cost.  Your PaaS interface will always remain the same, no matter which provider is in use. </p>
+
+          <h2 id="pricing">Pricing</h2>
+
+<p>Government PaaS will initially operate using a freemium pricing model.</p>
+
+<p>We will select underlying hosting providers with cost in mind. We can change to a more competitively-priced hosting provider without changing how you interface with PaaS.</p>
+
+<p>Please contact us for pricing details at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+
+          <h1 id="getting-started">Getting started</h1>
+
+          <h2 id="paas-requirements">PaaS Requirements</h2>
+
+<p>To be hosted by Government PaaS, your application must:</p>
+
+<ul>
+<li>follow the <a href="http://12factor.net/">twelve-factor application</a> principles (described in more detail below) - this will be the case if your app was written to be deployed to another PaaS like Heroku</li>
+<li>not require any backing service apart from a database (currently the only service available is PostgreSQL)</li>
+<li>not carry data at SECRET or above (this is currently out of scope for Government PaaS)</li>
+<li>be written in a language supported by the <a href="http://docs.cloudfoundry.org/buildpacks/">default Cloud Foundry buildpacks</a>:
+
+<ul>
+<li>Go</li>
+<li>Nodejs</li>
+<li>Java</li>
+<li>PHP</li>
+<li>Python</li>
+<li>Ruby</li>
+<li>or be a static HTML/CSS/Javascript site</li>
+</ul></li>
+</ul>
+
+<p>Buildpacks provide runtime and framework support for your application. For most languages, you will need to provide configuration files to describe your app&rsquo;s dependencies. Note that most buildpacks will support a limited range of versions of the language.</p>
+
+<h3 id="12-factor-application-principles">12-factor application principles</h3>
+
+<p>These principles were formulated by Adam Wiggins, the cofounder of the <a href="https://www.heroku.com/">Heroku</a> platform. They outline practices for modern apps to follow during development to make them scalable and easy to deploy. Your app must follow these practices to work on the Cloud Foundry technology which is used by the Government PaaS.</p>
+
+<p>We have summarised the practices in the table below, and noted the relevance of each principle to the Government PaaS.</p>
+
+<p>Visit the <a href="http://12factor.net/">12factor.net website</a> to further ensure your application supports these practices.</p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Principle</th>
+<th style="text-align: left">Meaning</th>
+<th style="text-align: left">Relevance to Cloud Foundry</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">One codebase many deploys</td>
+<td style="text-align: left">Each of your applications needs its own source-controlled repository.</td>
+<td style="text-align: left">You can push the same codebase to many Cloud Foundry applications with these commands: <code class="prettyprint">$ cf push myapp-staging</code> <br/> <code class="prettyprint">$ cf push myapp-production</code></td>
+</tr>
+<tr>
+<td style="text-align: left">Isolate dependencies</td>
+<td style="text-align: left">All required dependencies (eg a database or image library) must be vendored into your software system.</td>
+<td style="text-align: left">If you don’t declare your dependencies, you probably won’t be able to deploy your application on Cloud Foundry. How you specify dependencies depends on which language and buildpack you use. For example, the python buildpack expects you to provide a requirements.txt file which it will pass to pip.</td>
+</tr>
+<tr>
+<td style="text-align: left">Store your configuration in the environment</td>
+<td style="text-align: left">Ensure you separate the storage of your code and configuration (this is anything that may vary between environments, such as passwords).</td>
+<td style="text-align: left">Cloud Foundry provides environment variables to tell an application how to configure itself, e.g. VCAP_SERVICES tells applications what services are available and how to connect to them. You can create your own environment variables for each application.</td>
+</tr>
+<tr>
+<td style="text-align: left">Backing Services</td>
+<td style="text-align: left">All your backing services (e.g. an email service or a monitoring system) should be loosely coupled to your code so you can easily change services if you need to. A change in service should not require a code change.</td>
+<td style="text-align: left">In Cloud Foundry, backing services are referred to as ‘services’. Users can create services, bind them to applications, and delete them.</td>
+</tr>
+<tr>
+<td style="text-align: left">Strictly separate build, release and run stages</td>
+<td style="text-align: left">There should be a strict separation between building, releasing and running the code.</td>
+<td style="text-align: left">The build stage is carried out by the buildpack and Cloud Foundry refers to this as ‘staging’ an app. Cloud Foundry combines the release and run stage into a single &lsquo;push&rsquo; stage.</td>
+</tr>
+<tr>
+<td style="text-align: left">Stateless processes</td>
+<td style="text-align: left">Build stateless applications where intermediate data is stored in your backing services (eg your databases) and not in your running code. Also, have you applications run on many servers so you can ensure continuity in the event of server downtime.</td>
+<td style="text-align: left">Cloud Foundry treats all application processes are stateless and expendable.</td>
+</tr>
+<tr>
+<td style="text-align: left">Port binding</td>
+<td style="text-align: left">Your application should interface to the world via an API. You can have a separate URL for your customers than the one you use for internal calls. This means your app can be used as a backing service for another app via its URL.</td>
+<td style="text-align: left">Cloud Foundry expects applications to have this and provides an environment variable called PORT for the application to use as part of its bootstrapping process.</td>
+</tr>
+<tr>
+<td style="text-align: left">Concurrency</td>
+<td style="text-align: left">Ensure all your processes (e.g. web requests or API calls) are running separately so your application can scale easily.</td>
+<td style="text-align: left">Cloud Foundry expects applications to behave according to this principle. To increase the number of processes running, use the <code class="prettyprint">cf scale</code> command.</td>
+</tr>
+<tr>
+<td style="text-align: left">Disposability</td>
+<td style="text-align: left">You should be able to rapidly release new code. Also, applications should be able to start back up fast and cleanly following shut down.</td>
+<td style="text-align: left">Cloud Foundry expects applications to follow this principle.</td>
+</tr>
+<tr>
+<td style="text-align: left">Development parity</td>
+<td style="text-align: left">Applications should be rapidly deployed from their development environment to production.  To ensure this rapid deployment, keep a developer’s environment similar to that of production (eg both environments should use the same backing services).</td>
+<td style="text-align: left">CF helps you achieve this development/production parity by letting you create and deploy similar services for development, test and production environments</td>
+</tr>
+<tr>
+<td style="text-align: left">Logs</td>
+<td style="text-align: left">Maintain and archive log files so you have visibility of how your application works over time.</td>
+<td style="text-align: left">Cloud Foundry <a href="https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html">describes how to log files here</a>. PaaS will offer the Loggregator function in beta.</td>
+</tr>
+<tr>
+<td style="text-align: left">Administrative processes</td>
+<td style="text-align: left">Run one-off administrative processes (eg running analytics) in your production environment.</td>
+<td style="text-align: left"></td>
+</tr>
+</tbody></table>
+
+          <h2 id="quick-setup-guide">Quick Setup Guide</h2>
+
+<h3 id="getting-an-account">Getting an account</h3>
+
+<p>Government PaaS is currently in private beta.</p>
+
+<p>If your organisation is taking part in the private beta and you need an account, or you&rsquo;d like to find about taking part in the beta, please contact us by emailing <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+
+<p>In order to provide you with an account, we need to store some personal data about you. Please see <a href="/getting_started/privacy">our Privacy Policy</a> for details.</p>
+
+<h3 id="setting-up-the-command-line">Setting up the command line</h3>
+
+<p>Government PaaS uses a hosting technology called Cloud Foundry. As a tenant (that is, someone who is hosting an application on the PaaS), you will use the Cloud Foundry command line client to interact with the PaaS. To set it up:</p>
+
+<ol>
+<li>Download and install the <a href="https://github.com/cloudfoundry/cli#downloads" target="blank">Cloud Foundry CLI for your platform </a> [external page, opens in new tab]</li>
+<li><p>To check that it installed correctly, go to the Terminal/command line/Command Prompt and run:</p>
+<pre class="highlight plaintext"><code>cf -v
 </code></pre>
 
-<h2 id="form-fields">Form fields</h2>
-
-<p>Make field widths proportional to the input they take.</p>
-
-<p>Ensure that users can enter the information they need at smaller screen sizes.</p>
-
-<p>Snap form fields to 100% width at smaller screen sizes.</p>
-
-<p><a href="https://designpatterns.hackpad.com/Text-boxes-imgij2JcsHO">Discuss form fields on the design patterns Hackpad</a></p>
-
-<h2 id="form-focus-states">Form focus states</h2>
-
-<p>All elements use the yellow focus style as a highlight, as either a fill or 3px outline.</p>
-
-<p>Click on the label &ldquo;Full name&rdquo; or inside the form field to show the focus state.</p>
-
-<div class="sizer">
-  <div class="example">
-    <div class="grid-row">
-      <div class="column-two-thirds">
-        <form>
-          <div class="form-group">
-            <label class="form-label" for="full-name-f2">Full name</label>
-            <input class="form-control" type="text" id="full-name-f2">
-          </div>
-        </form>
-      </div>
-      <div class="column-third">
-        <div class="swatch-wrapper">
-          <h4 class="heading-small">Focus</h4>
-          <div class="swatch swatch-yellow"></div>
-          <ul>
-            <li><b>#FFBF47</b></li>
-            <li>$focus-colour</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<h2 id="hint-text">Hint text</h2>
-
-<div class="sizer">
-  <ul class="list list-bullet text">
-    <li>don&rsquo;t use placeholder text in form fields, as this will disappear once content is entered into the form field</li>
-    <li>use hint text for supporting contextual help, this will always be shown</li>
-    <li>hint text should sit above a form field</li>
-    <li>ensure hint text can be read correctly by screen readers</li>
-  </ul>
-</div>
-
-<div class="sizer">
-  <div class="example">
-    <label class="form-label" for="ni-number">
-      National Insurance number
-      <span class="form-hint">It&rsquo;ll be on your last payslip. For example, VO 12 34 56 D.</span>
-    </label>
-    <input class="form-control" id="ni-number" type="text">
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"ni-number"</span><span class="nt">&gt;</span>
-  National Insurance number
-  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"form-hint"</span><span class="nt">&gt;</span>It'll be on your last payslip. For example, VO 12 34 56 D.<span class="nt">&lt;/span&gt;</span>
-<span class="nt">&lt;/label&gt;</span>
-<span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"ni-number"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
+<p>You should get a message like this, confirming the version that&rsquo;s installed (it may not be this exact version):</p>
+<pre class="highlight plaintext"><code>cf version 6.18.1+a1103f0-2016-05-24
 </code></pre>
 
-<h2 id="spacing-between-form-elements">Spacing between form elements</h2>
-
-<p>Ensure there is sufficient spacing between form elements.</p>
-
-<div class="sizer">
-  <div class="example">
-    <!-- Use .form-group to create spacing when wrapping label and input pairs -->
-    <div class="form-group">
-      <label class="form-label" for="first-name-2">First name</label>
-      <input class="form-control" id="first-name-2" name="first-name-2" type="text">
-    </div>
-    <div class="form-group">
-      <label class="form-label" for="last-name-2">Last name</label>
-      <input class="form-control" id="last-name-2" name="last-name-2" type="text">
-    </div>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="c">&lt;!-- Use .form-group to create spacing when wrapping label and input pairs --&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"first-name-2"</span><span class="nt">&gt;</span>First name<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"first-name-2"</span> <span class="na">name=</span><span class="s">"first-name-2"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"last-name-2"</span><span class="nt">&gt;</span>Last name<span class="nt">&lt;/label&gt;</span>
-  <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"last-name-2"</span> <span class="na">name=</span><span class="s">"last-name-2"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<p><em>Note:</em> depending on your network configuration you might need to <a href="https://docs.cloudfoundry.org/cf-cli/http-proxy.html">set an <code class="prettyprint">HTTP_PROXY</code> environment variable</a> for the CLI to connect. Contact your network administrators to work out the correct settings for your configuration.  </p></li>
+<li><p>Log in by running:</p>
+<pre class="highlight plaintext"><code>cf login -a api.cloud.service.gov.uk -u USERNAME
 </code></pre>
 
-<h2 id="fieldsets-and-legends">Fieldsets and legends</h2>
+<p>Your <code class="prettyprint">USERNAME</code> is your email address your account was created with.</p>
 
-<p>Use fieldsets to group related form controls. The first element inside a fieldset must be a <code class="code">legend</code> element which describes the group.</p>
+<p>You will then be prompted to enter your password, which should have been sent to you by email (subject &ldquo;Welcome to the Government PaaS&rdquo;).</p></li>
+<li><p><strong>It&rsquo;s important for security that you now change your password</strong>. Run:</p>
 
-<h2 id="select-boxes">Select boxes</h2>
+<p><code class="prettyprint">cf passwd</code></p>
 
-<p>Avoid using select boxes (drop-down lists) - use radio buttons or checkboxes instead.</p>
+<p>You will be prompted to enter your password from the previous step. You can then choose a new password.</p></li>
+</ol>
 
-<p><a href="https://designpatterns.hackpad.com/Select-boxes-KzQ1IRd07HL">Discuss select boxes on the design patterns Hackpad</a></p>
+<p>Once logged in, you can see the available commands by running <code class="prettyprint">cf</code>.</p>
 
-<h2 id="radio-buttons">Radio buttons</h2>
+<h3 id="deploying-a-test-app"> Deploying a test app</h3>
 
-<div class="sizer">
-  <ul class="list list-bullet text">
-    <li>use these to let users choose a single option from a list</li>
-    <li>for more than two options, radio buttons should be stacked</li>
-    <li>radio buttons with large hit areas are easier to select with a mouse or touch devices</li>
-  </ul>
-</div>
+<p>To practice deploying an app, try following the <a href="/deploying_apps/deploying_static_sites/">deploying a static site</a> process.</p>
 
-<h3 id="inline-radio-buttons">Inline radio buttons</h3>
+          <h2 id="privacy-policy">Privacy policy</h2>
 
-<div class="sizer">
-  <div class="example">
-    <form>
-      <p class="heading-medium">
-        Do you already have a personal user account?
-      </p>
+<p>This privacy policy relates to the data we store about you as a Government PaaS tenant. It does not relate to the privacy of the end users of any service you host on the PaaS: you are responsible for the data stored by your service.</p>
 
-      <form>
-        <fieldset class="inline">
+<p>If this privacy policy changes, all PaaS tenants will be notified.</p>
 
-          <legend class="visuallyhidden">Do you already have a personal user account?</legend>
+<h3 id="introduction">Introduction</h3>
 
-          <label class="block-label" for="radio-inline-1">
-            <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-            Yes
-          </label>
-          <label class="block-label" for="radio-inline-2">
-            <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-            No
-          </label>
+<p>Government Platform as a Service (PaaS) is provided by the Government Digital Service (GDS), which is part of the <a href="https://www.gov.uk/government/organisations/cabinet-office">Cabinet Office</a>. We use your personal data to provide you with access to PaaS systems, and to administer that access.</p>
 
-        </fieldset>
-      </form>
+<p>This privacy policy explains the kinds of data that we process, how it’s used, how it’s stored, how it’s protected and how you can find out about it.</p>
 
-    </form>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"heading-medium"</span><span class="nt">&gt;</span>
-  Do you already have a personal user account?
-<span class="nt">&lt;/h1&gt;</span>
+<h3 id="the-data-we-process">The data we process</h3>
 
-<span class="nt">&lt;form&gt;</span>
-  <span class="nt">&lt;fieldset</span> <span class="na">class=</span><span class="s">"inline"</span><span class="nt">&gt;</span>
+<p>We collect and process some data about you to provide you with access to PaaS systems, as part of your work on HMG services and products that utilise the PaaS platform.</p>
 
-    <span class="nt">&lt;legend</span> <span class="na">class=</span><span class="s">"visuallyhidden"</span><span class="nt">&gt;</span>Do you already have a personal user account?<span class="nt">&lt;/legend&gt;</span>
+<p>This data includes:</p>
 
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"radio-inline-1"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"radio-inline-1"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-inline-group"</span> <span class="na">value=</span><span class="s">"Yes"</span><span class="nt">&gt;</span>
-      Yes
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"radio-inline-2"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"radio-inline-2"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-inline-group"</span> <span class="na">value=</span><span class="s">"No"</span><span class="nt">&gt;</span>
-      No
-    <span class="nt">&lt;/label&gt;</span>
+<ul>
+<li>your name - so we know who is using the account</li>
+<li>your email address - which allows us to contact you about your account</li>
+<li>your mobile telephone number - which allows us to contact you about your account, and in future, support multi-factor authentication</li>
+<li>your organisational role - which allows us to understand what you do, and what access you should have</li>
+</ul>
 
-  <span class="nt">&lt;/fieldset&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
+<h2 id="how-we-use-and-share-your-data">How we use and share your data</h2>
+
+<p>We use this information to create and administer user accounts with our platform.</p>
+
+<p>We don’t share this information with anyone else.</p>
+
+<p>We will store the data you provide in order for your user account with PaaS to function correctly, and so we can administer that access - including sending you updates and notices.</p>
+
+<p>We will delete your personal data when your user account is no longer required. We keep records of the user account activity for up to an additional 2 years.</p>
+
+<h3 id="where-we-store-your-data">Where we store your data</h3>
+
+<p>We store your data on our servers in the European Union. We’ll never transfer or your data on servers outside of the European Economic Area.</p>
+
+<p>This means you are covered by EU Data Protection regulations. </p>
+
+<h3 id="keeping-your-data-secure">Keeping your data secure</h3>
+
+<p>We are committed to protecting the information you provide. We ensure that appropriate steps are taken to prevent the disclosure, theft or unauthorised modification of your information. We understand how important it is to protect personal data and other sensitive information. This includes encrypting the data, as well as ensuring that data is sent via encrypted channels (such as Transport Layer Security). We have procedures and security features in place to try and keep your data secure once we receive it.</p>
+
+<p>Because it’s impossible to guarantee data security, any data you transmit is at your own risk.</p>
+
+<p>We won’t share your information with any other organisations for marketing, market research or commercial purposes, and we will only share your information with other organisations to make it possible to facilitate and administer platform functionality.</p>
+
+<h3 id="disclosing-your-information">Disclosing your information</h3>
+
+<p>We will usually only share your information as set out above.</p>
+
+<p>Additionally, we may pass on your data if we have a lawful reason to do so, for example as part of a criminal investigation or fraud prevention activity.</p>
+
+<h3 id="your-rights-and-how-to-make-a-complaint">Your rights and how to make a complaint</h3>
+
+<p>You can <a href="https://www.gov.uk/data-protection">find out what information we hold about you</a>, and ask us not to use any of the information we collect.</p>
+
+<p>You can email us on <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>. You’ll get a confirmation within 5 working days that we have received your complaint, and a full answer within 20 working days. We will inform you if there’s going to be a delay.</p>
+
+<p>If you’re unhappy with the answer you receive, or need any advice regarding the use of your personal data, you can contact the Information Commissioner’s Office (ICO), <a href="https://ico.org.uk/">https://ico.org.uk/</a>.</p>
+
+          <h2 id="limitations">Limitations</h2>
+
+<p>While the Government PaaS is built using Cloud Foundry technology, we don&rsquo;t support all Cloud Foundry features. This section explains some Cloud Foundry features that are not enabled, as well as some limitations of the beta phase.</p>
+
+<h3 id="custom-buildpacks-are-not-supported">Custom buildpacks are not supported</h3>
+
+<p>Cloud Foundry uses buildpacks to provide runtime and framework support for applications in different languages. </p>
+
+<p>Government PaaS does not support <a href="https://docs.cloudfoundry.org/buildpacks/custom.html">custom buildpacks</a>, only the <a href="https://docs.cloudfoundry.org/buildpacks/">standard buildpacks</a>.</p>
+
+<p>If you want to use a custom buildpack because you need a newer version of a runtime or framework, please note that we update the standard buildpacks on a regular basis (approximately monthly).</p>
+
+<p>If you&rsquo;d like to use custom buildpacks, please contact us at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+
+<h3 id="direct-ssh-access-is-currently-disabled">Direct SSH access is currently disabled</h3>
+
+<p>The Cloud Foundry command line client has an option to enable you to connect directly to the virtual machines on which your apps run using <code class="prettyprint">cf ssh</code>. (See the <a href="https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html">Cloud Foundry documentation on accessing apps with SSH</a>.</p>
+
+<p>This functionality is currently disabled on the Government PaaS. We intend to make it available in future, following security testing.</p>
+
+<h3 id="404s-after-commands-that-restart-the-app">404s after commands that restart the app</h3>
+
+<p>After you use a command that restarts application instances, such as <code class="prettyprint">cf push</code> or <code class="prettyprint">cf restart</code>, your app may briefly return incorrect 404 errors. Apart from the brief downtime, this may lead to problems if the 404 is cached, or visiting web crawling bots (as used by search engines) receive a 404.</p>
+
+<p>Commands known to do this are:
+- <code class="prettyprint">cf push</code>
+- <code class="prettyprint">cf restage</code>
+- <code class="prettyprint">cf restart</code>
+- <code class="prettyprint">cf scale</code> when changing disk or memory limits or forcing a restart</p>
+
+<p>We are working on a fix to prevent this happening.</p>
+
+<p>In the meantime, we suggest that you use a <a href="https://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html">blue-green deployment process</a>, where you have two versions of an app, one that is &lsquo;live&rsquo; and one that is undergoing an update or restart. There are plugins for the Cloud Foundry command line client to facilitate this process. We haven&rsquo;t evaluated the available plugins in enough detail to recommend one, but some tenants have successfully used <a href="https://github.com/contraband/autopilot">autopilot</a>.</p>
+
+<h3 id="api-access-may-have-brief-outages-during-beta">API access may have brief outages during beta</h3>
+
+<p>During the beta period, there may be occasional brief periods where API access is unavailable during a platform update, causing commands sent from the command line client to fail. </p>
+
+<p>If you find that a valid command is failing and the error message does not explain the problem, please wait 5 minutes before trying the command again. If the error persists for more than 5 minutes, it is unlikely to be caused by a platform update and you should contact us at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+
+<p>We are working on a fix to prevent the interruption of API access when we update the platform.</p>
+
+<h3 id="deploying-docker-images-is-not-currently-enabled">Deploying Docker images is not currently enabled</h3>
+
+<p>Cloud Foundry supports pushing a <a href="https://www.docker.com/">Docker</a> image as an app. </p>
+
+<p>This feature is <em>not</em> currently enabled on the Government PaaS because allowing deployment from Docker images, where the root filesystem is controlled by the tenant, raises additional security concerns: see <a href="https://github.com/cloudfoundry/diego-design-notes/blob/c59e475020a22e244c6074f89c45b55f7b1e2867/docker-support.md#docker-in-a-multi-tenant-world">this note from the CF developers</a> for more details.</p>
+
+<p>We may enable support for Docker images in the future. If you would like to be able to push Docker images, please contact our support team at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>, providing details of your use case.</p>
+
+<h3 id="route-services-are-currently-disabled">Route services are currently disabled</h3>
+
+<p><a href="http://docs.cloudfoundry.org/services/route-services.html">Cloud Foundry route services</a> are used to apply transformation or processing to requests before they reach an application.</p>
+
+<p>Route services are currently disabled on Government PaaS. If you&rsquo;d like to discuss your use case for route services and possible workarounds, please contact us at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a></p>
+
+          <h2 id="deploying-apps">Deploying apps</h2>
+
+<h3 id="deployment-overview">Deployment overview</h3>
+
+<p>The <code class="prettyprint">cf push</code> command is used both to create a new app and to push a new version of an existing one. The basic steps:</p>
+
+<ol>
+<li><p>Check out whatever version of the code you want to deploy from version control.</p>
+<pre class="highlight plaintext"><code>git checkout master
+</code></pre></li>
+<li><p>Target the appropriate organisation and space.</p>
+<pre class="highlight plaintext"><code>cf target -o SOMEORG -s SOMESPACE
+</code></pre></li>
+<li><p>Deploy the application by running:</p>
+<pre class="highlight plaintext"><code>cf push APPNAME
 </code></pre>
 
-<h3 id="stacked-radio-buttons">Stacked radio buttons</h3>
+<p>from the directory where you checked out the code.</p></li>
+</ol>
 
-<div class="sizer">
-  <div class="example">
-    <form>
-      <p class="heading-medium">Where do you live?</p>
+<p>The app should now be live at <code class="prettyprint">https://APPNAME.cloudapps.digital</code>.</p>
 
-      <form>
-        <fieldset>
+<p>There are many options available when you <code class="prettyprint">push</code> an app. You can optionally set them in a <code class="prettyprint">manifest.yml</code> file in the directory from which you are running the <code class="prettyprint">push</code> command. See the Cloud Foundry documentation on <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html">Deploying with Application Manifests</a> for details.</p>
 
-          <legend class="visuallyhidden">Where do you live?</legend>
+<p>For a production app, you should run at least two instances to ensure availability.</p>
 
-          <label class="block-label" for="radio-1">
-            <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
-            Northern Ireland
-          </label>
-          <label class="block-label" for="radio-2">
-            <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
-            Isle of Man or the Channel Islands
-          </label>
-          <p class="form-block">or</p>
-          <label class="block-label" for="radio-3">
-            <input id="radio-3" type="radio" name="radio-group" value="I am a British citizen living abroad">
-            I am a British citizen living abroad
-          </label>
+<p>After deployment, you can increase the running instances to two using:</p>
 
-        </fieldset>
-      </form>
+<p><code class="prettyprint">cf scale APPNAME -i 2</code></p>
 
-    </form>
-  </div>
-</div>
-<pre class="highlight html"><code>  <span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"heading-medium"</span><span class="nt">&gt;</span>Where do you live?<span class="nt">&lt;/h1&gt;</span>
+<h2 id="caveats">Caveats</h2>
 
-  <span class="nt">&lt;form&gt;</span>
-    <span class="nt">&lt;fieldset&gt;</span>
+<ul>
+<li>Your app should not write to local storage. Cloud Foundry local storage is ephemeral and can be deleted at any time.</li>
+<li>You may need to set environment variables for your app to work. All configuration information should be stored in environment variables, not in the code. </li>
+<li>Instances will be restarted if they <a href="/managing_apps/quotas/">exceed memory limits</a>.</li>
+<li>Proper <a href="/deploying_apps/logging/">logging</a> might require special libraries/configuration for your app.</li>
+</ul>
 
-      <span class="nt">&lt;legend</span> <span class="na">class=</span><span class="s">"visuallyhidden"</span><span class="nt">&gt;</span>Where do you live?<span class="nt">&lt;/legend&gt;</span>
+          <h2 id="excluding-files">Excluding files</h2>
 
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"radio-1"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"radio-1"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-group"</span> <span class="na">value=</span><span class="s">"Northern Ireland"</span><span class="nt">&gt;</span>
-        Northern Ireland
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"radio-2"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"radio-2"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-group"</span> <span class="na">value=</span><span class="s">"Isle of Man or the Channel Islands"</span><span class="nt">&gt;</span>
-        Isle of Man or the Channel Islands
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">"form-block"</span><span class="nt">&gt;</span>or<span class="nt">&lt;/p&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"radio-3"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"radio-3"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-group"</span> <span class="na">value=</span><span class="s">"I am a British citizen living abroad"</span><span class="nt">&gt;</span>
-        I am a British citizen living abroad
-      <span class="nt">&lt;/label&gt;</span>
+<p>Cloud Foundry isn&rsquo;t version-control-aware, so <code class="prettyprint">cf push</code> will deploy the working state of whatever files you have in that directory. In most cases, you will want to <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html#exclude">exclude files</a> ignored by Git. From within your project directory, run</p>
 
-    <span class="nt">&lt;/fieldset&gt;</span>
-  <span class="nt">&lt;/form&gt;</span>
+<p><code class="prettyprint">
+ln -s .gitignore .cfignore
+</code></p>
+
+<p>and commit the <code class="prettyprint">.cfignore</code> to your repository. However, read on if you have a more advanced CF setup.</p>
+
+<p>A couple of important points on the <code class="prettyprint">.cfignore</code>:</p>
+
+<ol>
+<li><p>if you have a more advanced app setup and have apps with a <code class="prettyprint">path</code> other than the project root (where you run <code class="prettyprint">cf push</code> from), you will need an additional <code class="prettyprint">.cfignore</code> file located in each app <code class="prettyprint">path</code>;</p></li>
+<li><p>also note that more advanced <code class="prettyprint">.gitignore</code> syntax, such as the <code class="prettyprint">**</code> recursive subdirectory wildcard, are <em>not</em> supported by <code class="prettyprint">.cfignore</code>.</p></li>
+</ol>
+
+          <h2 id="environment-variables">Environment variables</h2>
+
+<p>All the configuration information for your app must be stored as environment variables, not in the code. </p>
+
+<p>This includes credentials for external services that your app uses, such as a Twitter account, as well as values that will vary with each deployment of the app, like the canonical URL.</p>
+
+<p>To view an app&rsquo;s current environment variables, run:</p>
+
+<p><code class="prettyprint">cf env APPNAME</code></p>
+
+<p>To create or update a variable, use:</p>
+
+<p><code class="prettyprint">cf set-env APPNAME ENV_VAR_NAME ENV_VAR_VALUE</code></p>
+
+<p>If you&rsquo;re deploying a pre-existing app that was written with 12-factor in mind, check the app&rsquo;s documentation for any environment variables you need to set.</p>
+
+<p>If the app has instructions to deploy to Heroku, and tells you to do something like:</p>
+
+<p><code class="prettyprint">heroku config:set VARIABLE=value</code></p>
+
+<p>then you should do the equivalent command with <code class="prettyprint">cf set-env</code>:</p>
+
+<p><code class="prettyprint">cf set-env APPNAME VARIABLE value</code></p>
+
+<h3 id="system-provided-environment-variables">System-provided environment variables</h3>
+
+<p>There are two system-provided environment variables which contain information in JSON format.</p>
+
+<ul>
+<li>VCAP_SERVICES contains details (including credentials) of any backing services bound to the app</li>
+<li>VCAP_APPLICATION provides details of the currently running application (for example, language runtime version)</li>
+</ul>
+
+<p>To see the values of the system-provided variables, use:</p>
+
+<p><code class="prettyprint">cf env APPNAME</code></p>
+
+<p>If your app connects to a backing service, you may need to have it parse VCAP_SERVICES to get the credentials and other settings relating to that service and set the appropriate environment variables.</p>
+
+<p>However, some buildpacks will do this for you automatically. See the deploy instructions for the language/framework you are using for details.</p>
+
+<h3 id="further-reading">Further reading</h3>
+
+<p>For more information, see Cloud Foundry&rsquo;s <a href="https://docs.cloudfoundry.org/devguide/deploy-apps/environment-variable.html">Cloud Foundry Environment Variables</a> documentation.</p>
+
+          <h2 id="orgs-spaces-and-targets">Orgs, Spaces and Targets</h2>
+
+<p>Your tenant account belongs to at least one <strong>organisation</strong> (&ldquo;org&rdquo; for short) within the PaaS. This typically represents the real-world organisation or department you work for. Your co-workers&rsquo; tenant accounts will belong to the same org. </p>
+
+<p>To list available orgs, run:</p>
+
+<p><code class="prettyprint">cf orgs</code></p>
+
+<p>To see details about an org, run:</p>
+
+<p><code class="prettyprint">cf org ORGNAME</code></p>
+
+<p>where ORGNAME is the name of the org.</p>
+
+<p>Each org is divided into one or more <strong>spaces</strong>, which are used to organise app development, deployment, and maintenance. For example, you could use separate spaces for development and production versions of your app.</p>
+
+<p>To see the spaces in your current org, run:</p>
+
+<p><code class="prettyprint">cf spaces</code></p>
+
+<p>To deploy an app, you need to specify a combination of an organisation and a space: this is called the <strong>target</strong>.</p>
+
+<p>Set the target with:</p>
+
+<p><code class="prettyprint">cf target -o ORGNAME -s SPACENAME</code></p>
+
+<p>Once you set the target, the Cloud Foundry client remembers it until you change it.</p>
+
+<p>See the Cloud Foundry documentation on <a href="https://docs.cloudfoundry.org/concepts/roles.html">Orgs, Spaces, Roles, and Permissions</a> for more details.</p>
+
+          <h2 id="deploying-a-static-site">Deploying a static site</h2>
+
+<p>This section explains how to create and deploy a static HTML page. It&rsquo;s
+worth testing that you can carry out this process before you try to deploy a more complex app.</p>
+
+<p>When you deploy an app, you must select a combination of an organisation and a space (see <a href="/deploying_apps/orgs_spaces_targets">Orgs, Spaces and Targets</a> for more information). This is called the <strong>target</strong>.</p>
+
+<p>We have provided a <code class="prettyprint">sandbox</code> space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:</p>
+
+<p><code class="prettyprint">cf target -s sandbox</code></p>
+
+<p>It&rsquo;s also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.</p>
+
+<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+
+<ol>
+<li><p>In an empty directory, create an <code class="prettyprint">index.html</code> file.</p></li>
+<li><p>Add some markup to the <code class="prettyprint">index.html</code> file:</p>
+
+<p><html>
+      <head>
+        <title>Static Site</title>
+      </head>
+      <body>
+        <p>Welcome to the static site!</p>
+      </body>
+    </html></p></li>
+<li><p>Create a <code class="prettyprint">manifest.yml</code> file in the same directory. The manifest file tells 
+Cloud Foundry what to do with your app.</p>
+
+<p>&mdash;
+    applications:
+    - name: my-static-site
+      memory: 64M
+      buildpack: staticfile_buildpack</p>
+
+<p>Replace <code class="prettyprint">my-static-site</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
+
+<p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
+
+<p>A buildpack provides any framework and runtime support required by an app. If your app was written in Ruby, you would use <code class="prettyprint">ruby_buildpack</code>. In this case, we just want to serve a static file, so we use <code class="prettyprint">staticfile_buildpack</code>.</p></li>
+<li><p>From the directory where the <code class="prettyprint">manifest.yml</code> file is, run:</p>
+
+<p><code class="prettyprint">
+cf push
+</code></p>
+
+<p>If you do not specify an app name with the <code class="prettyprint">push</code> command, the name  specified in the manifest file is used.</p></li>
+</ol>
+
+<p>The site should now be live at <code class="prettyprint">https://APPNAME.cloudapps.digital</code>.</p>
+
+<p><strong>Note:</strong> The <code class="prettyprint">http://</code> version of the URL will not work. You must enter <code class="prettyprint">https://</code>.</p>
+
+<h3 id="adding-more-instances">Adding more instances</h3>
+
+<p>For a production site, you should run at least two instances of the app to ensure availability.</p>
+
+<p>You can add another instance of this static app by running:</p>
+
+<p><code class="prettyprint">cf scale APPNAME -i 2</code></p>
+
+          <h2 id="deploying-a-ruby-on-rails-app">Deploying a Ruby on Rails app</h2>
+
+<p>This section explains minimal steps for deploying a basic Rails app. For full details of how to deploy Ruby on Rails apps, see the official Cloud Foundry guide <a href="http://docs.cloudfoundry.org/buildpacks/ruby/gsg-ror.html">Getting Started Deploying Ruby on Rails Apps</a>. </p>
+
+<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+
+<p>When you deploy an app, you must select a combination of an organisation and a space (see <a href="/deploying_apps/orgs_spaces_targets">Orgs and spaces</a> for more information). This is called the <strong>target</strong>.</p>
+
+<p>We have provided a <code class="prettyprint">sandbox</code> space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:</p>
+
+<p><code class="prettyprint">cf target -s sandbox</code></p>
+
+<p>It&rsquo;s also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.</p>
+
+<p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Rails app requires a database, it must be able to work with PostgreSQL.</p>
+
+<ol>
+<li><p>Check out your Rails app to a local folder.</p></li>
+<li><p><a href="/deploying_apps/excluding_files/">Exclude files ignored by Git</a>.</p></li>
+<li><p><a href="https://github.com/heroku/rails_12factor#install">Add the <code class="prettyprint">rails_12factor</code> gem</a> for better logging.</p></li>
+<li><p>Create a manifest.yml file in the folder where you checked out your app.</p>
+
+<p>&mdash;
+    applications:
+    - name: my-rails-app
+      memory: 256M
+      buildpack: ruby_buildpack</p>
+
+<p>Replace <code class="prettyprint">my-rails-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
+
+<p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
+
+<p>A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Ruby, you use the <code class="prettyprint">ruby_buildpack</code>.</p></li>
+<li><p>Create the application using Cloud Foundry:</p>
+<pre class="highlight plaintext"><code>cf push  
 </code></pre>
 
-<h2 id="checkboxes">Checkboxes</h2>
+<p>from the folder where you checked out your app.</p>
 
-<div class="sizer">
-  <ul class="list list-bullet text">
-    <li>use these to select either on/off toggles or multiple selections</li>
-    <li>make it clear with words when users can select one or multiple options</li>
-  </ul>
-</div>
-
-<h3 id="stacked-checkboxes">Stacked checkboxes</h3>
-
-<div class="sizer">
-  <div class="example">
-    <form>
-      <p class="heading-medium">Which types of waste do you transport regularly?</p>
-      <p>Select all that apply</p>
-
-      <form>
-        <fieldset>
-
-          <legend class="visuallyhidden">Which types of waste do you transport regularly?</legend>
-
-          <label class="block-label" for="waste-type-1">
-            <input id="waste-type-1" name="waste-types" type="checkbox" value="waste-animal">
-            Waste from animal carcasses
-          </label>
-          <label class="block-label" for="waste-type-2">
-            <input id="waste-type-2" name="waste-types" type="checkbox" value="waste-mines">
-            Waste from mines or quarries
-          </label>
-          <label class="block-label" for="waste-type-3">
-            <input id="waste-type-3" name="waste-types" type="checkbox" value="waste-farm-agricultural">
-            Farm or agricultural waste
-          </label>
-
-        </fieldset>
-      </form>
-
-    </form>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;h3</span> <span class="na">class=</span><span class="s">"heading-medium"</span><span class="nt">&gt;</span>Which types of waste do you transport regularly?<span class="nt">&lt;/h3&gt;</span>
-<span class="nt">&lt;p&gt;</span>Select all that apply<span class="nt">&lt;/p&gt;</span>
-
-<span class="nt">&lt;form&gt;</span>
-  <span class="nt">&lt;fieldset&gt;</span>
-
-    <span class="nt">&lt;legend</span> <span class="na">class=</span><span class="s">"visuallyhidden"</span><span class="nt">&gt;</span>Which types of waste do you transport regularly?<span class="nt">&lt;/legend&gt;</span>
-
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"waste-type-1"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"waste-type-1"</span> <span class="na">name=</span><span class="s">"waste-types"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"waste-animal"</span><span class="nt">&gt;</span>
-      Waste from animal carcasses
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"waste-type-2"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"waste-type-2"</span> <span class="na">name=</span><span class="s">"waste-types"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"waste-mines"</span><span class="nt">&gt;</span>
-      Waste from mines or quarries
-    <span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"waste-type-3"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"waste-type-3"</span> <span class="na">name=</span><span class="s">"waste-types"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"waste-farm-agricultural"</span><span class="nt">&gt;</span>
-      Farm or agricultural waste
-    <span class="nt">&lt;/label&gt;</span>
-
-  <span class="nt">&lt;/fieldset&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-
+<p>If you do not specify a name for the app after the <code class="prettyprint">cf push</code> command, the name from the manifest file is used.</p></li>
+<li><p>Set any additional <a href="//deploying_apps/#setting-environment-variables/">environment variables</a> required by your app. For example:</p>
+<pre class="highlight plaintext"><code>cf set-env APPNAME VARIABLE `value`
 </code></pre>
 
-<h3 id="inline-checkboxes">Inline checkboxes</h3>
-
-<div class="sizer">
-  <ul class="list list-bullet text">
-    <li>large hit areas aren&rsquo;t always appropriate</li>
-    <li>only pre-select options if there&rsquo;s a strong, user-centred reason to</li>
-  </ul>
-</div>
-
-<div class="sizer">
-  <div class="example">
-    <form>
-      <label class="form-label" for="telephone-number">Enter your telephone number</label>
-      <input class="form-control" id="telephone-number" name="telephone-number" type="text">
-      <label class="form-checkbox" for="checkbox-telephone-number">
-        <input id="checkbox-telephone-number" name="contact-by-text-phone" type="checkbox" value="true">
-        I need to be contacted using a text phone
-      </label>
-
-    </form>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"example"</span><span class="nt">&gt;</span>
-  <span class="nt">&lt;form&gt;</span>
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"telephone-number"</span><span class="nt">&gt;</span>Enter your telephone number<span class="nt">&lt;/label&gt;</span>
-    <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">id=</span><span class="s">"telephone-number"</span> <span class="na">name=</span><span class="s">"telephone-number"</span> <span class="na">type=</span><span class="s">"text"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-checkbox"</span> <span class="na">for=</span><span class="s">"checkbox-telephone-number"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"checkbox-telephone-number"</span> <span class="na">name=</span><span class="s">"contact-by-text-phone"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"true"</span><span class="nt">&gt;</span>
-      I need to be contacted using a text phone
-    <span class="nt">&lt;/label&gt;</span>
-
-  <span class="nt">&lt;/form&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre>
-
-<p><a href="https://designpatterns.hackpad.com/Radio-buttons-and-checkboxes-8eBuLm9eRaz">Discuss radio buttons and checkboxes on the design patterns Hackpad</a></p>
-
-<h2 id="conditionally-revealing-content">Conditionally revealing content</h2>
-
-<div class="sizer">
-  <ul class="list list-bullet text">
-    <li>reveal additional questions, depending on the context</li>
-    <li>a left border is used to emphasise this supporting information</li>
-  </ul>
-</div>
-
-<h3 id="radio-buttons">Radio buttons</h3>
-
-<p>Choose an option below to see how this works.</p>
-
-<div class="sizer">
-  <div class="example">
-    <form>
-      <p class="heading-medium">
-        How do you want to be contacted?
-      </p>
-
-      <form>
-        <fieldset>
-
-          <legend class="visuallyhidden">How do you want to be contacted?</legend>
-
-          <div class="form-group">
-
-            <label class="block-label" data-target="contact-by-email" for="example-contact-by-email">
-              <input id="example-contact-by-email" type="radio" name="radio-contact-group" value="Yes">
-              Email
-            </label>
-            <div class="panel panel-border-narrow js-hidden" id="contact-by-email">
-              <label class="form-label" for="contact-email">Email address</label>
-              <input class="form-control" name="contact-email" type="text" id="contact-email">
-            </div>
-
-            <label class="block-label" data-target="contact-by-phone" for="example-contact-by-phone">
-              <input id="example-contact-by-phone" type="radio" name="radio-contact-group" value="No">
-              Phone
-            </label>
-            <div class="panel panel-border-narrow js-hidden" id="contact-by-phone">
-              <label class="form-label" for="contact-phone">Phone number</label>
-              <input class="form-control" name="contact-phone" type="text" id="contact-phone">
-            </div>
-
-            <label class="block-label" data-target="contact-by-text" for="example-contact-by-text">
-              <input id="example-contact-by-text" type="radio" name="radio-contact-group" value="No">
-              Text message
-            </label>
-            <div class="panel panel-border-narrow js-hidden" id="contact-by-text">
-              <label class="form-label" for="contact-text-message">Mobile phone number</label>
-              <input class="form-control" name="contact-text-message" type="text" id="contact-text-message">
-            </div>
-
-          </div>
-
-        </fieldset>
-      </form>
-
-    </form>
-  </div>
-</div>
-
-<div class="sizer">
-  <div class="panel panel-border-wide text">
-    <p>
-      A grey left hand border is used to visually connect the revealed content with the question above.
-    </p>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"panel panel-border-narrow"</span><span class="nt">&gt;&lt;/div&gt;</span>
-</code></pre>
-
-<p>The <a href="/typography/#typography-inset-text">inset text section</a> has more information on where and how to use panels (content with a grey left hand border).</p>
-<pre class="highlight html"><code><span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"heading-medium"</span><span class="nt">&gt;</span>
-  How do you want to be contacted?
-<span class="nt">&lt;/h1&gt;</span>
-
-<span class="nt">&lt;form&gt;</span>
-  <span class="nt">&lt;fieldset&gt;</span>
-
-    <span class="nt">&lt;legend</span> <span class="na">class=</span><span class="s">"visuallyhidden"</span><span class="nt">&gt;</span>How do you want to be contacted?<span class="nt">&lt;/legend&gt;</span>
-
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
-
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">data-target=</span><span class="s">"contact-by-email"</span> <span class="na">for=</span><span class="s">"example-contact-by-email"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"example-contact-by-email"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-contact-group"</span> <span class="na">value=</span><span class="s">"Yes"</span><span class="nt">&gt;</span>
-        Email
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"panel panel-border-narrow js-hidden"</span> <span class="na">id=</span><span class="s">"contact-by-email"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"contact-email"</span><span class="nt">&gt;</span>Email address<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"contact-email"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"contact-email"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">data-target=</span><span class="s">"contact-by-phone"</span> <span class="na">for=</span><span class="s">"example-contact-by-phone"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"example-contact-by-phone"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-contact-group"</span> <span class="na">value=</span><span class="s">"No"</span><span class="nt">&gt;</span>
-        Phone
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"panel panel-border-narrow js-hidden"</span> <span class="na">id=</span><span class="s">"contact-by-phone"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"contact-phone"</span><span class="nt">&gt;</span>Phone number<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"contact-phone"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"contact-phone"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">data-target=</span><span class="s">"contact-by-text"</span> <span class="na">for=</span><span class="s">"example-contact-by-text"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"example-contact-by-text"</span> <span class="na">type=</span><span class="s">"radio"</span> <span class="na">name=</span><span class="s">"radio-contact-group"</span> <span class="na">value=</span><span class="s">"No"</span><span class="nt">&gt;</span>
-        Text message
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"panel panel-border-narrow js-hidden"</span> <span class="na">id=</span><span class="s">"contact-by-text"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"contact-text-message"</span><span class="nt">&gt;</span>Mobile phone number<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">name=</span><span class="s">"contact-text-message"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"contact-text-message"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-
-    <span class="nt">&lt;/div&gt;</span>
-
-  <span class="nt">&lt;/fieldset&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-
-</code></pre>
-
-<p>In the code snippet above, the <code class="language-markup">data-target=&quot;&quot;</code> attribute is present on every label, as each option reveals an extra field.</p>
-
-<h3 id="checkboxes">Checkboxes</h3>
-
-<p>Click on &ldquo;Citizen of a different country&rdquo; to see how this works.</p>
-
-<div class="sizer">
-  <div class="example">
-    <form>
-      <p class="heading-medium">
-        What is your nationality?
-      </p>
-      <p>
-        Select all options that are relevant to you.
-      </p>
-
-      <form>
-        <fieldset>
-
-          <legend class="visuallyhidden">What is your nationality?</legend>
-
-          <div class="form-group">
-            <label class="block-label" for="nationalities-british">
-              <input id="nationalities-british" name="nationalities" type="checkbox" value="British">
-              British (including English, Scottish, Welsh and Northern Irish)
-            </label>
-            <label class="block-label" for="nationalities-irish">
-              <input id="nationalities-irish" name="nationalities" type="checkbox" value="Irish">
-              Irish
-            </label>
-            <label class="block-label" for="nationalities-other" data-target="example-different-country">
-              <input id="nationalities-other" name="nationalities" type="checkbox" value="Citizen of a different country">
-              Citizen of a different country
-            </label>
-            <div class="panel panel-border-narrow js-hidden" id="example-different-country">
-              <label class="form-label" for="nationalities-other-country">Country name</label>
-              <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
-            </div>
-          </div>
-
-        </fieldset>
-      </form>
-
-    </form>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;h1</span> <span class="na">class=</span><span class="s">"heading-medium"</span><span class="nt">&gt;</span>
-  What is your nationality?
-<span class="nt">&lt;/h1&gt;</span>
-<span class="nt">&lt;p&gt;</span>
-  Select all options that are relevant to you.
-<span class="nt">&lt;/p&gt;</span>
-
-<span class="nt">&lt;form&gt;</span>
-  <span class="nt">&lt;fieldset&gt;</span>
-
-    <span class="nt">&lt;legend</span> <span class="na">class=</span><span class="s">"visuallyhidden"</span><span class="nt">&gt;</span>What is your nationality?<span class="nt">&lt;/legend&gt;</span>
-
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"nationalities-british"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"nationalities-british"</span> <span class="na">name=</span><span class="s">"nationalities"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"British"</span><span class="nt">&gt;</span>
-        British (including English, Scottish, Welsh and Northern Irish)
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"nationalities-irish"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"nationalities-irish"</span> <span class="na">name=</span><span class="s">"nationalities"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"Irish"</span><span class="nt">&gt;</span>
-        Irish
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"block-label"</span> <span class="na">for=</span><span class="s">"nationalities-other"</span> <span class="na">data-target=</span><span class="s">"example-different-country"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">id=</span><span class="s">"nationalities-other"</span> <span class="na">name=</span><span class="s">"nationalities"</span> <span class="na">type=</span><span class="s">"checkbox"</span> <span class="na">value=</span><span class="s">"Citizen of a different country"</span><span class="nt">&gt;</span>
-        Citizen of a different country
-      <span class="nt">&lt;/label&gt;</span>
-      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"panel panel-border-narrow js-hidden"</span> <span class="na">id=</span><span class="s">"example-different-country"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"form-label"</span> <span class="na">for=</span><span class="s">"nationalities-other-country"</span><span class="nt">&gt;</span>Country name<span class="nt">&lt;/label&gt;</span>
-        <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"form-control"</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"nationalities-other-country"</span> <span class="na">name=</span><span class="s">"nationalities-other-country"</span><span class="nt">&gt;</span>
-      <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-
-  <span class="nt">&lt;/fieldset&gt;</span>
-<span class="nt">&lt;/form&gt;</span>
-</code></pre>
-
-<p><a href="https://designpatterns.hackpad.com/Conditional-form-fields-powy4GQmLIx">Discuss conditional form fields on the design patterns Hackpad</a></p>
-
-<h2 id="examples">Examples</h2>
-
-<div class="sizer">
-  <ul class="list list-bullet">
-    <li><a href="/form-elements/example-form-elements/">form elements</a></li>
-    <li><a href="/form-elements/example-date/">date pattern</a></li>
-    <li><a href="/form-elements/example-radios-checkboxes/">radio buttons and checkboxes</a></li>
-  </ul>
-</div>
-
-          <h1 id="buttons">Buttons</h1>
-
-<p>Use buttons to move though a transaction, aim to use only one button per page.</p>
-
-<h3 id="button-text">Button text</h3>
-
-<p>Button text should be short and describe the action the button performs.</p>
-
-<div class="sizer">
-  <div class="example">
-    <input class="button" type="submit" value="Save and continue">
-  </div>
-</div>
-<pre class="highlight html"><code>  <span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"button"</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Save and continue"</span><span class="nt">&gt;</span>
-</code></pre>
-
-<h2 id="start-now-button">Start now button</h2>
-
-<p>Launch your service with a Start now button.</p>
-
-<div class="sizer">
-  <div class="example">
-    <a class="button button-start" href="#" role="button">Start now</a>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"button button-start"</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">role=</span><span class="s">"button"</span><span class="nt">&gt;</span>Start now<span class="nt">&lt;/a&gt;</span>
-
-</code></pre>
-
-<h2 id="button-alignment">Button alignment</h2>
-
-<p>Align the primary action button to the left edge of your form, in the user&rsquo;s line of sight.</p>
-
-<div class="sizer">
-  <div class="example example-button">
-
-    <form action="/" method="post" class="form">
-      <div class="form-group">
-        <label for="form-email-address-1" class="form-label">Email address</label>
-        <input type="text" class="form-control" id="form-email-address-1">
-      </div>
-      <div class="form-group">
-        <button class="button">Save and continue</button>
-      </div>
-    </form>
-
-  </div>
-</div>
-
-<h2 id="disabled-buttons">Disabled buttons</h2>
-
-<p>Disabled buttons should be set at 50% opacity.</p>
-
-<div class="sizer">
-  <div class="example">
-    <button class="button" disabled="disabled">Primary button</button>
-  </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;input</span> <span class="na">class=</span><span class="s">"button"</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">value=</span><span class="s">"Save and continue"</span> <span class="na">disabled=</span><span class="s">"disabled"</span><span class="nt">&gt;</span>
-</code></pre>
-
-<h2 id="creating-buttons">Creating buttons</h2>
-
-<p>Use the GOV.UK Sass button mixin &ndash; find this in the GOV.UK frontend toolkit <a href="https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/design-patterns/_buttons.scss">buttons.scss</a> file.</p>
-
-<div class="sizer">
-  <div class="example example-button">
-    <div class="grid-row">
-      <div class="column-one-third">
-
-        <button class="button">Save and continue</button>
-
-      </div>
-      <div class="column-one-third">
-
-        <div class="swatch-wrapper">
-          <h4 class="heading-small">Button</h4>
-          <div class="swatch swatch-button-colour"></div>
-          <ul>
-            <li><b>#00823B</b></li>
-            <li>$button-colour</li>
-          </ul>
-        </div>
-
-      </div>
-      <div class="column-one-third">
-
-        <div class="swatch-wrapper">
-          <h4 class="heading-small">Focus</h4>
-          <div class="swatch swatch-yellow"></div>
-          <ul>
-            <li><b>#FFBF47</b></li>
-            <li>$focus-colour</li>
-          </ul>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<p><a href="https://designpatterns.hackpad.com/Navigation-buttons-continue-next-previous-zoP1sKiW3y4">Discuss navigation buttons on the design patterns Hackpad</a></p>
-
-          <h1 id="colour">Colour</h1>
-
-<p>Always use the GOV.UK colour palette.</p>
-
-<h2 id="colour-contrast">Colour contrast</h2>
-
-<p>The colour contrast ratio for text and interactive elements should be at least 4.5:1 <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html">as recommended by the W3C</a>. Test your service to meet this standard.</p>
-
-<h2 id="sass-variables">SASS variables</h2>
-
-<p>Use Sass variables in case colour values need to be updated &ndash; find these in the GOV.UK frontend toolkit <a href="https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_colours.scss">colours.scss</a> file.</p>
-
-<div class="sizer">
-  <div class="example">
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Text</h4>
-
-      <div class="swatch swatch-text-colour"></div>
-      <ul>
-        <li><b>#0B0C0C</b></li>
-        <li>$text-colour</li>
-      </ul>
-
-      <div class="swatch swatch-text-secondary"></div>
-      <ul>
-        <li><b>#6F777B</b></li>
-        <li>$secondary-text-colour</li>
-      </ul>
-
-      <div class="swatch swatch-page-colour"></div>
-
-      <ul>
-        <li><b>#FFFFFF</b></li>
-        <li>$page-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Links</h4>
-
-      <div class="swatch swatch-link-colour"></div>
-      <ul>
-        <li><b>#005ea5</b></li>
-        <li>$link-colour</li>
-      </ul>
-
-      <div class="swatch swatch-link-colour-hover"></div>
-      <ul>
-        <li><b>#2b8cc4</b></li>
-        <li>$link-hover-colour</li>
-      </ul>
-
-      <div class="swatch swatch-link-colour-visited"></div>
-      <ul>
-        <li><b>#4c2c92</b></li>
-        <li>$link-visited-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Backgrounds</h4>
-
-      <div class="swatch swatch-border-colour"></div>
-      <ul>
-        <li><b>#BFC1C3</b></li>
-        <li>$border-colour</li>
-      </ul>
-
-      <div class="swatch swatch-panel-colour"></div>
-      <ul>
-        <li><b>#DEE0E2</b></li>
-        <li>$panel-colour</li>
-      </ul>
-
-      <div class="swatch swatch-highlight-colour"></div>
-      <ul>
-        <li><b>#F8F8F8</b></li>
-        <li>$highlight-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Buttons</h4>
-
-      <div class="swatch swatch-button-colour"></div>
-      <ul>
-        <li><b>#00823B</b></li>
-        <li>$button-colour</li>
-      </ul>
-
-      <div class="swatch swatch-green"></div>
-      <ul>
-        <li><b>#006435</b></li>
-        <li>$green (hover colour)</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Focus</h4>
-      <div class="swatch swatch-yellow"></div>
-      <ul>
-        <li><b>#FFBF47</b></li>
-        <li>$focus-colour</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<h2 id="status-colours">Status colours</h2>
-
-<div class="sizer">
-  <div class="example">
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-alpha"></div>
-      <ul>
-        <li><b>#d53880</b></li>
-        <li>$alpha-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-beta"></div>
-      <ul>
-        <li><b>#f47738</b></li>
-        <li>$beta-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-discovery"></div>
-      <ul>
-        <li><b>#912b88</b></li>
-        <li>$discovery-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-live"></div>
-      <ul>
-        <li><b>#85994b</b></li>
-        <li>$live-colour</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-error"></div>
-      <ul>
-        <li><b>#B10E1E</b></li>
-        <li>$error-colour</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<h2 id="greyscale-palette">Greyscale palette</h2>
-
-<div class="sizer">
-  <div class="example">
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-black"></div>
-      <ul>
-        <li><b>#0B0C0C</b></li>
-        <li>$black</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-grey-1"></div>
-      <ul>
-        <li><b>#6F777B</b></li>
-        <li>$grey-1</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-grey-2"></div>
-      <ul>
-        <li><b>#BFC1C3</b></li>
-        <li>$grey-2</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-grey-3"></div>
-      <ul>
-        <li><b>#DEE0E2</b></li>
-        <li>$grey-3</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <div class="swatch swatch-grey-4"></div>
-      <ul>
-        <li><b>#F8F8F8</b></li>
-        <li>$grey-4</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<h2 id="extended-palette">Extended palette</h2>
-
-<div class="sizer">
-  <ul class="list list-bullet text">
-    <li>used for graphs and supporting material</li>
-    <li>for tints of the extended palette use 50% or 25%</li>
-    <li>for departmental colours
-     &ndash; find these in the GOV.UK frontend toolkit <a href="https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/colours/_organisation.scss" rel="external">organisation.scss file</a></li>
-  </ul>
-</div>
-
-<div class="sizer">
-  <div class="example">
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Purple</h4>
-
-      <div class="swatch swatch-purple"></div>
-      <ul>
-        <li><b>#2e358b</b></li>
-        <li>$purple</li>
-      </ul>
-
-      <h4 class="heading-small">Mauve</h4>
-
-      <div class="swatch swatch-mauve"></div>
-      <ul>
-        <li><b>#6f72af</b></li>
-        <li>$mauve</li>
-      </ul>
-
-      <h4 class="heading-small">Fuschia</h4>
-
-      <div class="swatch swatch-fuschia"></div>
-      <ul>
-        <li><b>#912b88</b></li>
-        <li>$fuschia</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Pink</h4>
-
-      <div class="swatch swatch-pink"></div>
-      <ul>
-        <li><b>#d53880</b></li>
-        <li>$pink</li>
-      </ul>
-
-      <h4 class="heading-small">Baby pink</h4>
-
-      <div class="swatch swatch-baby-pink"></div>
-      <ul>
-        <li><b>#f499be</b></li>
-        <li>$baby-pink</li>
-      </ul>
-
-      <h4 class="heading-small">Red</h4>
-
-      <div class="swatch swatch-red"></div>
-      <ul>
-        <li><b>#b10e1e</b></li>
-        <li>$red</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Mellow red</h4>
-
-      <div class="swatch swatch-mellow-red"></div>
-      <ul>
-        <li><b>#df3034</b></li>
-        <li>$mellow-red</li>
-      </ul>
-
-      <h4 class="heading-small">Orange</h4>
-
-      <div class="swatch swatch-orange"></div>
-      <ul>
-        <li><b>#f47738</b></li>
-        <li>$orange</li>
-      </ul>
-
-      <h4 class="heading-small">Brown</h4>
-
-      <div class="swatch swatch-brown"></div>
-      <ul>
-        <li><b>#b58840</b></li>
-        <li>$brown</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Yellow</h4>
-
-      <div class="swatch swatch-yellow"></div>
-      <ul>
-        <li><b>#ffbf47</b></li>
-        <li>$yellow</li>
-      </ul>
-
-      <h4 class="heading-small">Green</h4>
-
-      <div class="swatch swatch-green"></div>
-      <ul>
-        <li><b>#006435</b></li>
-        <li>$green</li>
-      </ul>
-
-      <h4 class="heading-small">Grass green</h4>
-
-      <div class="swatch swatch-grass-green"></div>
-      <ul>
-        <li><b>#85994b</b></li>
-        <li>$grass-green</li>
-      </ul>
-    </div>
-
-    <div class="swatch-wrapper">
-      <h4 class="heading-small">Turquoise</h4>
-
-      <div class="swatch swatch-turquoise"></div>
-      <ul>
-        <li><b>#28a197</b></li>
-        <li>$turquoise</li>
-      </ul>
-
-      <h4 class="heading-small">Light blue</h4>
-
-      <div class="swatch swatch-light-blue"></div>
-      <ul>
-        <li><b>#2b8cc4</b></li>
-        <li>$light-blue</li>
-      </ul>
-
-      <h4 class="heading-small">GOV.UK blue</h4>
-
-      <div class="swatch swatch-govuk-blue"></div>
-      <ul>
-        <li><b>#005ea5</b></li>
-        <li>$govuk-blue</li>
-      </ul>
-
-    </div>
-
-  </div>
-</div>
-
-<p><a href="https://designpatterns.hackpad.com/Colour-PDuGV42pJqx">Discuss colour on the design patterns Hackpad</a></p>
-
-<h2 id="examples">Examples</h2>
-
-<h3 id="transaction-end-page">Transaction end page</h3>
-
-<div class="sizer">
-  <div class="example">
-
-    <div class="grid-row">
-      <div class="column-two-thirds">
-        <p class="heading-xlarge">
-          Example service name
-        </p>
-
-        <div class="govuk-box-highlight">
-          <p class="bold-large">
-            Application complete
-          </p>
-          <p>
-            Your reference number is </br>
-            <strong class="heading-medium">HDJ2123F</strong>
-          </p>
-        </div>
-
-        <p>
-          We have sent you a confirmation email.
-        </p>
-
-        <p class="heading-medium">
-          What happens next?
-        </p>
-        <p>
-          We&rsquo;ve sent your application to Hackney Electoral Register Office.
-        </p>
-        <p>
-          They will contact you either to confirm your registration, or to ask for more information.
-        </p>
+<p>where VARIABLE is a unique name for the variable, and <code class="prettyprint">value</code> is the value to set.</p></li>
+<li><p>If your app requires a database, <a href="/deploying_services/postgres/">create a PostgreSQL backing service and bind it to your app</a>. 
+The Cloud Foundry buildpack for Ruby automatically gets the details of the first available PostgreSQL service from the <code class="prettyprint">VCAP_SERVICES</code> environment variable and sets the Ruby DATABASE_URL accordingly.</p></li>
+</ol>
+
+<p>Your app should now be live at <code class="prettyprint">https://APPNAME.cloudapps.digital</code>!</p>
+
+<p>For a production site, you should run at least two instances of the app to ensure availability.</p>
+
+<p>You can add another instance of your app by running:</p>
+
+<p><code class="prettyprint">cf scale APPNAME -i 2</code></p>
+
+<h3 id="web-servers">Web servers</h3>
+
+<p>By default, the Cloud Foundry ruby buildpack <a href="https://github.com/cloudfoundry/ruby-buildpack/blob/1f0ac3ce10866390d161c3f27e71d64890859454/lib/language_pack/rails4.rb#L27">runs <code class="prettyprint">bin/rails server</code></a>
+to spin up the application. In rails 4 and below this will use WEBrick as a
+server. <a href="http://guides.rubyonrails.org/getting_started.html#starting-up-the-web-server">In rails 5 and above the default is
+puma</a>.</p>
+
+<p>You may want to use a different server in production. The Cloud Foundry docs have
+<a href="https://docs.cloudfoundry.org/buildpacks/prod-server.html">more information on configuring a production server</a></p>
+
+<h3 id="troubleshooting-asset-precompilation">Troubleshooting asset precompilation</h3>
+
+<p>By default, the Rails buildpack performs asset precompilation during the staging phase. This is fine for
+most Rails apps, but it won&rsquo;t work for those which need to connect to services (such as the database)
+during asset compilation. (For an example, see <a href="https://github.com/18F/myusa/issues/636">MyUSA issue #636</a>)</p>
+
+<p>There are multiple potential solutions for this. For more advice, see
+<a href="https://docs.cloudfoundry.org/buildpacks/ruby/ruby-tips.html#precompile">the Cloud Foundry document on the subject</a>.</p>
+
+          <h2 id="deploying-a-node-js-app">Deploying a Node.js app</h2>
+
+<p>This section covers how to deploy a basic Node.js application to Government PaaS. See the Cloud Foundry <a href="http://docs.cloudfoundry.org/buildpacks/node/node-tips.html">Tips for Node.js Applications</a> for more details.</p>
+
+<p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Node.js app requires a database, it must be able to work with PostgreSQL.</p>
+
+<p>These instructions assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+
+<p>This is the code for the example app we are going to use. It is a basic web server that responds with a &lsquo;Hello World&rsquo; message.</p>
+
+<p>const http = require(&#39;http&rsquo;);</p>
+
+<p>const port = process.env.PORT || 3000;</p>
+
+<p>const server = http.createServer((req, res) =&gt; {
+      res.statusCode = 200;
+      res.setHeader(&#39;Content-Type&rsquo;, &#39;text/plain&rsquo;);
+      res.end(&#39;Hello World\n&rsquo;);
+    });</p>
+
+<p>server.listen(port, () =&gt; {
+      console.log(<code class="prettyprint">Server running on ${port}/</code>);
+    });</p>
+
+<ol>
+<li><p>Save the code to a new local directory as <code class="prettyprint">example.js</code>.</p></li>
+<li><p>Add this <code class="prettyprint">manifest.yml</code> file to the same directory:</p>
+
+<p>&mdash;
+    applications:
+    - name: my-node-app
+      command: node example.js
+      memory: 256M
+      buildpack: nodejs_buildpack</p>
+
+<p>Replace <code class="prettyprint">my-node-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
+
+<p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
+
+<p>A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Node.js, you use the <code class="prettyprint">nodejs_buildpack</code>.</p></li>
+<li><p>Include an npm <code class="prettyprint">package.json</code> file to specify dependencies. The file should also specify a <code class="prettyprint">start</code> command used to launch the app.</p>
+
+<p>This is a <code class="prettyprint">package.json</code> file for our example app:</p>
+
+<p>{
+      &ldquo;name&rdquo;: &ldquo;example&rdquo;,
+      &ldquo;version&rdquo;: &ldquo;0.0.1&rdquo;,
+      &ldquo;author&rdquo;: &ldquo;Demo&rdquo;,
+      &ldquo;engines&rdquo;: {
+        &ldquo;node&rdquo;: &ldquo;6.1.0&rdquo;,
+        &ldquo;npm&rdquo;: &ldquo;2.7.4&rdquo;
+      }
+    }</p>
+
+<p>The <code class="prettyprint">&quot;engines&quot;</code> values specify the versions of Node.js and npm that the PaaS should use to run your app. Note that older versions may not be available: if your version is not supported, you will see an error message when you try to upload and start the app.</p></li>
+<li><p>You can optionally run <code class="prettyprint">npm install</code> to preinstall dependencies rather than having them added during the PaaS staging process.</p></li>
+<li><p>Run <code class="prettyprint">cf push</code> to upload and start the app.</p></li>
+</ol>
+
+<p>See <a href="https://docs.cloudfoundry.org/buildpacks/node/node-tips.html">Tips for Node.js Applications</a> in the Cloud Foundry documentation for more information.</p>
+
+<h3 id="node-js-and-backing-services">Node.js and backing services</h3>
+
+<p>If your app depends on <a href="/deploying_services/">backing services</a> such as PostgreSQL, it will need to parse the <code class="prettyprint">VCAP_SERVICES</code> environment variable to get required details, such as service URLs and credentials.</p>
+
+<p>You must create the service and bind it to your Node.js app as described in the <a href="/deploying_services/">Deploying Services</a> section.</p>
+
+<p>You can use the <a href="https://www.npmjs.com/package/cfenv">cfenv</a> module to assist with parsing the environment variables.</p>
+
+<p>In your <code class="prettyprint">package.json</code> file, you would specify <code class="prettyprint">cfenv</code> as a dependency:</p>
+
+<p>{
+          // &hellip;
+          &ldquo;dependencies&rdquo;: {
+            &ldquo;cfenv&rdquo;: &ldquo;*&rdquo;,
+            // &hellip;
+          }
+        }</p>
+
+<p>Then in your app, you can easily get configuration information for backing services. This is an example of how to connect to a PostgreSQL service.</p>
+
+<p>var cfenv = require(&ldquo;cfenv&rdquo;);
+        var appEnv = cfenv.getAppEnv();
+        var connectionString = appEnv.getServiceURL(&ldquo;my-postgres&rdquo;);
+        var client = new pg.Client(connectionString);
+        client.connect();</p>
+
+<p>Note that in the above you should replace &ldquo;my-postgres&rdquo; with the exact name of the PostgreSQL service you created. The <code class="prettyprint">getServiceURL</code> function returns a connection string which includes the username and password required to connect to the database.</p>
+
+<p>You should also remember to include dependencies for any service bindings in <code class="prettyprint">package.json</code>.</p>
+
+<p><code class="prettyprint">
+    {
+      // ...
+      &quot;dependencies&quot;: {
+        &quot;pg&quot;: &quot;*&quot;,
+        // ...
+      }
+    }
+</code></p>
+
+          <h2 id="deploying-a-django-app">Deploying a Django app</h2>
+
+<p>This section explains how to deploy an app using the Django framework. You may also need to refer to the <a href="https://docs.cloudfoundry.org/buildpacks/python/index.html">Cloud Foundry documentation about the Python buildpack</a>.</p>
+
+<p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Django app requires a database, it must be able to work with PostgreSQL.</p>
+
+<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+
+<p>If you are just getting started learning CloudFoundry, you can use the sandbox space by running: <code class="prettyprint">cf target -s sandbox</code></p>
+
+<ol>
+<li><p>Check out your Django app to a local folder.</p></li>
+<li><p>Add <code class="prettyprint">*.pyc</code> and <code class="prettyprint">local_settings.py</code> to your <code class="prettyprint">.gitignore</code>, file, then 
+<a href="/deploying_apps/excluding_files/">exclude files ignored by Git</a> so Cloud Foundry will ignore them too.</p></li>
+<li><p>Tell Cloud Foundry which Python runtime to use by creating a <code class="prettyprint">runtime.txt</code>   file in the root of the local folder. The contents of the file should<br>
+be:</p>
+
+<p>python-3.5.1  </p>
+
+<p>replacing &ldquo;3.5.1&rdquo; with the version of Python you want to use.</p></li>
+<li><p>Generate a <code class="prettyprint">requirements.txt</code> file if your project doesn&rsquo;t already have one by running <code class="prettyprint">pip freeze &gt; requirements.txt</code> in the root of the local folder.
+Add the following lines to the <code class="prettyprint">requirements.txt</code> file.</p>
+
+<p>whitenoise==1.0.6  #manages static assets
+    dj-database-url==0.3.0 #grabs environment variables and dumps them into a Django settings file
+    waitress==0.8.9 #a pure python WSGI server that is a replacement for gunicorn</p></li>
+<li><p>Edit your <code class="prettyprint">wsgi.py</code> file.</p>
+
+<p>When you create a Django project, a default <code class="prettyprint">wsgi.py</code> file should be created for you in the project folder. Excluding the opening comments, the default <code class="prettyprint">wsgi.py</code> looks like this:</p>
+
+<p>import os
+    os.environ.setdefault(&ldquo;DJANGO_SETTINGS_MODULE&rdquo;, &ldquo;PROJECTNAME.settings&rdquo;)</p>
+
+<p>from django.core.wsgi import get_wsgi_application
+    application = get_wsgi_application()</p>
+
+<p>You&rsquo;ll need to add a few lines to import the <code class="prettyprint">whitenoise</code> package and wrap the middleware around the WSGI application so that all static files are served using whitenoise. Edit your <code class="prettyprint">wsgi.py</code> to:</p>
+
+<p>import os
+    from django.core.wsgi import get_wsgi_application</p>
+
+<p>os.environ.setdefault(&ldquo;DJANGO_SETTINGS_MODULE&rdquo;, &ldquo;PROJECTNAME.settings&rdquo;)
+    # important that the whitenoise import is after the line above
+    from whitenoise.django import DjangoWhiteNoise</p>
+
+<p>application = get_wsgi_application()
+    application = DjangoWhiteNoise(application)</p>
+
+<p>The order here is important. The <code class="prettyprint">DJANGO_SETTINGS_MODULE</code> environment variable must be set before importing <code class="prettyprint">DjangoWhiteNoise</code>.</p></li>
+<li><p>You should now tell Django where to look for static files. In <code class="prettyprint">settings.py</code> within the project folder, add these lines below the <code class="prettyprint">import os</code> statement.</p>
+
+<p>PROJECT_ROOT = os.path.dirname(os.path.abspath(<strong>file</strong>))</p>
+
+<p>STATIC_ROOT = os.path.join(PROJECT_ROOT, &lsquo;static&rsquo;)
+    STATIC_URL = &rsquo;/static/&rsquo;</p>
+
+<p>In this case, the STATIC_ROOT variable tells Django to look for static files in a directory called <code class="prettyprint">static</code> inside the project folder, and the STATIC_URL variable sets the path where those files will be served.</p>
+
+<p>You may need to alter these values depending on how static files are handled in your app.</p>
+
+<p>If your static files are located across multiple folders, you may need to use the STATICFILES_DIRS variable. See the Django documentation for <a href="https://docs.djangoproject.com/en/1.9/howto/static-files/">full details on managing static files</a>.</p></li>
+<li><p>Create a file called <code class="prettyprint">Procfile</code> in the root of your local folder, 
+and put in it:</p>
+
+<p>web: waitress-serve &ndash;port=$PORT PROJECTNAME.wsgi:application</p>
+
+<p><code class="prettyprint">PROJECTNAME</code> should be replaced with whatever the name of your WSGI module is. By default, this is the same as the name of your project module, but it may be changed using the DJANGO_SETTINGS_MODULE environment variable.</p></li>
+<li><p>Create a <code class="prettyprint">manifest.yml</code> file in the root of your local folder.</p>
+
+<p>&mdash;
+    applications:
+    - name: my-app
+      memory: 512M</p>
+
+<p>where <code class="prettyprint">my-django-app</code> is the name that will be used for the app within Government PaaS.</p>
+
+<p>Replace <code class="prettyprint">my-django-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
+
+<p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p></li>
+<li><p>If your app requires a database, <a href="/deploying_services/postgres/">create a PostgreSQL backing service and bind it to your app</a>. Then see the section on <a href="#">PostgreSQL setup</a> below.</p></li>
+<li><p>To push your app, do:</p>
+
+<p><code class="prettyprint">cf push APPNAME</code></p>
+
+<p>from the local folder.</p></li>
+</ol>
+
+<p>You can now view your app at <code class="prettyprint">https://APPNAME.cloudapps.digital</code>.</p>
+
+<h3 id="postgresql-setup">PostgreSQL setup</h3>
+
+<p>In your <code class="prettyprint">settings.py</code> file, make sure you import the package we added to the <code class="prettyprint">requirements.txt</code> file above:</p>
+
+<p>import dj_database_url</p>
+
+<p>Then, you&rsquo;ll need to add a <code class="prettyprint">DATABASES</code> setting. It&rsquo;s best to add this to the <code class="prettyprint">settings.py</code> file. </p>
+
+<p>DATABASES = {}
+        DATABASES[&#39;default&rsquo;] =  dj_database_url.config()</p>
+
+<p>Your <code class="prettyprint">local_settings.py</code> file will override this when you&rsquo;re working locally.</p>
+
+<p>To have database migrations automatically applied, amend your <code class="prettyprint">Procfile</code> to contain the following:</p>
+
+<p>web: python manage.py migrate &amp;&amp; waitress-serve &ndash;port=$PORT PROJECTNAME.wsgi:application</p>
+
+<p>Again, remember to replace <code class="prettyprint">PROJECTNAME</code> with the name of your WSGI module.</p>
+
+          <h2 id="production-checklist">Production checklist</h2>
+
+<p>Before deploying an app for production use, check the following:</p>
+
+<ol>
+<li>If your app uses a PostgreSQL service, make sure that you have selected the high-availability plan (<code class="prettyprint">M-HA-dedicated-9.5</code>) for the bound <code class="prettyprint">postgres</code> service instance.</li>
+<li>You are running at least two instances of the app to ensure availability. Use <code class="prettyprint">cf scale APPNAME -i 2</code> to add an extra running instance.</li>
+<li>You are prepared to use a <a href="https://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html">blue-green deployment process</a> for when the app needs to be updated or restarted (this avoids problems due to a known issue with the PaaS that can generate transient 404 errors).</li>
+</ol>
+
+          <h1 id="deploying-backing-services">Deploying backing services</h1>
+
+<h2 id="services-overview">Services overview</h2>
+
+<p>Your application probably relies on backing services such as a database, an email delivery service or a monitoring system.</p>
+
+<p>In Cloud Foundry, backing services are referred to as &lsquo;services&rsquo; and are available through the Cloud Foundry <code class="prettyprint">cf marketplace</code> command.</p>
+
+<p>Currently, the only service available is the <a href="/deploying_services/postgres">PostgreSQL database service</a>. </p>
+
+<p>Your app can find out what backing services are available, and obtain credentials for the services, by parsing the VCAP_SERVICES <a href="/deploying_apps/#environment-variables">environment variable</a>.</p>
+
+<p>We are going to add more services in future based on demand, including Elasticsearch and Redis. If you need a particular backing service that we don&rsquo;t yet support, please let us know at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
+
+          <h2 id="creating-a-postgresql-service">Creating a PostgreSQL Service</h2>
+
+<p>Government PaaS enables you to create a PostgreSQL database service (powered by Amazon Web Services) and bind it to your app. </p>
+
+<p>In Cloud Foundry, each service may have multiple plans available with different characteristics.</p>
+
+<p>Currently, Government PaaS offers a <code class="prettyprint">postgres</code> service which is available with two separate plans: </p>
+
+<ul>
+<li><code class="prettyprint">M-dedicated-9.5</code></li>
+<li><code class="prettyprint">M-HA-dedicated-9.5</code> (high availability, recommended for production)</li>
+</ul>
+
+<p>To create a service and bind it to your app:</p>
+
+<ol>
+<li><p>From the command line, run:  </p>
+
+<p><code class="prettyprint">cf marketplace</code>  </p>
+
+<p>to see the available services.</p>
+
+<p>You will see output like this:</p>
+
+<p>service     plans                                   description
+    postgres    M-dedicated-9.5*, M-HA-dedicated-9.5*   AWS RDS PostgreSQL service</p></li>
+<li><p>Run: </p>
+
+<p><code class="prettyprint">cf marketplace -s postgres</code></p>
+
+<p>to see details of the available plans.</p></li>
+<li><p>Run: </p>
+
+<p><code class="prettyprint">cf create-service SERVICE PLAN SERVICE_INSTANCE</code></p>
+
+<p>where SERVICE is the service you want, PLAN is the plan you want, and SERVICE_INSTANCE is a unique, descriptive name for this instance of the service.</p>
+
+<p>Note that for a production service, we strongly recommend you select the high-availability plan (<code class="prettyprint">M-HA-dedicated-9.5</code>).</p>
+
+<p>Paid services may need to be enabled on your account; if you receive an error stating &ldquo;service instance cannot be created because paid service plans are not allowed&rdquo;, please contact us at <a href="gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p></li>
+<li><p>It may take some time for the service instance to be set up. To find out its status, run:  </p>
+
+<p><code class="prettyprint">cf service SERVICE_INSTANCE</code></p></li>
+<li><p>Wait until the service status is &lsquo;available&rsquo;. You can now bind the PostgreSQL service to your app. Run:</p>
+
+<p><code class="prettyprint">cf bind-service APPLICATION SERVICE_INSTANCE</code></p>
+
+<p>where APPLICATION is the name of a deployed instance of your application (exactly as specified in your manifest or push command).</p></li>
+<li><p>Your app is now able to access the PostgreSQL service.</p></li>
+</ol>
+
+<h2 id="accessing-postgresql-from-your-app">Accessing PostgreSQL from your app</h2>
+
+<p>Your app will need to parse the <code class="prettyprint">VCAP_SERVICES</code> <a href="/deploying_apps/#environment-variables">environment variable</a> to get details of the PostgreSQL service (or use a library that does so).</p>
+
+<p>(Note that if your app is written in Ruby, the Cloud Foundry Ruby buildpack will automatically parse <code class="prettyprint">VCAP_SERVICES</code> and set DATABASE_URL to the first database found.)</p>
+
+<p>Use <code class="prettyprint">cf env APPNAME</code> to see the environment variables.</p>
+
+<p>You can check for database connection errors by viewing the recent logs with <code class="prettyprint">cf logs APPNAME --recent</code>.</p>
+
           
+          <h1 id="managing-apps">Managing apps</h1>
 
-      </div>
-    </div>
+<h2 id="scaling-apps">Scaling apps</h2>
 
-    </div>
-</div>
+<p>The Cloud Foundry technology makes it easy to scale your application to meet increasing demand. Scaling does not happen automatically; you have to use the commands described below.</p>
 
-          <h1 id="layout">Layout</h1>
+<p>Note that the maximum resources you can use will be limited by your organization quotas. You can view them by running:</p>
 
-<p>Use white space to create a visual hierarchy on the page.</p>
+<p><code class="prettyprint">cf quotas</code></p>
 
-<h2 id="page-width">Page width</h2>
+<p>from the command line.</p>
 
-<p>The default maximum page width is 1020px, but go wider if the content requires it.</p>
+<p>If you are anticipating a spike in demand for a service hosted on the Government PaaS, please contact us well in advance at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 
-<p><a href="#layout-grid-unit-proportions">Use a grid</a> to lay out your content. To prevent long lines of text, content should sit in a column which is two-thirds of the page width.</p>
+<h3 id="increasing-instances">Increasing instances</h3>
 
-<p>Long lines reduce legibility, so all lines of text should be no longer than 70 to 80 characters.</p>
+<p>You can change the number of instances of your app running in parallel.
+Incoming requests are automatically load-balanced across all instances.</p>
 
-<h2 id="screen-size">Screen size</h2>
+<p>For example, this command sets the number of running instances to five:</p>
 
-<p>Design for small screens first using a single column layout.</p>
+<p><code class="prettyprint">cf scale APPNAME -i 5</code></p>
 
-<p>Optimise for different screen sizes, but don’t make assumptions about what devices people are using.</p>
+<p>For a production app, you should always have at least two running instances.</p>
 
-<div class="sizer">
+<h3 id="increasing-memory-and-disk-space">Increasing memory and disk space</h3>
 
+<p>You can scale an application vertically by increasing the memory or disk space available to each instance of the app.</p>
 
-<h2 class="heading-medium" id="layout-spacing">Spacing</h2>
-  <ul class="list list-bullet text">
-    <li>spacing between elements is usually 5px, 10px, 15px or multiples of 15px</li>
-    <li>gutters are 15px for smaller screens and 30px for larger screens</li>
-  </ul>
+<p>For example, this command increases the available memory for an app to 1 gigabyte:</p>
 
-  <div class="example example-images">
-    <div class="grid-row">
-  <div class="column-one-half">
-    <img src="images/examples/15px-gutter-example.png" alt="15px gutter example">
-  </div>
-  <div class="column-one-half">
-    <img src="images/examples/30px-gutter-example.png" alt="30px gutter example">
-  </div>
-</div>
+<p><code class="prettyprint">cf scale APPNAME -m 1G</code></p>
 
-<p></div></p>
+<p>This command increases the disc space limit for an app to 512 megabytes:</p>
 
-<p><h2 class="heading-medium" id="layout-grid-unit-proportions">Grid unit proportions</h2>
-  <ul class="list list-bullet text">
-    <li>introduce columns as the content requires it – base column ratios on halves, thirds or quarters of the page width</li>
-    <li>for screen breakpoints use media queries &ndash; find these in the GOV.UK frontend toolkit <a href="https://github.com/alphagov/govuk_frontend_toolkit/blob/master/stylesheets/_conditionals.scss">_conditionals.scss</a> file</li>
-  </ul></p>
+<p><code class="prettyprint">cf scale myApp -k 512M</code></p>
 
-<h3 class="heading-medium">Halves</h3>
+<h3 id="more-about-scaling">More about scaling</h3>
 
-<div class="example example-grid">
-  <div class="grid-row">
+<p>For more details, see <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/cf-scale.html">Scaling an Application Using cf scale</a> in the Cloud Foundry docs.</p>
 
-      <div class="column-one-half">
-        <p>Content</p>
-      </div>
+          <h2 id="quotas">Quotas</h2>
 
-      <div class="column-one-half">
-        <p>Content</p>
-      </div>
+<p>Cloud Foundry capacity is managed by quotas. Quotas provide a reservation of application routes, memory, compute power, and service instances which your organization cannot exceed. You can set individual application quotas to control how much of your quota each of your applications can use.</p>
 
-    </div>
+<h3 id="quota-allocations">Quota allocations</h3>
 
-</div>
+<p>Your organisation will be assigned a quota based on your stated needs. This will cover the app instances you run. Backing services do not count towards this quota.</p>
 
-<p></div></p>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"example example-grid"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-row"</span><span class="nt">&gt;</span>
+<ul>
+<li><p><strong>Routes</strong>: Hostname and domain pairs where an application that exposes a listening port can be reached.</p></li>
+<li><p><strong>RAM</strong>: The amount of RAM available to your applications. The application also has a compute share derived from its memory limit.</p></li>
+<li><p><strong>Service instances</strong>: The number of service instances available to your organization. </p></li>
+</ul>
 
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-half"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
+<h3 id="quota-limits">Quota limits</h3>
 
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-half"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
+<p>If a new application <code class="prettyprint">push</code> would exceed your organization&rsquo;s quota, the request will fail with status code <code class="prettyprint">400</code> and a message describing the limit that would be exceeded.</p>
 
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<p><strong>Example:</strong></p>
+
+<p>Creating app APPLICATION in org ORG / space SPACE as USER&hellip;
+    FAILED
+    Server error, status code: 400, error code: 100007, message: 
+    You have exceeded the memory limit for your organization&rsquo;s quota.</p>
+
+<p>In this situation you have three options:</p>
+
+<ol>
+<li>Delete existing resources with <code class="prettyprint">cf delete</code>, <code class="prettyprint">cf delete-service</code>, <code class="prettyprint">cf delete-route</code> or similar commands.</li>
+<li>Reconfigure existing <a href="#application-quotas">application quotas</a> and redeploy.</li>
+<li>Request a quota change: contact us at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</li>
+</ol>
+
+<h3 id="application-quotas">Application quotas</h3>
+
+<p>As a PaaS tenant, you can divide your organization&rsquo;s quota capacity amongst your applications as you see fit, by way of application quotas. Application limits are specified in your application manifest or as <code class="prettyprint">cf push</code> command line options.</p>
+
+<p>Use the following commands to set application quota options:</p>
+
+<ul>
+<li><p><code class="prettyprint">memory: / -m</code></p>
+
+<p>Your application&rsquo;s memory limit. An application&rsquo;s compute limit is derived from its memory limit. This relationship is explained in detail below.</p></li>
+<li><p><code class="prettyprint">disk_quota / -k</code></p>
+
+<p>The maximum amount of disk space available to your app.</p></li>
+<li><p><code class="prettyprint">instances: / -i</code></p>
+
+<p>Sets the number of application instances to launch. Each additional instance receives the same memory and disk reservation. An application with a manifest specifying <code class="prettyprint">memory: 256M</code> and <code class="prettyprint">instances: 4</code> would reserve 1GB (256M x 4) total.</p>
+
+<p>For a production application, you should always launch at least two instances.</p></li>
+</ul>
+
+<h4 id="memory-share-and-compute-share">Memory share and compute share</h4>
+
+<p>Your application&rsquo;s compute limit is derived from its memory limit. Each application receives a guaranteed compute share equal to its relative share of memory.</p>
+
+<p>Your application will be guaranteed to receive a portion of the vCPU compute power equal to its portion of memory allocation. In other words, it will receive at least this much vCPU time even if there are other applications competing for time.</p>
+
+<p>Your application will be offered 100% of the vCPU compute power. If no other applications are running, the app can use all the computer power available.
+If there are other applications competing for time, each application&rsquo;s guaranteed share determines how much time it will receive.</p>
+
+<p>The application cannot access more than the specified amount of memory.</p>
+
+<h4 id="application-quota-sizing">Application quota sizing</h4>
+
+<ul>
+<li><p>The environment default of 512MB <code class="prettyprint">memory</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code class="prettyprint">cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</p>
+
+<p>requested state: started
+    instances: 1/1
+    usage: 128M x 1 instances
+    urls: 
+    last uploaded: Wed Jul 22 20:09:56 UTC 2015</p>
+
+<p>state     since                    cpu    memory          disk<br>
+    #0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M      </p></li>
+<li><p>Any application which exceeds its memory quota will be automatically restarted. Use <code class="prettyprint">cf events APPNAME</code> to look for &lsquo;out of memory&rsquo; crashes.</p>
+
+<p>&hellip; description<br>
+    &hellip; index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 </p></li>
+</ul>
+
+          <h2 id="logging">Logging</h2>
+
+<p>For logs to be captured by Cloud Foundry, your application should be writing them to <code class="prettyprint">STDOUT</code>/<code class="prettyprint">STDERR</code>, rather than a log file – see the framework-specific guidance in the menu.</p>
+
+<h3 id="current-logs">Current logs</h3>
+
+<p>The most direct way to view events related to your application through the deploy process is:</p>
+<pre class="highlight shell"><code>cf logs APPNAME
 </code></pre>
 
-<div class="sizer">
-
-    <h3 class="heading-medium">Thirds</h3>
-    <div class="example example-grid">
-        <div class="grid-row">
-
-            <div class="column-one-third">
-            <p>Content</p>
-            </div>
-
-            <div class="column-one-third">
-            <p>Content</p>
-            </div>
-
-            <div class="column-one-third">
-            <p>Content</p>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"example example-grid"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-row"</span><span class="nt">&gt;</span>
-
-            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-third"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-            <span class="nt">&lt;/div&gt;</span>
-
-            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-third"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-            <span class="nt">&lt;/div&gt;</span>
-
-            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-third"</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-            <span class="nt">&lt;/div&gt;</span>
-        <span class="nt">&lt;/div&gt;</span>
-
-    <span class="nt">&lt;/div&gt;</span>
+<p>Used alone, <code class="prettyprint">cf logs</code> will tail the combined stream of logs from each Cloud Foundry service involved in your application deploy. Running with the <code class="prettyprint">--recent</code> flag will stream the entire <a href="https://docs.cloudfoundry.org/loggregator/architecture.html">Loggregator</a> buffer for your app.</p>
+<pre class="highlight shell"><code>cf logs APPNAME --recent
 </code></pre>
 
-<h3 id="two-thirds-one-third">Two thirds / One third</h3>
+<h3 id="cf-events-command"><code class="prettyprint">cf events</code> command</h3>
 
-<div class="sizer">
-    <div class="example example-grid">
-        <div class="grid-row">
-            <div class="column-two-thirds">
-                <p>Content</p>
-            </div>
-            <div class="column-one-third">
-                <p>Content</p>
-            </div>
-        </div>
-    </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-row"</span><span class="nt">&gt;</span>
-
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-two-thirds"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-
-  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-third"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-  <span class="nt">&lt;/div&gt;</span>
-
-<span class="nt">&lt;/div&gt;</span>
-
+<p>If you are trying to troubleshoot a problem and it&rsquo;s hard to understand what&rsquo;s happening from the logs, you can use the command:</p>
+<pre class="highlight shell"><code>cf events APPNAME
 </code></pre>
 
-<h3 id="one-third-two-thirds">One Third / two thirds</h3>
+<p>Running <code class="prettyprint">cf events</code> shows you when an app starts, stops, restarts, or crashes (including error codes). The output is often easier to interpret than the output of <code class="prettyprint">cf logs</code>.</p>
 
-<div class="sizer">
-    <div class="example example-grid">
-        <div class="grid-row">
-            <div class="column-one-third">
-                <p>Content</p>
-            </div>
-            <div class="column-two-thirds">
-                <p>Content</p>
-            </div>
-        </div>
-    </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-row"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-third"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-two-thirds"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
+<h3 id="further-information">Further information</h3>
+
+<p>For more information about logging and troubleshooting, see the Cloud Foundry documentation:</p>
+
+<ul>
+<li><a href="https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html">Information about the log format</a></li>
+<li><a href="https://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html#view">Viewing your application&rsquo;s logs</a></li>
+<li><a href="https://docs.cloudfoundry.org/devguide/deploy-apps/troubleshoot-app-health.html">Troubleshooting application deployment and health</a></li>
+</ul>
+
+          <h2 id="redirecting-all-traffic">Redirecting all traffic</h2>
+
+<p>If a site moves to a different domain name, you can use a simple static site with a custom <code class="prettyprint">nginx.conf</code>
+file to redirect all traffic from the old domain to the new domain. Example <code class="prettyprint">nginx.conf</code> site for <code class="prettyprint">NEW_DOMAIN_NAME</code>:</p>
+<pre class="highlight plaintext"><code>worker_processes 1;
+daemon off;
+
+error_log &lt;%= ENV["APP_ROOT"] %&gt;/nginx/logs/error.log;
+events { worker_connections 1024; }
+
+http {
+  server {
+    listen &lt;%= ENV["PORT"] %&gt;;
+    server_name localhost;
+    return 301 $scheme://NEW_DOMAIN_NAME$request_uri;
+  }
+}
 </code></pre>
 
-<h3 id="quarters">Quarters</h3>
+<p>Deploy your application to <code class="prettyprint">NEW_DOMAIN_NAME</code> and then <code class="prettyprint">cf push</code> a simple static site with that <code class="prettyprint">nginx.conf</code>
+configuration to the old domain name. You can see a <a href="https://github.com/18F/c2-redirect">full working example here</a>.</p>
 
-<div class="sizer">
-    <div class="example example-grid">
-        <div class="grid-row">
-            <div class="column-one-quarter">
-                <p>Content</p>
-            </div>
-            <div class="column-one-quarter">
-                <p>Content</p>
-            </div>
-            <div class="column-one-quarter">
-                <p>Content</p>
-            </div>
-            <div class="column-one-quarter">
-                <p>Content</p>
-            </div>
-        </div>
-    </div>
-</div>
-<pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"grid-row"</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-quarter"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-quarter"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-quarter"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"column-one-quarter"</span><span class="nt">&gt;</span>
-        <span class="nt">&lt;p&gt;</span>Content<span class="nt">&lt;/p&gt;</span>
-    <span class="nt">&lt;/div&gt;</span>
-<span class="nt">&lt;/div&gt;</span>
-</code></pre>
-
-<h2 id="examples">Examples</h2>
-
-<div class="sizer">
-    <ul class="list list-bullet">
-    <li>
-      <a href="/layout/example-grid-layout/">
-        an example grid layout page
-      </a>
-    </li>
-  </ul>
-</div>
+<p>You can read more about <a href="https://github.com/cloudfoundry/staticfile-buildpack#advanced-nginx-configuration">nginx customization</a>.</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="html">html</a>
-                <a href="#" data-language-name="sass">sass</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="bash">bash</a>
           </div>
       </div>
     </div>

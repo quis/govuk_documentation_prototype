@@ -1,0 +1,100 @@
+<h2 id="deploying-a-node-js-app">Deploying a Node.js app</h2>
+
+<p>This section covers how to deploy a basic Node.js application to Government PaaS. See the Cloud Foundry <a href="http://docs.cloudfoundry.org/buildpacks/node/node-tips.html">Tips for Node.js Applications</a> for more details.</p>
+
+<p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Node.js app requires a database, it must be able to work with PostgreSQL.</p>
+
+<p>These instructions assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+
+<p>This is the code for the example app we are going to use. It is a basic web server that responds with a &lsquo;Hello World&rsquo; message.</p>
+
+<p>const http = require(&#39;http&rsquo;);</p>
+
+<p>const port = process.env.PORT || 3000;</p>
+
+<p>const server = http.createServer((req, res) =&gt; {
+      res.statusCode = 200;
+      res.setHeader(&#39;Content-Type&rsquo;, &#39;text/plain&rsquo;);
+      res.end(&#39;Hello World\n&rsquo;);
+    });</p>
+
+<p>server.listen(port, () =&gt; {
+      console.log(<code class="prettyprint">Server running on ${port}/</code>);
+    });</p>
+
+<ol>
+<li><p>Save the code to a new local directory as <code class="prettyprint">example.js</code>.</p></li>
+<li><p>Add this <code class="prettyprint">manifest.yml</code> file to the same directory:</p>
+
+<p>&mdash;
+    applications:
+    - name: my-node-app
+      command: node example.js
+      memory: 256M
+      buildpack: nodejs_buildpack</p>
+
+<p>Replace <code class="prettyprint">my-node-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
+
+<p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
+
+<p>A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Node.js, you use the <code class="prettyprint">nodejs_buildpack</code>.</p></li>
+<li><p>Include an npm <code class="prettyprint">package.json</code> file to specify dependencies. The file should also specify a <code class="prettyprint">start</code> command used to launch the app.</p>
+
+<p>This is a <code class="prettyprint">package.json</code> file for our example app:</p>
+
+<p>{
+      &ldquo;name&rdquo;: &ldquo;example&rdquo;,
+      &ldquo;version&rdquo;: &ldquo;0.0.1&rdquo;,
+      &ldquo;author&rdquo;: &ldquo;Demo&rdquo;,
+      &ldquo;engines&rdquo;: {
+        &ldquo;node&rdquo;: &ldquo;6.1.0&rdquo;,
+        &ldquo;npm&rdquo;: &ldquo;2.7.4&rdquo;
+      }
+    }</p>
+
+<p>The <code class="prettyprint">&quot;engines&quot;</code> values specify the versions of Node.js and npm that the PaaS should use to run your app. Note that older versions may not be available: if your version is not supported, you will see an error message when you try to upload and start the app.</p></li>
+<li><p>You can optionally run <code class="prettyprint">npm install</code> to preinstall dependencies rather than having them added during the PaaS staging process.</p></li>
+<li><p>Run <code class="prettyprint">cf push</code> to upload and start the app.</p></li>
+</ol>
+
+<p>See <a href="https://docs.cloudfoundry.org/buildpacks/node/node-tips.html">Tips for Node.js Applications</a> in the Cloud Foundry documentation for more information.</p>
+
+<h3 id="node-js-and-backing-services">Node.js and backing services</h3>
+
+<p>If your app depends on <a href="/deploying_services/">backing services</a> such as PostgreSQL, it will need to parse the <code class="prettyprint">VCAP_SERVICES</code> environment variable to get required details, such as service URLs and credentials.</p>
+
+<p>You must create the service and bind it to your Node.js app as described in the <a href="/deploying_services/">Deploying Services</a> section.</p>
+
+<p>You can use the <a href="https://www.npmjs.com/package/cfenv">cfenv</a> module to assist with parsing the environment variables.</p>
+
+<p>In your <code class="prettyprint">package.json</code> file, you would specify <code class="prettyprint">cfenv</code> as a dependency:</p>
+
+<p>{
+          // &hellip;
+          &ldquo;dependencies&rdquo;: {
+            &ldquo;cfenv&rdquo;: &ldquo;*&rdquo;,
+            // &hellip;
+          }
+        }</p>
+
+<p>Then in your app, you can easily get configuration information for backing services. This is an example of how to connect to a PostgreSQL service.</p>
+
+<p>var cfenv = require(&ldquo;cfenv&rdquo;);
+        var appEnv = cfenv.getAppEnv();
+        var connectionString = appEnv.getServiceURL(&ldquo;my-postgres&rdquo;);
+        var client = new pg.Client(connectionString);
+        client.connect();</p>
+
+<p>Note that in the above you should replace &ldquo;my-postgres&rdquo; with the exact name of the PostgreSQL service you created. The <code class="prettyprint">getServiceURL</code> function returns a connection string which includes the username and password required to connect to the database.</p>
+
+<p>You should also remember to include dependencies for any service bindings in <code class="prettyprint">package.json</code>.</p>
+
+<p><code class="prettyprint">
+    {
+      // ...
+      &quot;dependencies&quot;: {
+        &quot;pg&quot;: &quot;*&quot;,
+        // ...
+      }
+    }
+</code></p>

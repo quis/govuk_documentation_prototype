@@ -1,0 +1,16 @@
+<h2 id="excluding-files">Excluding files</h2>
+
+<p>Cloud Foundry isn&rsquo;t version-control-aware, so <code class="prettyprint">cf push</code> will deploy the working state of whatever files you have in that directory. In most cases, you will want to <a href="http://docs.cloudfoundry.org/devguide/deploy-apps/prepare-to-deploy.html#exclude">exclude files</a> ignored by Git. From within your project directory, run</p>
+
+<p><code class="prettyprint">
+ln -s .gitignore .cfignore
+</code></p>
+
+<p>and commit the <code class="prettyprint">.cfignore</code> to your repository. However, read on if you have a more advanced CF setup.</p>
+
+<p>A couple of important points on the <code class="prettyprint">.cfignore</code>:</p>
+
+<ol>
+<li><p>if you have a more advanced app setup and have apps with a <code class="prettyprint">path</code> other than the project root (where you run <code class="prettyprint">cf push</code> from), you will need an additional <code class="prettyprint">.cfignore</code> file located in each app <code class="prettyprint">path</code>;</p></li>
+<li><p>also note that more advanced <code class="prettyprint">.gitignore</code> syntax, such as the <code class="prettyprint">**</code> recursive subdirectory wildcard, are <em>not</em> supported by <code class="prettyprint">.cfignore</code>.</p></li>
+</ol>

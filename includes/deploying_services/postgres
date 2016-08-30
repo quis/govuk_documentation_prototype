@@ -1,0 +1,60 @@
+<h2 id="creating-a-postgresql-service">Creating a PostgreSQL Service</h2>
+
+<p>Government PaaS enables you to create a PostgreSQL database service (powered by Amazon Web Services) and bind it to your app. </p>
+
+<p>In Cloud Foundry, each service may have multiple plans available with different characteristics.</p>
+
+<p>Currently, Government PaaS offers a <code class="prettyprint">postgres</code> service which is available with two separate plans: </p>
+
+<ul>
+<li><code class="prettyprint">M-dedicated-9.5</code></li>
+<li><code class="prettyprint">M-HA-dedicated-9.5</code> (high availability, recommended for production)</li>
+</ul>
+
+<p>To create a service and bind it to your app:</p>
+
+<ol>
+<li><p>From the command line, run:  </p>
+
+<p><code class="prettyprint">cf marketplace</code>  </p>
+
+<p>to see the available services.</p>
+
+<p>You will see output like this:</p>
+
+<p>service     plans                                   description
+    postgres    M-dedicated-9.5*, M-HA-dedicated-9.5*   AWS RDS PostgreSQL service</p></li>
+<li><p>Run: </p>
+
+<p><code class="prettyprint">cf marketplace -s postgres</code></p>
+
+<p>to see details of the available plans.</p></li>
+<li><p>Run: </p>
+
+<p><code class="prettyprint">cf create-service SERVICE PLAN SERVICE_INSTANCE</code></p>
+
+<p>where SERVICE is the service you want, PLAN is the plan you want, and SERVICE_INSTANCE is a unique, descriptive name for this instance of the service.</p>
+
+<p>Note that for a production service, we strongly recommend you select the high-availability plan (<code class="prettyprint">M-HA-dedicated-9.5</code>).</p>
+
+<p>Paid services may need to be enabled on your account; if you receive an error stating &ldquo;service instance cannot be created because paid service plans are not allowed&rdquo;, please contact us at <a href="gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p></li>
+<li><p>It may take some time for the service instance to be set up. To find out its status, run:  </p>
+
+<p><code class="prettyprint">cf service SERVICE_INSTANCE</code></p></li>
+<li><p>Wait until the service status is &lsquo;available&rsquo;. You can now bind the PostgreSQL service to your app. Run:</p>
+
+<p><code class="prettyprint">cf bind-service APPLICATION SERVICE_INSTANCE</code></p>
+
+<p>where APPLICATION is the name of a deployed instance of your application (exactly as specified in your manifest or push command).</p></li>
+<li><p>Your app is now able to access the PostgreSQL service.</p></li>
+</ol>
+
+<h2 id="accessing-postgresql-from-your-app">Accessing PostgreSQL from your app</h2>
+
+<p>Your app will need to parse the <code class="prettyprint">VCAP_SERVICES</code> <a href="/deploying_apps/#environment-variables">environment variable</a> to get details of the PostgreSQL service (or use a library that does so).</p>
+
+<p>(Note that if your app is written in Ruby, the Cloud Foundry Ruby buildpack will automatically parse <code class="prettyprint">VCAP_SERVICES</code> and set DATABASE_URL to the first database found.)</p>
+
+<p>Use <code class="prettyprint">cf env APPNAME</code> to see the environment variables.</p>
+
+<p>You can check for database connection errors by viewing the recent logs with <code class="prettyprint">cf logs APPNAME --recent</code>.</p>

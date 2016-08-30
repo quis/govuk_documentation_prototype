@@ -1,4 +1,4 @@
-## PaaS Requirements
+## PaaS requirements
 
 To be hosted by Government PaaS, your application must:
 

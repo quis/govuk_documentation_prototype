@@ -1,6 +1,6 @@
-## Deploying apps
+# Deploying apps
 
-### Deployment overview
+## Deployment overview
 
 The `cf push` command is used both to create a new app and to push a new version of an existing one. The basic steps:
 

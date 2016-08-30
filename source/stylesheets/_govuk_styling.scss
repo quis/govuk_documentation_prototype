@@ -155,6 +155,7 @@ aside {
     //margin-right: 33.33%;
     margin-right: 0;
     margin-left: 0;
+    //padding: 0;
 }
 
 .content div:first-child + h1 {
@@ -165,6 +166,7 @@ aside {
 .content {
 
 	margin-right: 33.33%;
+	//padding-left: 30px;
 
 	& > * {
 		padding-left: 0;
@@ -182,7 +184,7 @@ aside {
 		border-bottom: none;
 		margin-left: 30px;
     	padding-left: 0;
-    	border-top: 3px solid $text-colour;
+    	border-top: 5px solid $text-colour;
 	}
 
 	h2 {
@@ -211,6 +213,14 @@ aside {
   		margin: 5px 0 20px 30px;
 		list-style-type: disc;
   		padding-left: 20px;
+	}
+
+	pre,
+	blockquote{
+		background: $grey-4;
+		color: $black;
+		text-shadow: none;
+		padding: 15px;
 	}
 
 }

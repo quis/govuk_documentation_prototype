@@ -22,11 +22,14 @@
 
 <p>After you use a command that restarts application instances, such as <code class="prettyprint">cf push</code> or <code class="prettyprint">cf restart</code>, your app may briefly return incorrect 404 errors. Apart from the brief downtime, this may lead to problems if the 404 is cached, or visiting web crawling bots (as used by search engines) receive a 404.</p>
 
-<p>Commands known to do this are:
-- <code class="prettyprint">cf push</code>
-- <code class="prettyprint">cf restage</code>
-- <code class="prettyprint">cf restart</code>
-- <code class="prettyprint">cf scale</code> when changing disk or memory limits or forcing a restart</p>
+<p>Commands known to do this are:</p>
+
+<ul>
+<li><code class="prettyprint">cf push</code></li>
+<li><code class="prettyprint">cf restage</code></li>
+<li><code class="prettyprint">cf restart</code></li>
+<li><code class="prettyprint">cf scale</code> (when changing disk or memory limits or forcing a restart)</li>
+</ul>
 
 <p>We are working on a fix to prevent this happening.</p>
 

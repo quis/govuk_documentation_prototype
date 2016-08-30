@@ -16,23 +16,23 @@ worth testing that you can carry out this process before you try to deploy a mor
 <ol>
 <li><p>In an empty directory, create an <code class="prettyprint">index.html</code> file.</p></li>
 <li><p>Add some markup to the <code class="prettyprint">index.html</code> file:</p>
-
-<p><html>
-      <head>
-        <title>Static Site</title>
-      </head>
-      <body>
-        <p>Welcome to the static site!</p>
-      </body>
-    </html></p></li>
+<pre class="highlight html"><code>          <span class="nt">&lt;html&gt;</span>
+            <span class="nt">&lt;head&gt;</span>
+              <span class="nt">&lt;title&gt;</span>Static Site<span class="nt">&lt;/title&gt;</span>
+            <span class="nt">&lt;/head&gt;</span>
+            <span class="nt">&lt;body&gt;</span>
+              <span class="nt">&lt;p&gt;</span>Welcome to the static site!<span class="nt">&lt;/p&gt;</span>
+            <span class="nt">&lt;/body&gt;</span>
+          <span class="nt">&lt;/html&gt;</span>
+</code></pre></li>
 <li><p>Create a <code class="prettyprint">manifest.yml</code> file in the same directory. The manifest file tells 
 Cloud Foundry what to do with your app.</p>
-
-<p>&mdash;
-    applications:
-    - name: my-static-site
-      memory: 64M
-      buildpack: staticfile_buildpack</p>
+<pre class="highlight plaintext"><code>        ---
+        applications:
+        * name: my-static-site
+          memory: 64M
+          buildpack: staticfile_buildpack
+</code></pre>
 
 <p>Replace <code class="prettyprint">my-static-site</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
 

@@ -46,6 +46,6 @@
 </tr>
 <tr>
 <td style="text-align: left">Runs on multiple public clouds</td>
-<td style="text-align: left">PaaS isn’t locked into a single provider in order to encourage price competition, and to also remove the risk of a<a href="https://www.google.com/url?q=https://en.wikipedia.org/wiki/Single_point_of_failure">single point of failure</a></td>
+<td style="text-align: left">PaaS isn’t locked into a single provider in order to encourage price competition, and to remove the risk of a <a href="https://www.google.com/url?q=https://en.wikipedia.org/wiki/Single_point_of_failure">single point of failure</a></td>
 </tr>
 </tbody></table>

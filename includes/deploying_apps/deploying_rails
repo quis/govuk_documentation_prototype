@@ -19,32 +19,41 @@
 <li><p><a href="/deploying_apps/excluding_files/">Exclude files ignored by Git</a>.</p></li>
 <li><p><a href="https://github.com/heroku/rails_12factor#install">Add the <code class="prettyprint">rails_12factor</code> gem</a> for better logging.</p></li>
 <li><p>Create a manifest.yml file in the folder where you checked out your app.</p>
-
-<p>&mdash;
+<pre class="highlight plaintext"><code>    ---
     applications:
     - name: my-rails-app
       memory: 256M
-      buildpack: ruby_buildpack</p>
+      buildpack: ruby_buildpack
+</code></pre>
 
 <p>Replace <code class="prettyprint">my-rails-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
 
 <p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
 
 <p>A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Ruby, you use the <code class="prettyprint">ruby_buildpack</code>.</p></li>
-<li><p>Create the application using Cloud Foundry:</p>
-<pre class="highlight plaintext"><code>cf push  
-</code></pre>
-
-<p>from the folder where you checked out your app.</p>
-
-<p>If you do not specify a name for the app after the <code class="prettyprint">cf push</code> command, the name from the manifest file is used.</p></li>
-<li><p>Set any additional <a href="//deploying_apps/#setting-environment-variables/">environment variables</a> required by your app. For example:</p>
+<li><p>Set any additional <a href="/deploying_apps/env_variables/">environment variables</a>
+required by your app. For example:</p>
 <pre class="highlight plaintext"><code>cf set-env APPNAME VARIABLE `value`
 </code></pre>
 
 <p>where VARIABLE is a unique name for the variable, and <code class="prettyprint">value</code> is the value to set.</p></li>
-<li><p>If your app requires a database, <a href="/deploying_services/postgres/">create a PostgreSQL backing service and bind it to your app</a>. 
-The Cloud Foundry buildpack for Ruby automatically gets the details of the first available PostgreSQL service from the <code class="prettyprint">VCAP_SERVICES</code> environment variable and sets the Ruby DATABASE_URL accordingly.</p></li>
+<li><p>If your app does not need a backing service like PostgreSQL, upload and start the application:</p>
+<pre class="highlight plaintext"><code>cf push APPNAME
+</code></pre>
+
+<p>from the folder where you checked out your app.</p>
+
+<p>If you do not specify a name for the app after the <code class="prettyprint">cf push</code> command, the name from the manifest file is used.</p>
+
+<p>If your app needs a backing service, upload it but do not start it:</p>
+<pre class="highlight plaintext"><code>cf push --no-start APPNAME
+</code></pre></li>
+<li><p><a href="/deploying_services/postgres/">Create a PostgreSQL backing service and bind it to your app</a>. 
+The Cloud Foundry buildpack for Ruby automatically gets the details of the first available PostgreSQL service from the <code class="prettyprint">VCAP_SERVICES</code> environment variable and sets the Ruby DATABASE_URL accordingly.</p>
+
+<p>Once you have created and bound the PostgreSQL service, run:</p>
+<pre class="highlight plaintext"><code>cf start APPNAME
+</code></pre></li>
 </ol>
 
 <p>Your app should now be live at <code class="prettyprint">https://APPNAME.cloudapps.digital</code>!</p>
@@ -57,13 +66,13 @@ The Cloud Foundry buildpack for Ruby automatically gets the details of the first
 
 <h3 id="web-servers">Web servers</h3>
 
-<p>By default, the Cloud Foundry ruby buildpack <a href="https://github.com/cloudfoundry/ruby-buildpack/blob/1f0ac3ce10866390d161c3f27e71d64890859454/lib/language_pack/rails4.rb#L27">runs <code class="prettyprint">bin/rails server</code></a>
-to spin up the application. In rails 4 and below this will use WEBrick as a
-server. <a href="http://guides.rubyonrails.org/getting_started.html#starting-up-the-web-server">In rails 5 and above the default is
-puma</a>.</p>
+<p>By default, the Cloud Foundry Ruby buildpack <a href="https://github.com/cloudfoundry/ruby-buildpack/blob/1f0ac3ce10866390d161c3f27e71d64890859454/lib/language_pack/rails4.rb#L27">runs <code class="prettyprint">bin/rails server</code></a> 
+to spin up the application. In Rails 4 and below, this will use WEBrick as the web
+server. In Rails 5 and above, the default is
+<a href="http://guides.rubyonrails.org/getting_started.html#starting-up-the-web-server">puma</a>.</p>
 
-<p>You may want to use a different server in production. The Cloud Foundry docs have
-<a href="https://docs.cloudfoundry.org/buildpacks/prod-server.html">more information on configuring a production server</a></p>
+<p>You may want to use a different web server in production. See the Cloud Foundry docs for
+<a href="https://docs.cloudfoundry.org/buildpacks/prod-server.html">more information on configuring a production server</a> [external link].</p>
 
 <h3 id="troubleshooting-asset-precompilation">Troubleshooting asset precompilation</h3>
 
@@ -72,4 +81,4 @@ most Rails apps, but it won&rsquo;t work for those which need to connect to serv
 during asset compilation. (For an example, see <a href="https://github.com/18F/myusa/issues/636">MyUSA issue #636</a>)</p>
 
 <p>There are multiple potential solutions for this. For more advice, see
-<a href="https://docs.cloudfoundry.org/buildpacks/ruby/ruby-tips.html#precompile">the Cloud Foundry document on the subject</a>.</p>
+<a href="https://docs.cloudfoundry.org/buildpacks/ruby/ruby-tips.html#precompile">the Cloud Foundry document on the subject</a> [external link].</p>

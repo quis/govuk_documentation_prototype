@@ -1,6 +1,6 @@
-<h2 id="deploying-apps">Deploying apps</h2>
+<h1 id="deploying-apps">Deploying apps</h1>
 
-<h3 id="deployment-overview">Deployment overview</h3>
+<h2 id="deployment-overview">Deployment overview</h2>
 
 <p>The <code class="prettyprint">cf push</code> command is used both to create a new app and to push a new version of an existing one. The basic steps:</p>
 

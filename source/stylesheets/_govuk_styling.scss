@@ -152,7 +152,9 @@ aside {
 }
 
 .content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .content > p, .content > table, .content > ul, .content > ol, .content > aside, .content > dl {
-    margin-right: 33.33%;
+    //margin-right: 33.33%;
+    margin-right: 0;
+    margin-left: 0;
 }
 
 .content div:first-child + h1 {
@@ -161,6 +163,12 @@ aside {
 }
 
 .content {
+
+	margin-right: 33.33%;
+
+	& > * {
+		padding-left: 0;
+	}
 
 	.example {
 		h1, h2, h3, p {
@@ -232,15 +240,11 @@ aside {
 .page-wrapper .dark-box, .content pre,
 .page-wrapper .dark-box, .content code {
 	width: 40%;
-	/*
-	background: $grey-4;
-	text-shadow: none;*/
 	font-size: 16px;
 }
 
 .page-wrapper .dark-box{
 	display: none;
-	//background: $grey-4;
 
 	.lang-selector{
 		background: $white;
@@ -263,7 +267,7 @@ aside {
 pre.highlight{
 	float: none;
     width: 100%;
-    margin: 30px;
+    margin: 30px 0;
 }
 
 pre > code {

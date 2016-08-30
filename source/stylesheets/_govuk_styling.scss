@@ -206,8 +206,11 @@ aside {
 		list-style-type: decimal;
 	}
 
-	ul{
-		list-style-type: bullet;
+	ul{  
+		padding: 0;
+  		margin: 5px 0 20px 30px;
+		list-style-type: disc;
+  		padding-left: 20px;
 	}
 
 }

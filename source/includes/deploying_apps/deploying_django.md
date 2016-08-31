@@ -1,17 +1,17 @@
 ## Deploying a Django app
 
-This section explains how to deploy an app using the Django framework. You may also need to refer to the [Cloud Foundry documentation about the Python buildpack](https://docs.cloudfoundry.org/buildpacks/python/index.html)[external link].
+This section explains how to deploy an app using the Django framework. You may also need to refer to the [Cloud Foundry documentation about the Python buildpack](https://docs.cloudfoundry.org/buildpacks/python/index.html) [external link].
 
 Note that the only database service currently supported by PaaS is PostgreSQL. If your Django app requires a database, it must be able to work with PostgreSQL.
 
-These steps assume you have already carried out the setup process explained in the [Quick Setup Guide](/getting_started/quick_setup_guide) section.
+These steps assume you have already carried out the setup process explained in the [Quick setup guide](/#quick-setup-guide) section.
 
 If you are just getting started learning CloudFoundry, you can use the sandbox space by running: ``cf target -s sandbox``
 
 1. Check out your Django app to a local folder.
 
 2. Add `*.pyc` and `local_settings.py` to your `.gitignore`, file, then 
-   [exclude files ignored by Git](/deploying_apps/excluding_files/) so Cloud Foundry will ignore them too.
+   [exclude files ignored by Git](/#excluding-files) so Cloud Foundry will ignore them too.
 
 3. Tell Cloud Foundry which Python runtime to use by creating a `runtime.txt`   file in the root of the local folder. The contents of the file should  
    be:
@@ -28,9 +28,7 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
 
     ```python
         whitenoise==1.0.6  #manages static assets
-        dj-database-url==0.3.0 #grabs environment variables and dumps them into a Django settings file
         waitress==0.8.9 #a pure python WSGI server that is a replacement for gunicorn
-        psycopg2==2.6.2
     ```
 
 6. Edit your `wsgi.py` file.
@@ -80,9 +78,9 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
 8. Create a file called `Procfile` in the root of your local folder, 
    and put in it:
 
-    ``web: waitress-serve --port=$PORT PROJECTNAME.wsgi:application``
+    ``web: python manage.py migrate && waitress-serve --port=$PORT PROJECTNAME.wsgi:application``
 
-    `PROJECTNAME` should be replaced with whatever the name of your WSGI module is. By default, this is the same as the name of your project module, but it may be changed using the DJANGO_SETTINGS_MODULE environment variable.
+    `PROJECTNAME` should be replaced with whatever the name of your WSGI module is. By default, this is the same as the name of your project module, but it may be changed using the DJANGO_SETTINGS_MODULE environment variable. Using this configuration will automatically apply any database migrations.
 
 9. Create a `manifest.yml` file in the root of your local folder.
 
@@ -99,7 +97,7 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
 
     The `memory` line tells the PaaS how much memory to allocate to the app.
 
-10. If your app requires a database, [create a PostgreSQL backing service and bind it to your app](/deploying_services/postgres/). Then see the section on PostgreSQL setup below.
+10. If your app requires a database, [create a PostgreSQL backing service and bind it to your app](/#using-a-postgresql-service). Then see the section on PostgreSQL setup below.
 
 11. To push your app, do:
 
@@ -113,10 +111,17 @@ You can now view your app at `https://APPNAME.cloudapps.digital`.
 
 ### PostgreSQL setup with Django
 
-In your `settings.py` file, make sure you import the package we added to the `requirements.txt` file above:
+Add these lines to your ``requirements.txt``:
 
 ```python
-        import dj_database_url
+psycopg2==2.6.2 #installs the postgres driver
+dj-database-url==0.3.0 #grabs environment variables and dumps them into a Django settings file
+```
+
+In your `settings.py` file, make sure you import the ``dj_database_url`` package we added to the `requirements.txt` file above:
+
+```python
+import dj_database_url
 ```
 
 This package will automatically parse the ``VCAP_SERVICES`` environment variable and set DATABASE_URL to the first database found.
@@ -124,14 +129,16 @@ This package will automatically parse the ``VCAP_SERVICES`` environment variable
 Then, you'll need to add a `DATABASES` setting. It's best to add this to the `settings.py` file. 
 
 ```python
-        DATABASES = {}
-        DATABASES['default'] =  dj_database_url.config()
+DATABASES = {}
+DATABASES['default'] =  dj_database_url.config()
 ```
 
 Your `local_settings.py` file will override this when you're working locally.
 
 To have database migrations automatically applied, amend your `Procfile` to contain the following:
 
-``web: python manage.py migrate && waitress-serve --port=$PORT PROJECTNAME.wsgi:application``
+```
+web: python manage.py migrate && waitress-serve --port=$PORT PROJECTNAME.wsgi:application
+```
 
 Again, remember to replace `PROJECTNAME` with the name of your WSGI module.

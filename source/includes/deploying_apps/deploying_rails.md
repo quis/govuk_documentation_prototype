@@ -3,32 +3,24 @@
 This section explains minimal steps for deploying a basic Rails app. For full details of how to deploy Ruby on Rails apps, see the official Cloud Foundry guide [Getting Started Deploying Ruby on Rails Apps](http://docs.cloudfoundry.org/buildpacks/ruby/gsg-ror.html). 
 
 
-These steps assume you have already carried out the setup process explained in the [Quick Setup Guide](/getting_started/quick_setup_guide) section.
-
-When you deploy an app, you must select a combination of an organisation and a space (see [Orgs and spaces](/deploying_apps/orgs_spaces_targets) for more information). This is called the **target**.
-
-We have provided a ``sandbox`` space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:
-
-``cf target -s sandbox``
-
-It's also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.
+These steps assume you have already carried out the setup process explained in the [Quick setup guide](/#quick-setup-guide) section.
 
 Note that the only database service currently supported by PaaS is PostgreSQL. If your Rails app requires a database, it must be able to work with PostgreSQL.
 
 1. Check out your Rails app to a local folder.
 
-1. [Exclude files ignored by Git](/deploying_apps/excluding_files/).
+1. [Exclude files ignored by Git](/#excluding-files).
 
-1. [Add the `rails_12factor` gem](https://github.com/heroku/rails_12factor#install) for better logging.
+1. If you're using Rails 4, [add the `rails_12factor` gem](https://github.com/heroku/rails_12factor#install) for better logging. Rails 5 has this functionality build in by default.
 
 1. Create a manifest.yml file in the folder where you checked out your app.
 
     ```
-        ---
-        applications:
-        - name: my-rails-app
-          memory: 256M
-          buildpack: ruby_buildpack
+    ---
+    applications:
+    * name: my-rails-app
+      memory: 256M
+      buildpack: ruby_buildpack
     ```
 
     Replace ``my-rails-app`` with a unique name for your app. (You can use ``cf apps`` to see apps which already exist).
@@ -37,7 +29,7 @@ Note that the only database service currently supported by PaaS is PostgreSQL. I
 
     A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Ruby, you use the ``ruby_buildpack``.
 
-1. Set any additional [environment variables](/deploying_apps/env_variables/)
+1. Set any additional [environment variables](/#environment-variables)
    required by your app. For example:
 
     ```
@@ -62,8 +54,16 @@ Note that the only database service currently supported by PaaS is PostgreSQL. I
     cf push --no-start APPNAME
     ```
 
-1. [Create a PostgreSQL backing service and bind it to your app](/deploying_services/postgres/). 
+1. If required, [create a PostgreSQL backing service and bind it to your app](/#using-a-postgresql-service/). 
     The Cloud Foundry buildpack for Ruby automatically gets the details of the first available PostgreSQL service from the ``VCAP_SERVICES`` environment variable and sets the Ruby DATABASE_URL accordingly.
+
+    To enable Rails support for database migrations, you may wish to create a `Procfile` in the same directory as your `manifest.yml` and `Gemfile`.
+
+    This is a minimal example of the `Procfile` content for *Rails 5.0*:
+
+    ```
+    web: rake db:migrate && bin/rails server
+    ```
 
     Once you have created and bound the PostgreSQL service, run:
 

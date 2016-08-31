@@ -4,7 +4,7 @@ This section covers how to deploy a basic Node.js application to Government PaaS
 
 Note that the only database service currently supported by PaaS is PostgreSQL. If your Node.js app requires a database, it must be able to work with PostgreSQL.
 
-These instructions assume you have already carried out the setup process explained in the [Quick Setup Guide](/getting_started/quick_setup_guide) section.
+These instructions assume you have already carried out the setup process explained in the [Quick setup guide](/#quick-setup-guide) section.
 
 This is the code for the example app we are going to use. It is a basic web server that responds with a 'Hello World' message.
 

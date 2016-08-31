@@ -3,7 +3,7 @@
 This section explains how to create and deploy a static HTML page. It's
 worth testing that you can carry out this process before you try to deploy a more complex app.
 
-When you deploy an app, you must select a combination of an organisation and a space (see [Orgs, Spaces and Targets](/deploying_apps/orgs_spaces_targets) for more information). This is called the **target**.
+When you deploy an app, you must select a combination of an organisation and a space: this is called the **target** (see [Orgs, spaces and targets](/#orgs-spaces-and-targets) for more information).
 
 We have provided a ``sandbox`` space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:
 
@@ -11,32 +11,32 @@ We have provided a ``sandbox`` space for you to use for learning about the PaaS.
 
 It's also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.
 
-These steps assume you have already carried out the setup process explained in the [Quick Setup Guide](/getting_started/quick_setup_guide) section.
+These steps assume you have already carried out the setup process explained in the [Quick setup guide](/#quick-setup-guide) section.
 
 1. In an empty directory, create an `index.html` file.
 
 2. Add some markup to the `index.html` file:
 
-      ``` 
-              <html>
-                <head>
-                  <title>Static Site</title>
-                </head>
-                <body>
-                  <p>Welcome to the static site!</p>
-                </body>
-              </html>
-      ```
+    ``` 
+    <html>
+      <head>
+        <title>Static Site</title>
+      </head>
+      <body>
+        <p>Welcome to the static site!</p>
+      </body>
+    </html>
+    ```
 
 3. Create a `manifest.yml` file in the same directory. The manifest file tells 
    Cloud Foundry what to do with your app.
 
     ```
-            ---
-            applications:
-            * name: my-static-site
-              memory: 64M
-              buildpack: staticfile_buildpack
+    ---
+    applications:
+    + name: my-static-site
+      memory: 64M
+      buildpack: staticfile_buildpack
     ```
     
     Replace ``my-static-site`` with a unique name for your app. (You can use ``cf apps`` to see apps which already exist).

@@ -12,7 +12,7 @@ Your organisation will be assigned a quota based on your stated needs. This will
 
 + **Service instances**: The number of service instances available to your organization.
 
-+ **Paid services**: Whether or not paid [services](/deploying_services/) are available. ``postgres`` is a paid service.
++ **Paid services**: Whether or not paid [services](#deploying-backing-services) are available. ``postgres`` is a paid service.
 
 + **Routes**: Hostname and domain pairs where an application that exposes a listening port can be reached.
 
@@ -30,10 +30,10 @@ If a new application `push` would exceed your organization's quota, the request 
 This is an example of the error you would receive:
 
 ```
-	Creating app APPLICATION in org ORG / space SPACE as USER...
-	FAILED
-	Server error, status code: 400, error code: 100007, message: 
-	You have exceeded the memory limit for your organization's quota.
+Creating app APPLICATION in org ORG / space SPACE as USER...
+FAILED
+Server error, status code: 400, error code: 100007, message: 
+You have exceeded the memory limit for your organization's quota.
 ```
 
 In this situation you have three options:
@@ -78,23 +78,23 @@ The application cannot access more than the specified amount of memory.
 
 - The environment default of 512MB `memory` is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use `cf app APPNAME` to check your application's current memory and compute utilization.
 
-	```
-		requested state: started
-		instances: 1/1
-		usage: 128M x 1 instances
-		urls: 
-		last uploaded: Wed Jul 22 20:09:56 UTC 2015
-		
-		     state     since                    cpu    memory          disk          
-		#0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M    
-	```  
+```
+requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: 
+last uploaded: Wed Jul 22 20:09:56 UTC 2015
+
+     state     since                    cpu    memory          disk          
+#0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M    
+```  
 
 
 - Any application which exceeds its memory quota will be automatically restarted. Use `cf events APPNAME` to look for 'out of memory' crashes.
 
-	```
-		... description   
-		... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
-	```
+```
+... description   
+... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
+```
 
 

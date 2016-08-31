@@ -2,28 +2,20 @@
 
 <p>This section explains minimal steps for deploying a basic Rails app. For full details of how to deploy Ruby on Rails apps, see the official Cloud Foundry guide <a href="http://docs.cloudfoundry.org/buildpacks/ruby/gsg-ror.html">Getting Started Deploying Ruby on Rails Apps</a>. </p>
 
-<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
-
-<p>When you deploy an app, you must select a combination of an organisation and a space (see <a href="/deploying_apps/orgs_spaces_targets">Orgs and spaces</a> for more information). This is called the <strong>target</strong>.</p>
-
-<p>We have provided a <code class="prettyprint">sandbox</code> space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:</p>
-
-<p><code class="prettyprint">cf target -s sandbox</code></p>
-
-<p>It&rsquo;s also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.</p>
+<p>These steps assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Rails app requires a database, it must be able to work with PostgreSQL.</p>
 
 <ol>
 <li><p>Check out your Rails app to a local folder.</p></li>
-<li><p><a href="/deploying_apps/excluding_files/">Exclude files ignored by Git</a>.</p></li>
-<li><p><a href="https://github.com/heroku/rails_12factor#install">Add the <code class="prettyprint">rails_12factor</code> gem</a> for better logging.</p></li>
+<li><p><a href="/#excluding-files">Exclude files ignored by Git</a>.</p></li>
+<li><p>If you&rsquo;re using Rails 4, <a href="https://github.com/heroku/rails_12factor#install">add the <code class="prettyprint">rails_12factor</code> gem</a> for better logging. Rails 5 has this functionality build in by default.</p></li>
 <li><p>Create a manifest.yml file in the folder where you checked out your app.</p>
-<pre class="highlight plaintext"><code>    ---
-    applications:
-    - name: my-rails-app
-      memory: 256M
-      buildpack: ruby_buildpack
+<pre class="highlight plaintext"><code>---
+applications:
+- name: my-rails-app
+  memory: 256M
+  buildpack: ruby_buildpack
 </code></pre>
 
 <p>Replace <code class="prettyprint">my-rails-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
@@ -31,7 +23,7 @@
 <p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
 
 <p>A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Ruby, you use the <code class="prettyprint">ruby_buildpack</code>.</p></li>
-<li><p>Set any additional <a href="/deploying_apps/env_variables/">environment variables</a>
+<li><p>Set any additional <a href="/#environment-variables">environment variables</a>
 required by your app. For example:</p>
 <pre class="highlight plaintext"><code>cf set-env APPNAME VARIABLE `value`
 </code></pre>
@@ -48,8 +40,14 @@ required by your app. For example:</p>
 <p>If your app needs a backing service, upload it but do not start it:</p>
 <pre class="highlight plaintext"><code>cf push --no-start APPNAME
 </code></pre></li>
-<li><p><a href="/deploying_services/postgres/">Create a PostgreSQL backing service and bind it to your app</a>. 
+<li><p>If required, <a href="/#using-a-postgresql-service/">create a PostgreSQL backing service and bind it to your app</a>. 
 The Cloud Foundry buildpack for Ruby automatically gets the details of the first available PostgreSQL service from the <code class="prettyprint">VCAP_SERVICES</code> environment variable and sets the Ruby DATABASE_URL accordingly.</p>
+
+<p>To enable Rails support for database migrations, you may wish to create a <code class="prettyprint">Procfile</code> in the same directory as your <code class="prettyprint">manifest.yml</code> and <code class="prettyprint">Gemfile</code>.</p>
+
+<p>This is a minimal example of the <code class="prettyprint">Procfile</code> content for <em>Rails 5.0</em>:</p>
+<pre class="highlight plaintext"><code>web: rake db:migrate &amp;&amp; bin/rails server
+</code></pre>
 
 <p>Once you have created and bound the PostgreSQL service, run:</p>
 <pre class="highlight plaintext"><code>cf start APPNAME

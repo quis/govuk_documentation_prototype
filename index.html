@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Government PaaS Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -368,7 +368,7 @@
 
 <p>If your organisation is taking part in the private beta and you need an account, or you&rsquo;d like to find about taking part in the beta, please contact us by emailing <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 
-<p>In order to provide you with an account, we need to store some personal data about you. Please see <a href="/getting_started/privacy">our Privacy Policy</a> for details.</p>
+<p>In order to provide you with an account, we need to store some personal data about you. Please see <a href="/#privacy-policy">our Privacy Policy</a> for details.</p>
 
 <h3 id="setting-up-the-command-line">Setting up the command line</h3>
 
@@ -403,7 +403,7 @@
 
 <h3 id="deploying-a-test-app"> Deploying a test app</h3>
 
-<p>To practice deploying an app, try following the <a href="/deploying_apps/deploying_static_sites/">deploying a static site</a> process.</p>
+<p>To practice deploying an app, try following the <a href="/#deploying-a-static-site">deploying a static site</a> process.</p>
 
           <h2 id="privacy-policy">Privacy policy</h2>
 
@@ -562,8 +562,8 @@
 <ul>
 <li>Your app should not write to local storage. Cloud Foundry local storage is ephemeral and can be deleted at any time.</li>
 <li>You may need to set environment variables for your app to work. All configuration information should be stored in environment variables, not in the code. </li>
-<li>Instances will be restarted if they <a href="/managing_apps/quotas/">exceed memory limits</a>.</li>
-<li>Proper <a href="/deploying_apps/logging/">logging</a> might require special libraries/configuration for your app.</li>
+<li>Instances will be restarted if they <a href="/#quotas">exceed memory limits</a>.</li>
+<li>Proper <a href="/#logging">logging</a> might require special libraries/configuration for your app.</li>
 </ul>
 
           <h2 id="excluding-files">Excluding files</h2>
@@ -661,7 +661,7 @@
 <p>This section explains how to create and deploy a static HTML page. It&rsquo;s
 worth testing that you can carry out this process before you try to deploy a more complex app.</p>
 
-<p>When you deploy an app, you must select a combination of an organisation and a space (see <a href="/deploying_apps/orgs_spaces_targets">Orgs, Spaces and Targets</a> for more information). This is called the <strong>target</strong>.</p>
+<p>When you deploy an app, you must select a combination of an organisation and a space: this is called the <strong>target</strong> (see <a href="/#orgs-spaces-and-targets">Orgs, spaces and targets</a> for more information).</p>
 
 <p>We have provided a <code class="prettyprint">sandbox</code> space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:</p>
 
@@ -669,27 +669,27 @@ worth testing that you can carry out this process before you try to deploy a mor
 
 <p>It&rsquo;s also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.</p>
 
-<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+<p>These steps assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <ol>
 <li><p>In an empty directory, create an <code class="prettyprint">index.html</code> file.</p></li>
 <li><p>Add some markup to the <code class="prettyprint">index.html</code> file:</p>
-<pre class="highlight html"><code>          <span class="nt">&lt;html&gt;</span>
-            <span class="nt">&lt;head&gt;</span>
-              <span class="nt">&lt;title&gt;</span>Static Site<span class="nt">&lt;/title&gt;</span>
-            <span class="nt">&lt;/head&gt;</span>
-            <span class="nt">&lt;body&gt;</span>
-              <span class="nt">&lt;p&gt;</span>Welcome to the static site!<span class="nt">&lt;/p&gt;</span>
-            <span class="nt">&lt;/body&gt;</span>
-          <span class="nt">&lt;/html&gt;</span>
+<pre class="highlight html"><code><span class="nt">&lt;html&gt;</span>
+  <span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;title&gt;</span>Static Site<span class="nt">&lt;/title&gt;</span>
+  <span class="nt">&lt;/head&gt;</span>
+  <span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;p&gt;</span>Welcome to the static site!<span class="nt">&lt;/p&gt;</span>
+  <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
 </code></pre></li>
 <li><p>Create a <code class="prettyprint">manifest.yml</code> file in the same directory. The manifest file tells 
 Cloud Foundry what to do with your app.</p>
-<pre class="highlight plaintext"><code>        ---
-        applications:
-        * name: my-static-site
-          memory: 64M
-          buildpack: staticfile_buildpack
+<pre class="highlight plaintext"><code>---
+applications:
+- name: my-static-site
+  memory: 64M
+  buildpack: staticfile_buildpack
 </code></pre>
 
 <p>Replace <code class="prettyprint">my-static-site</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
@@ -722,28 +722,20 @@ cf push
 
 <p>This section explains minimal steps for deploying a basic Rails app. For full details of how to deploy Ruby on Rails apps, see the official Cloud Foundry guide <a href="http://docs.cloudfoundry.org/buildpacks/ruby/gsg-ror.html">Getting Started Deploying Ruby on Rails Apps</a>. </p>
 
-<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
-
-<p>When you deploy an app, you must select a combination of an organisation and a space (see <a href="/deploying_apps/orgs_spaces_targets">Orgs and spaces</a> for more information). This is called the <strong>target</strong>.</p>
-
-<p>We have provided a <code class="prettyprint">sandbox</code> space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:</p>
-
-<p><code class="prettyprint">cf target -s sandbox</code></p>
-
-<p>It&rsquo;s also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.</p>
+<p>These steps assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Rails app requires a database, it must be able to work with PostgreSQL.</p>
 
 <ol>
 <li><p>Check out your Rails app to a local folder.</p></li>
-<li><p><a href="/deploying_apps/excluding_files/">Exclude files ignored by Git</a>.</p></li>
-<li><p><a href="https://github.com/heroku/rails_12factor#install">Add the <code class="prettyprint">rails_12factor</code> gem</a> for better logging.</p></li>
+<li><p><a href="/#excluding-files">Exclude files ignored by Git</a>.</p></li>
+<li><p>If you&rsquo;re using Rails 4, <a href="https://github.com/heroku/rails_12factor#install">add the <code class="prettyprint">rails_12factor</code> gem</a> for better logging. Rails 5 has this functionality build in by default.</p></li>
 <li><p>Create a manifest.yml file in the folder where you checked out your app.</p>
-<pre class="highlight plaintext"><code>    ---
-    applications:
-    - name: my-rails-app
-      memory: 256M
-      buildpack: ruby_buildpack
+<pre class="highlight plaintext"><code>---
+applications:
+- name: my-rails-app
+  memory: 256M
+  buildpack: ruby_buildpack
 </code></pre>
 
 <p>Replace <code class="prettyprint">my-rails-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
@@ -751,7 +743,7 @@ cf push
 <p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p>
 
 <p>A buildpack provides any framework and runtime support required by an app. In this case, because the app is written in Ruby, you use the <code class="prettyprint">ruby_buildpack</code>.</p></li>
-<li><p>Set any additional <a href="/deploying_apps/env_variables/">environment variables</a>
+<li><p>Set any additional <a href="/#environment-variables">environment variables</a>
 required by your app. For example:</p>
 <pre class="highlight plaintext"><code>cf set-env APPNAME VARIABLE `value`
 </code></pre>
@@ -768,8 +760,14 @@ required by your app. For example:</p>
 <p>If your app needs a backing service, upload it but do not start it:</p>
 <pre class="highlight plaintext"><code>cf push --no-start APPNAME
 </code></pre></li>
-<li><p><a href="/deploying_services/postgres/">Create a PostgreSQL backing service and bind it to your app</a>. 
+<li><p>If required, <a href="/#using-a-postgresql-service/">create a PostgreSQL backing service and bind it to your app</a>. 
 The Cloud Foundry buildpack for Ruby automatically gets the details of the first available PostgreSQL service from the <code class="prettyprint">VCAP_SERVICES</code> environment variable and sets the Ruby DATABASE_URL accordingly.</p>
+
+<p>To enable Rails support for database migrations, you may wish to create a <code class="prettyprint">Procfile</code> in the same directory as your <code class="prettyprint">manifest.yml</code> and <code class="prettyprint">Gemfile</code>.</p>
+
+<p>This is a minimal example of the <code class="prettyprint">Procfile</code> content for <em>Rails 5.0</em>:</p>
+<pre class="highlight plaintext"><code>web: rake db:migrate &amp;&amp; bin/rails server
+</code></pre>
 
 <p>Once you have created and bound the PostgreSQL service, run:</p>
 <pre class="highlight plaintext"><code>cf start APPNAME
@@ -809,7 +807,7 @@ during asset compilation. (For an example, see <a href="https://github.com/18F/m
 
 <p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Node.js app requires a database, it must be able to work with PostgreSQL.</p>
 
-<p>These instructions assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+<p>These instructions assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <p>This is the code for the example app we are going to use. It is a basic web server that responds with a &lsquo;Hello World&rsquo; message.</p>
 <pre class="highlight plaintext"><code>    const http = require('http');
@@ -830,12 +828,12 @@ during asset compilation. (For an example, see <a href="https://github.com/18F/m
 <ol>
 <li><p>Save the code to a new local directory as <code class="prettyprint">example.js</code>.</p></li>
 <li><p>Add this <code class="prettyprint">manifest.yml</code> file to the same directory:</p>
-<pre class="highlight plaintext"><code>    ---
-    applications:
-    - name: my-node-app
-      command: node example.js
-      memory: 256M
-      buildpack: nodejs_buildpack
+<pre class="highlight plaintext"><code>---
+applications:
+- name: my-node-app
+  command: node example.js
+  memory: 256M
+  buildpack: nodejs_buildpack
 </code></pre>
 
 <p>Replace <code class="prettyprint">my-node-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
@@ -909,18 +907,18 @@ ready to start the app, run <code class="prettyprint">cf start APPNAME</code>.</
 
           <h2 id="deploying-a-django-app">Deploying a Django app</h2>
 
-<p>This section explains how to deploy an app using the Django framework. You may also need to refer to the <a href="https://docs.cloudfoundry.org/buildpacks/python/index.html">Cloud Foundry documentation about the Python buildpack</a>[external link].</p>
+<p>This section explains how to deploy an app using the Django framework. You may also need to refer to the <a href="https://docs.cloudfoundry.org/buildpacks/python/index.html">Cloud Foundry documentation about the Python buildpack</a> [external link].</p>
 
 <p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Django app requires a database, it must be able to work with PostgreSQL.</p>
 
-<p>These steps assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+<p>These steps assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <p>If you are just getting started learning CloudFoundry, you can use the sandbox space by running: <code class="prettyprint">cf target -s sandbox</code></p>
 
 <ol>
 <li><p>Check out your Django app to a local folder.</p></li>
 <li><p>Add <code class="prettyprint">*.pyc</code> and <code class="prettyprint">local_settings.py</code> to your <code class="prettyprint">.gitignore</code>, file, then 
-<a href="/deploying_apps/excluding_files/">exclude files ignored by Git</a> so Cloud Foundry will ignore them too.</p></li>
+<a href="/#excluding-files">exclude files ignored by Git</a> so Cloud Foundry will ignore them too.</p></li>
 <li><p>Tell Cloud Foundry which Python runtime to use by creating a <code class="prettyprint">runtime.txt</code>   file in the root of the local folder. The contents of the file should<br>
 be:
 <code class="prettyprint">
@@ -932,9 +930,7 @@ installed into your virtual environment (including Django).</p></li>
 <li><p>Generate a <code class="prettyprint">requirements.txt</code> file if your project doesn&rsquo;t already have one by running <code class="prettyprint">pip freeze &gt; requirements.txt</code> in the root of the local folder.
 Add the following lines to the <code class="prettyprint">requirements.txt</code> file.</p>
 <pre class="highlight python"><code>    <span class="n">whitenoise</span><span class="o">==</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">6</span>  <span class="c">#manages static assets</span>
-    <span class="n">dj</span><span class="o">-</span><span class="n">database</span><span class="o">-</span><span class="n">url</span><span class="o">==</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span> <span class="c">#grabs environment variables and dumps them into a Django settings file</span>
     <span class="n">waitress</span><span class="o">==</span><span class="mf">0.8</span><span class="o">.</span><span class="mi">9</span> <span class="c">#a pure python WSGI server that is a replacement for gunicorn</span>
-    <span class="n">psycopg2</span><span class="o">==</span><span class="mf">2.6</span><span class="o">.</span><span class="mi">2</span>
 </code></pre></li>
 <li><p>Edit your <code class="prettyprint">wsgi.py</code> file.</p>
 
@@ -974,14 +970,15 @@ Add the following lines to the <code class="prettyprint">requirements.txt</code>
 <li><p>Create a file called <code class="prettyprint">Procfile</code> in the root of your local folder, 
 and put in it:</p>
 
-<p><code class="prettyprint">web: waitress-serve --port=$PORT PROJECTNAME.wsgi:application</code></p>
+<p><code class="prettyprint">web: python manage.py migrate &amp;&amp; waitress-serve --port=$PORT PROJECTNAME.wsgi:application</code></p>
 
-<p><code class="prettyprint">PROJECTNAME</code> should be replaced with whatever the name of your WSGI module is. By default, this is the same as the name of your project module, but it may be changed using the DJANGO_SETTINGS_MODULE environment variable.</p></li>
+<p><code class="prettyprint">PROJECTNAME</code> should be replaced with whatever the name of your WSGI module is. By default, this is the same as the name of your project module, but it may be changed using the DJANGO_SETTINGS_MODULE environment variable. Using this configuration will automatically apply any database migrations.</p></li>
 <li><p>Create a <code class="prettyprint">manifest.yml</code> file in the root of your local folder.</p>
-<pre class="highlight python"><code>    <span class="o">---</span>
-    <span class="n">applications</span><span class="p">:</span>
-    <span class="o">-</span> <span class="n">name</span><span class="p">:</span> <span class="n">my</span><span class="o">-</span><span class="n">app</span>
-      <span class="n">memory</span><span class="p">:</span> <span class="mi">512</span><span class="n">M</span>
+<pre class="highlight plaintext"><code>---
+applications:
+- name: my-app
+  memory: 512M
+  buildpack: python_buildpack
 </code></pre>
 
 <p>where <code class="prettyprint">my-django-app</code> is the name that will be used for the app within Government PaaS.</p>
@@ -989,7 +986,7 @@ and put in it:</p>
 <p>Replace <code class="prettyprint">my-django-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>
 
 <p>The <code class="prettyprint">memory</code> line tells the PaaS how much memory to allocate to the app.</p></li>
-<li><p>If your app requires a database, <a href="/deploying_services/postgres/">create a PostgreSQL backing service and bind it to your app</a>. Then see the section on PostgreSQL setup below.</p></li>
+<li><p>If your app requires a database, <a href="/#using-a-postgresql-service">create a PostgreSQL backing service and bind it to your app</a>. Then see the section on PostgreSQL setup below.</p></li>
 <li><p>To push your app, do:</p>
 
 <p><code class="prettyprint">cf push APPNAME</code></p>
@@ -1003,22 +1000,27 @@ and put in it:</p>
 
 <h3 id="postgresql-setup-with-django">PostgreSQL setup with Django</h3>
 
-<p>In your <code class="prettyprint">settings.py</code> file, make sure you import the package we added to the <code class="prettyprint">requirements.txt</code> file above:</p>
-<pre class="highlight python"><code>        <span class="kn">import</span> <span class="nn">dj_database_url</span>
+<p>Add these lines to your <code class="prettyprint">requirements.txt</code>:</p>
+<pre class="highlight python"><code><span class="n">psycopg2</span><span class="o">==</span><span class="mf">2.6</span><span class="o">.</span><span class="mi">2</span> <span class="c">#installs the postgres driver</span>
+<span class="n">dj</span><span class="o">-</span><span class="n">database</span><span class="o">-</span><span class="n">url</span><span class="o">==</span><span class="mf">0.3</span><span class="o">.</span><span class="mi">0</span> <span class="c">#grabs environment variables and dumps them into a Django settings file</span>
+</code></pre>
+
+<p>In your <code class="prettyprint">settings.py</code> file, make sure you import the <code class="prettyprint">dj_database_url</code> package we added to the <code class="prettyprint">requirements.txt</code> file above:</p>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">dj_database_url</span>
 </code></pre>
 
 <p>This package will automatically parse the <code class="prettyprint">VCAP_SERVICES</code> environment variable and set DATABASE_URL to the first database found.</p>
 
 <p>Then, you&rsquo;ll need to add a <code class="prettyprint">DATABASES</code> setting. It&rsquo;s best to add this to the <code class="prettyprint">settings.py</code> file. </p>
-<pre class="highlight python"><code>        <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">DATABASES</span><span class="p">[</span><span class="s">'default'</span><span class="p">]</span> <span class="o">=</span>  <span class="n">dj_database_url</span><span class="o">.</span><span class="n">config</span><span class="p">()</span>
+<pre class="highlight python"><code><span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">DATABASES</span><span class="p">[</span><span class="s">'default'</span><span class="p">]</span> <span class="o">=</span>  <span class="n">dj_database_url</span><span class="o">.</span><span class="n">config</span><span class="p">()</span>
 </code></pre>
 
 <p>Your <code class="prettyprint">local_settings.py</code> file will override this when you&rsquo;re working locally.</p>
 
 <p>To have database migrations automatically applied, amend your <code class="prettyprint">Procfile</code> to contain the following:</p>
-
-<p><code class="prettyprint">web: python manage.py migrate &amp;&amp; waitress-serve --port=$PORT PROJECTNAME.wsgi:application</code></p>
+<pre class="highlight plaintext"><code>web: python manage.py migrate &amp;&amp; waitress-serve --port=$PORT PROJECTNAME.wsgi:application
+</code></pre>
 
 <p>Again, remember to replace <code class="prettyprint">PROJECTNAME</code> with the name of your WSGI module.</p>
 
@@ -1040,23 +1042,25 @@ and put in it:</p>
 
 <p>In Cloud Foundry, backing services are referred to as &lsquo;services&rsquo; and are available through the Cloud Foundry <code class="prettyprint">cf marketplace</code> command.</p>
 
-<p>Currently, the only service available is the <a href="/deploying_services/postgres">PostgreSQL database service</a>. </p>
+<p>Currently, the only service available is the <a href="/#using-a-postgresql-service">PostgreSQL database service</a>. </p>
 
 <h2 id="paid-services">Paid services</h2>
 
-<p>Some services (including <code class="prettyprint">postgres</code>) are considered paid services. Your organization may not have the ability to use paid services enabled. Access to paid services can either be enabled or disabled based on your <a href="/managing_apps/quotas/">organisation quota</a>.</p>
+<p>Some services (including <code class="prettyprint">postgres</code>) are considered paid services. Your organization may not have the ability to use paid services enabled. Access to paid services can either be enabled or disabled based on your <a href="/#quotas">organisation quota</a>.</p>
 
 <p>If you try to create a service and receive an error stating &ldquo;service instance cannot be created because paid service plans are not allowed&rdquo;, please contact us at <a href="gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 
 <h2 id="accessing-services">Accessing services</h2>
 
-<p>Your app can find out what backing services are available, and obtain credentials for the services, by parsing the VCAP_SERVICES <a href="/deploying_apps/#environment-variables">environment variable</a>.</p>
+<p>Your app can find out what backing services are available, and obtain credentials for the services, by parsing the VCAP_SERVICES <a href="#environment-variables">environment variable</a>.</p>
 
 <h2 id="future-services">Future services</h2>
 
 <p>We are going to add more services in future based on demand, including Elasticsearch and Redis. If you need a particular backing service that we don&rsquo;t yet support, please let us know at <a href="mailto:gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>.</p>
 
-          <h2 id="creating-a-postgresql-service">Creating a PostgreSQL service</h2>
+          <h2 id="using-a-postgresql-service">Using a PostgreSQL service</h2>
+
+<h3 id="creating-a-postgresql-service">Creating a PostgreSQL service</h3>
 
 <p>Government PaaS enables you to create a PostgreSQL database service (powered by Amazon Web Services) and bind it to your app. </p>
 
@@ -1110,20 +1114,20 @@ and put in it:</p>
 
 <p><code class="prettyprint">cf service my-pg-service</code></p></li>
 <li><p>Wait until the service status reported by the above command is &lsquo;create succeeded&rsquo;. Here is an example of the type of output you will see once the service is created:</p>
-<pre class="highlight plaintext"><code>    Service instance: my-pg-service
-    Service: postgres
-    Bound apps:
-    Tags:
-    Plan: M-dedicated-9.5
-    Description: AWS RDS PostgreSQL service
-    Documentation url: https://aws.amazon.com/documentation/rds/
-    Dashboard:
+<pre class="highlight plaintext"><code>Service instance: my-pg-service
+Service: postgres
+Bound apps:
+Tags:
+Plan: M-dedicated-9.5
+Description: AWS RDS PostgreSQL service
+Documentation url: https://aws.amazon.com/documentation/rds/
+Dashboard:
 
-    Last Operation
-    Status: create succeeded
-    Message: DB Instance 'rdsbroker-9f053413-97a5-461f-aa41-fe6e29db323e' status is 'available'
-    Started: 2016-08-23T15:34:41Z
-    Updated: 2016-08-23T15:42:02Z
+Last Operation
+Status: create succeeded
+Message: DB Instance 'rdsbroker-9f053413-97a5-461f-aa41-fe6e29db323e' status is 'available'
+Started: 2016-08-23T15:34:41Z
+Updated: 2016-08-23T15:42:02Z
 </code></pre></li>
 <li><p>You can now bind the PostgreSQL service to your app. Run:
 <code class="prettyprint">cf bind-service APPLICATION SERVICE_INSTANCE</code></p>
@@ -1134,11 +1138,11 @@ and put in it:</p>
 <li><p>Your app is now able to access the PostgreSQL service. If the app was already running, you may need to restart the app to connect.</p></li>
 </ol>
 
-<h2 id="accessing-postgresql-from-your-app">Accessing PostgreSQL from your app</h2>
+<h3 id="accessing-postgresql-from-your-app">Accessing PostgreSQL from your app</h3>
 
 <p>Your app must make a <a href="https://en.wikipedia.org/wiki/Transport_Layer_Security">TLS</a> connection to the PostgreSQL service. Most libraries use TLS by default.</p>
 
-<p>Your app will need to parse the <code class="prettyprint">VCAP_SERVICES</code> <a href="/deploying_apps/#environment-variables">environment variable</a> to get details of the PostgreSQL service (or use a library that does so).</p>
+<p>Your app will need to parse the <code class="prettyprint">VCAP_SERVICES</code> <a href="/#environment-variables">environment variable</a> to get details of the PostgreSQL service (or use a library that does so).</p>
 
 <p>(Note that if your app is written in Ruby, the Cloud Foundry Ruby buildpack will automatically parse <code class="prettyprint">VCAP_SERVICES</code> and set DATABASE_URL to the first database found.)</p>
 
@@ -1148,7 +1152,7 @@ and put in it:</p>
 
 <p><code class="prettyprint">cf logs APPNAME --recent</code></p>
 
-<h2 id="postgresql-service-maintenance-times">PostgreSQL service maintenance times</h2>
+<h3 id="postgresql-service-maintenance-times">PostgreSQL service maintenance times</h3>
 
 <p>The PaaS PostgreSQL service is currently provided by Amazon Web Services RDS. Each PostgreSQL service you create will have a randomly-assigned weekly 30 minute maintenance window, during which there may be brief downtime. (To minimise downtime, select the <code class="prettyprint">M-HA-dedicated-9.5</code> high availability plan). Minor version upgrades (for example from 9.4.1 to 9.4.2) will be applied during this window.</p>
 
@@ -1156,7 +1160,7 @@ and put in it:</p>
 
 <p>If you need to know the time of your maintenance window, please contact us at <a href="gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a>. Times will be from 22:00 to 06:00 UTC. We will add the ability to set the time of the maintenance window in a future version of Government PaaS.</p>
 
-<h2 id="postgresql-service-backup">PostgreSQL service backup</h2>
+<h3 id="postgresql-service-backup">PostgreSQL service backup</h3>
 
 <p>The data stored within any PostgreSQL service you create is backed up using the standard Amazon RDS backup system. </p>
 
@@ -1170,7 +1174,7 @@ and put in it:</p>
 
 <p>For more details about how the RDS backup system works, see <a href="http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html">Amazon&rsquo;s DB Instance Backups documentation</a> [external page].</p>
 
-<h2 id="high-availability-details">High availability details</h2>
+<h3 id="high-availability-details">High availability details</h3>
 
 <p>We recommend you use the high availability plan (<code class="prettyprint">M-HA-dedicated-9.5</code>) for any production apps.</p>
 
@@ -1184,7 +1188,7 @@ and put in it:</p>
 
 <p>If you wish to test how your app deals with a failover, we can trigger one for you. Please contact us at <a href="gov-uk-paas-support@digital.cabinet-office.gov.uk">gov-uk-paas-support@digital.cabinet-office.gov.uk</a> to arrange this.</p>
 
-<h2 id="read-replicas">Read replicas</h2>
+<h3 id="read-replicas">Read replicas</h3>
 
 <p>Amazon RDS has the capability to provide a read replica: a read-only copy of your PostgreSQL database. This can be useful for performance, availability or security reasons.</p>
 
@@ -1245,7 +1249,7 @@ Incoming requests are automatically load-balanced across all instances.</p>
 <ul>
 <li><p><strong>RAM</strong>: The amount of RAM available to your applications. The application also has a compute share derived from its memory limit.</p></li>
 <li><p><strong>Service instances</strong>: The number of service instances available to your organization.</p></li>
-<li><p><strong>Paid services</strong>: Whether or not paid <a href="/deploying_services/">services</a> are available. <code class="prettyprint">postgres</code> is a paid service.</p></li>
+<li><p><strong>Paid services</strong>: Whether or not paid <a href="#deploying-backing-services">services</a> are available. <code class="prettyprint">postgres</code> is a paid service.</p></li>
 <li><p><strong>Routes</strong>: Hostname and domain pairs where an application that exposes a listening port can be reached.</p></li>
 </ul>
 
@@ -1260,10 +1264,10 @@ Incoming requests are automatically load-balanced across all instances.</p>
 <p>If a new application <code class="prettyprint">push</code> would exceed your organization&rsquo;s quota, the request will fail with status code <code class="prettyprint">400</code> and a message describing the limit that would be exceeded.</p>
 
 <p>This is an example of the error you would receive:</p>
-<pre class="highlight plaintext"><code>    Creating app APPLICATION in org ORG / space SPACE as USER...
-    FAILED
-    Server error, status code: 400, error code: 100007, message: 
-    You have exceeded the memory limit for your organization's quota.
+<pre class="highlight plaintext"><code>Creating app APPLICATION in org ORG / space SPACE as USER...
+FAILED
+Server error, status code: 400, error code: 100007, message: 
+You have exceeded the memory limit for your organization's quota.
 </code></pre>
 
 <p>In this situation you have three options:</p>
@@ -1308,21 +1312,24 @@ If there are other applications competing for time, each application&rsquo;s gua
 <h3 id="application-quota-sizing">Application quota sizing</h3>
 
 <ul>
-<li><p>The environment default of 512MB <code class="prettyprint">memory</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code class="prettyprint">cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</p>
-<pre class="highlight plaintext"><code>    requested state: started
-    instances: 1/1
-    usage: 128M x 1 instances
-    urls: 
-    last uploaded: Wed Jul 22 20:09:56 UTC 2015
-
-         state     since                    cpu    memory          disk          
-    #0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M    
-</code></pre></li>
-<li><p>Any application which exceeds its memory quota will be automatically restarted. Use <code class="prettyprint">cf events APPNAME</code> to look for &lsquo;out of memory&rsquo; crashes.</p>
-<pre class="highlight plaintext"><code>    ... description   
-    ... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
-</code></pre></li>
+<li>The environment default of 512MB <code class="prettyprint">memory</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code class="prettyprint">cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</li>
 </ul>
+<pre class="highlight plaintext"><code>requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: 
+last uploaded: Wed Jul 22 20:09:56 UTC 2015
+
+     state     since                    cpu    memory          disk          
+#0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M    
+</code></pre>
+
+<ul>
+<li>Any application which exceeds its memory quota will be automatically restarted. Use <code class="prettyprint">cf events APPNAME</code> to look for &lsquo;out of memory&rsquo; crashes.</li>
+</ul>
+<pre class="highlight plaintext"><code>... description   
+... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
+</code></pre>
 
           <h2 id="logging">Logging</h2>
 

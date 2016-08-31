@@ -9,7 +9,7 @@
 <ul>
 <li><p><strong>RAM</strong>: The amount of RAM available to your applications. The application also has a compute share derived from its memory limit.</p></li>
 <li><p><strong>Service instances</strong>: The number of service instances available to your organization.</p></li>
-<li><p><strong>Paid services</strong>: Whether or not paid <a href="/deploying_services/">services</a> are available. <code class="prettyprint">postgres</code> is a paid service.</p></li>
+<li><p><strong>Paid services</strong>: Whether or not paid <a href="#deploying-backing-services">services</a> are available. <code class="prettyprint">postgres</code> is a paid service.</p></li>
 <li><p><strong>Routes</strong>: Hostname and domain pairs where an application that exposes a listening port can be reached.</p></li>
 </ul>
 
@@ -24,10 +24,10 @@
 <p>If a new application <code class="prettyprint">push</code> would exceed your organization&rsquo;s quota, the request will fail with status code <code class="prettyprint">400</code> and a message describing the limit that would be exceeded.</p>
 
 <p>This is an example of the error you would receive:</p>
-<pre class="highlight plaintext"><code>    Creating app APPLICATION in org ORG / space SPACE as USER...
-    FAILED
-    Server error, status code: 400, error code: 100007, message: 
-    You have exceeded the memory limit for your organization's quota.
+<pre class="highlight plaintext"><code>Creating app APPLICATION in org ORG / space SPACE as USER...
+FAILED
+Server error, status code: 400, error code: 100007, message: 
+You have exceeded the memory limit for your organization's quota.
 </code></pre>
 
 <p>In this situation you have three options:</p>
@@ -72,18 +72,21 @@ If there are other applications competing for time, each application&rsquo;s gua
 <h3 id="application-quota-sizing">Application quota sizing</h3>
 
 <ul>
-<li><p>The environment default of 512MB <code class="prettyprint">memory</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code class="prettyprint">cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</p>
-<pre class="highlight plaintext"><code>    requested state: started
-    instances: 1/1
-    usage: 128M x 1 instances
-    urls: 
-    last uploaded: Wed Jul 22 20:09:56 UTC 2015
-
-         state     since                    cpu    memory          disk          
-    #0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M    
-</code></pre></li>
-<li><p>Any application which exceeds its memory quota will be automatically restarted. Use <code class="prettyprint">cf events APPNAME</code> to look for &lsquo;out of memory&rsquo; crashes.</p>
-<pre class="highlight plaintext"><code>    ... description   
-    ... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
-</code></pre></li>
+<li>The environment default of 512MB <code class="prettyprint">memory</code> is sufficient for most applications. Static sites and utility applications such as schedulers or loaders may require less. Use <code class="prettyprint">cf app APPNAME</code> to check your application&rsquo;s current memory and compute utilization.</li>
 </ul>
+<pre class="highlight plaintext"><code>requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: 
+last uploaded: Wed Jul 22 20:09:56 UTC 2015
+
+     state     since                    cpu    memory          disk          
+#0   running   2015-07-30 05:58:11 PM   0.0%   94.6M of 128M   80.4M of 128M    
+</code></pre>
+
+<ul>
+<li>Any application which exceeds its memory quota will be automatically restarted. Use <code class="prettyprint">cf events APPNAME</code> to look for &lsquo;out of memory&rsquo; crashes.</li>
+</ul>
+<pre class="highlight plaintext"><code>... description   
+... index: 0, reason: CRASHED, exit_description: out of memory, exit_status: 255 
+</code></pre>

@@ -4,7 +4,7 @@
 
 <p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Node.js app requires a database, it must be able to work with PostgreSQL.</p>
 
-<p>These instructions assume you have already carried out the setup process explained in the <a href="/getting_started/quick_setup_guide">Quick Setup Guide</a> section.</p>
+<p>These instructions assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <p>This is the code for the example app we are going to use. It is a basic web server that responds with a &lsquo;Hello World&rsquo; message.</p>
 <pre class="highlight plaintext"><code>    const http = require('http');
@@ -25,12 +25,12 @@
 <ol>
 <li><p>Save the code to a new local directory as <code class="prettyprint">example.js</code>.</p></li>
 <li><p>Add this <code class="prettyprint">manifest.yml</code> file to the same directory:</p>
-<pre class="highlight plaintext"><code>    ---
-    applications:
-    - name: my-node-app
-      command: node example.js
-      memory: 256M
-      buildpack: nodejs_buildpack
+<pre class="highlight plaintext"><code>---
+applications:
+- name: my-node-app
+  command: node example.js
+  memory: 256M
+  buildpack: nodejs_buildpack
 </code></pre>
 
 <p>Replace <code class="prettyprint">my-node-app</code> with a unique name for your app. (You can use <code class="prettyprint">cf apps</code> to see apps which already exist).</p>

@@ -18,7 +18,7 @@ Note that the only database service currently supported by PaaS is PostgreSQL. I
     ```
     ---
     applications:
-    * name: my-rails-app
+    - name: my-rails-app
       memory: 256M
       buildpack: ruby_buildpack
     ```

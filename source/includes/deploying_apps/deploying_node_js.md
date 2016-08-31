@@ -29,12 +29,12 @@ This is the code for the example app we are going to use. It is a basic web serv
 1. Add this ``manifest.yml`` file to the same directory:
       
     ```
-        ---
-        applications:
-        - name: my-node-app
-          command: node example.js
-          memory: 256M
-          buildpack: nodejs_buildpack
+    ---
+    applications:
+    - name: my-node-app
+      command: node example.js
+      memory: 256M
+      buildpack: nodejs_buildpack
     ```
 
     Replace ``my-node-app`` with a unique name for your app. (You can use ``cf apps`` to see apps which already exist).

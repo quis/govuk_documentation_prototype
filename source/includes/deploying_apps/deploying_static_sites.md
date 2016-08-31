@@ -34,7 +34,7 @@ These steps assume you have already carried out the setup process explained in t
     ```
     ---
     applications:
-    + name: my-static-site
+    - name: my-static-site
       memory: 64M
       buildpack: staticfile_buildpack
     ```

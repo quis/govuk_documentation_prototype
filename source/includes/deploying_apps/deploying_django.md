@@ -84,11 +84,12 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
 
 9. Create a `manifest.yml` file in the root of your local folder.
 
-    ```python
-        ---
-        applications:
-        - name: my-app
-          memory: 512M
+    ```
+    ---
+    applications:
+    - name: my-app
+      memory: 512M
+      buildpack: python_buildpack
     ```
 
     where `my-django-app` is the name that will be used for the app within Government PaaS.

@@ -4,7 +4,7 @@
 
 <p>Note that the only database service currently supported by PaaS is PostgreSQL. If your Node.js app requires a database, it must be able to work with PostgreSQL.</p>
 
-<p>These instructions assume you have already carried out the setup process explained in the <a href="/#quick-setup-guide">Quick setup guide</a> section.</p>
+<p>These instructions assume you have already carried out the setup process explained in the <a href="/govuk_documentation_prototype/#quick-setup-guide">Quick setup guide</a> section.</p>
 
 <p>This is the code for the example app we are going to use. It is a basic web server that responds with a &lsquo;Hello World&rsquo; message.</p>
 <pre class="highlight plaintext"><code>    const http = require('http');

@@ -3,7 +3,7 @@
 This section explains how to create and deploy a static HTML page. It's
 worth testing that you can carry out this process before you try to deploy a more complex app.
 
-When you deploy an app, you must select a combination of an organisation and a space: this is called the **target** (see [Orgs, spaces and targets](/#orgs-spaces-and-targets) for more information).
+When you deploy an app, you must select a combination of an organisation and a space: this is called the **target** (see [Orgs, spaces and targets](/govuk_documentation_prototype/#orgs-spaces-and-targets) for more information).
 
 We have provided a ``sandbox`` space for you to use for learning about the PaaS. You may want to target the sandbox while you are testing by running:
 

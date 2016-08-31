@@ -11,7 +11,7 @@ We have provided a ``sandbox`` space for you to use for learning about the PaaS.
 
 It's also important to realise that if you deploy an app using the same name and target as an existing app, the original will be replaced. If you are not sure about where to deploy your app, consult the rest of your team.
 
-These steps assume you have already carried out the setup process explained in the [Quick setup guide](/#quick-setup-guide) section.
+These steps assume you have already carried out the setup process explained in the [Quick setup guide](/govuk_documentation_prototype/#quick-setup-guide) section.
 
 1. In an empty directory, create an `index.html` file.
 

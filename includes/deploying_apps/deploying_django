@@ -15,44 +15,44 @@
 <li><p>Tell Cloud Foundry which Python runtime to use by creating a <code class="prettyprint">runtime.txt</code>   file in the root of the local folder. The contents of the file should<br>
 be:
 <code class="prettyprint">
-    python-3.5.1  
+python-3.5.1  
 </code>
 replacing &ldquo;3.5.1&rdquo; with the version of Python you want to use (it must be supported by the buildpack: currently versions 2.7.11 to 3.5.2 are supported.)</p></li>
 <li><p>Make sure you have all the required modules for your project
 installed into your virtual environment (including Django).</p></li>
 <li><p>Generate a <code class="prettyprint">requirements.txt</code> file if your project doesn&rsquo;t already have one by running <code class="prettyprint">pip freeze &gt; requirements.txt</code> in the root of the local folder.
 Add the following lines to the <code class="prettyprint">requirements.txt</code> file.</p>
-<pre class="highlight python"><code>    <span class="n">whitenoise</span><span class="o">==</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">6</span>  <span class="c">#manages static assets</span>
-    <span class="n">waitress</span><span class="o">==</span><span class="mf">0.8</span><span class="o">.</span><span class="mi">9</span> <span class="c">#a pure python WSGI server that is a replacement for gunicorn</span>
+<pre class="highlight python"><code><span class="n">whitenoise</span><span class="o">==</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">6</span>  <span class="c">#manages static assets</span>
+<span class="n">waitress</span><span class="o">==</span><span class="mf">0.8</span><span class="o">.</span><span class="mi">9</span> <span class="c">#a pure python WSGI server that is a replacement for gunicorn</span>
 </code></pre></li>
 <li><p>Edit your <code class="prettyprint">wsgi.py</code> file.</p>
 
 <p>When you create a Django project, a default <code class="prettyprint">wsgi.py</code> file should be created for you in the project folder. Excluding the opening comments, the default <code class="prettyprint">wsgi.py</code> looks like this:</p>
-<pre class="highlight python"><code>    <span class="kn">import</span> <span class="nn">os</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">"DJANGO_SETTINGS_MODULE"</span><span class="p">,</span> <span class="s">"PROJECTNAME.settings"</span><span class="p">)</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">"DJANGO_SETTINGS_MODULE"</span><span class="p">,</span> <span class="s">"PROJECTNAME.settings"</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">django.core.wsgi</span> <span class="kn">import</span> <span class="n">get_wsgi_application</span>
-    <span class="n">application</span> <span class="o">=</span> <span class="n">get_wsgi_application</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">django.core.wsgi</span> <span class="kn">import</span> <span class="n">get_wsgi_application</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">get_wsgi_application</span><span class="p">()</span>
 </code></pre>
 
 <p>You&rsquo;ll need to add a few lines to import the <code class="prettyprint">whitenoise</code> package and wrap the middleware around the WSGI application so that all static files are served using whitenoise. Edit your <code class="prettyprint">wsgi.py</code> to:</p>
-<pre class="highlight python"><code>    <span class="kn">import</span> <span class="nn">os</span>
-    <span class="kn">from</span> <span class="nn">django.core.wsgi</span> <span class="kn">import</span> <span class="n">get_wsgi_application</span>
+<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">django.core.wsgi</span> <span class="kn">import</span> <span class="n">get_wsgi_application</span>
 
-    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">"DJANGO_SETTINGS_MODULE"</span><span class="p">,</span> <span class="s">"PROJECTNAME.settings"</span><span class="p">)</span>
-    <span class="c"># important that the whitenoise import is after the line above</span>
-    <span class="kn">from</span> <span class="nn">whitenoise.django</span> <span class="kn">import</span> <span class="n">DjangoWhiteNoise</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">"DJANGO_SETTINGS_MODULE"</span><span class="p">,</span> <span class="s">"PROJECTNAME.settings"</span><span class="p">)</span>
+<span class="c"># important that the whitenoise import is after the line above</span>
+<span class="kn">from</span> <span class="nn">whitenoise.django</span> <span class="kn">import</span> <span class="n">DjangoWhiteNoise</span>
 
-    <span class="n">application</span> <span class="o">=</span> <span class="n">get_wsgi_application</span><span class="p">()</span>
-    <span class="n">application</span> <span class="o">=</span> <span class="n">DjangoWhiteNoise</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">get_wsgi_application</span><span class="p">()</span>
+<span class="n">application</span> <span class="o">=</span> <span class="n">DjangoWhiteNoise</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
 </code></pre>
 
 <p>The order here is important. The <code class="prettyprint">DJANGO_SETTINGS_MODULE</code> environment variable must be set before importing <code class="prettyprint">DjangoWhiteNoise</code>.</p></li>
 <li><p>You should now tell Django where to look for static files. In <code class="prettyprint">settings.py</code> within the project folder, add these lines below the <code class="prettyprint">import os</code> statement.</p>
-<pre class="highlight python"><code>    <span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
+<pre class="highlight python"><code><span class="n">PROJECT_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span>
 
-    <span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">'static'</span><span class="p">)</span>
-    <span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">'/static/'</span>
+<span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">PROJECT_ROOT</span><span class="p">,</span> <span class="s">'static'</span><span class="p">)</span>
+<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">'/static/'</span>
 </code></pre>
 
 <p>In this case, the STATIC_ROOT variable tells Django to look for static files in a directory called <code class="prettyprint">static</code> inside the project folder, and the STATIC_URL variable sets the path where those files will be served.</p>

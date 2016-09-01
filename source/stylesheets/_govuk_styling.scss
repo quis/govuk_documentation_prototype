@@ -25,7 +25,8 @@ fieldset{
 .tocify-wrapper {
 	position: fixed;
 	top: 107px; //below GOV.UK header
-	width: 300px;
+	top: 63px; //below GOV.UK header
+	width: 319px;
 	@include core-16;
     border-right: 1px solid $border-colour;
     padding-right: 10px;
@@ -86,7 +87,7 @@ fieldset{
     	input{
     		padding: 10px 0 10px 20px;
     		margin: 10px;
-    		width: 290px;
+    		width: 310px;
     		color: $text-colour;
     		border: 0;
     		border: 2px solid $grey-1;
@@ -127,7 +128,7 @@ fieldset{
 }
 
 .page-wrapper{
-	margin-left: 310px;
+	margin-left: 330px;
 }
 
 .sticky {
@@ -299,3 +300,42 @@ pre > code {
 input:focus {
 	outline: 3px solid $focus-colour;
 }
+
+// FIXED POSITION GOV.UK HEADER
+
+#global-header{
+    position: fixed;
+}
+#global-header-bar{
+	position: fixed;
+    top: 53px;
+    width: 100%;
+    margin-left: 0;
+}
+#breadcrumb{
+    position: fixed;
+    top: 63px;
+}
+.page-wrapper .content{
+	padding-top: 100px;
+	//border-left: 1px solid $border-colour;
+}
+
+.content div:first-child + h1 {
+    font-size: 28px;
+    padding-top: 0;
+    background: black;
+    margin: 0px;
+    color: white;
+    padding-left: 30px;
+    padding-top: 10px;
+    padding-bottom: 7px;
+    //margin-top: -45px;
+    margin-right: -440px;
+    margin-bottom: 60px;
+    border-bottom: 10px solid #005ea5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+

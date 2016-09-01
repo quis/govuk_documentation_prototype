@@ -22,9 +22,9 @@ var stickyNav = function(){
 	}
 };
  
-stickyNav();
+//stickyNav();
  
 $(window).scroll(function() {
-  stickyNav();
+  //stickyNav();
 });
 });

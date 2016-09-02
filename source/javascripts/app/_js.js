@@ -1,3 +1,5 @@
+
+// Plugin to clear text fields
 (function ($, undefined) {  
     $.fn.clearable = function () {  
         var $this = this;  

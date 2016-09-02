@@ -1,3 +1,16 @@
+(function ($, undefined) {  
+    $.fn.clearable = function () {  
+        var $this = this;  
+        $this.wrap('<div class="clear-holder" />');  
+        var helper = $('<span class="clear-helper">×</span>');  
+        $this.parent().append(helper);  
+        helper.click(function(){  
+            $this.val(""); 
+            $('.search-results').removeClass('visible'); 
+        });  
+    };  
+})(jQuery);
+
 $(document).ready(function() {
 
 
@@ -8,5 +21,8 @@ $('#proposition-name').addClass('visually-hidden');
 $document.scroll(function() {
 	$('#proposition-name').toggleClass('visually-hidden', $document.scrollTop() <= 60);
 });
+
+
+$("#input-search").clearable();
 
 });

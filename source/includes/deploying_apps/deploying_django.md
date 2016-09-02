@@ -16,7 +16,7 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
 3. Tell Cloud Foundry which Python runtime to use by creating a `runtime.txt`   file in the root of the local folder. The contents of the file should  
    be:
    ```
-        python-3.5.1  
+   python-3.5.1  
    ```
     replacing "3.5.1" with the version of Python you want to use (it must be supported by the buildpack: currently versions 2.7.11 to 3.5.2 are supported.)
 
@@ -27,8 +27,8 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
     Add the following lines to the ``requirements.txt`` file.
 
     ```python
-        whitenoise==1.0.6  #manages static assets
-        waitress==0.8.9 #a pure python WSGI server that is a replacement for gunicorn
+    whitenoise==1.0.6  #manages static assets
+    waitress==0.8.9 #a pure python WSGI server that is a replacement for gunicorn
     ```
 
 6. Edit your `wsgi.py` file.
@@ -36,26 +36,26 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
     When you create a Django project, a default `wsgi.py` file should be created for you in the project folder. Excluding the opening comments, the default `wsgi.py` looks like this:
 
     ```python
-        import os
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "PROJECTNAME.settings")
+    import os
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "PROJECTNAME.settings")
 
-        from django.core.wsgi import get_wsgi_application
-        application = get_wsgi_application()
+    from django.core.wsgi import get_wsgi_application
+    application = get_wsgi_application()
     ```
         
 
     You'll need to add a few lines to import the `whitenoise` package and wrap the middleware around the WSGI application so that all static files are served using whitenoise. Edit your `wsgi.py` to:
 
     ```python
-        import os
-        from django.core.wsgi import get_wsgi_application
+    import os
+    from django.core.wsgi import get_wsgi_application
 
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "PROJECTNAME.settings")
-        # important that the whitenoise import is after the line above
-        from whitenoise.django import DjangoWhiteNoise
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "PROJECTNAME.settings")
+    # important that the whitenoise import is after the line above
+    from whitenoise.django import DjangoWhiteNoise
 
-        application = get_wsgi_application()
-        application = DjangoWhiteNoise(application)
+    application = get_wsgi_application()
+    application = DjangoWhiteNoise(application)
     ```
 
     The order here is important. The `DJANGO_SETTINGS_MODULE` environment variable must be set before importing `DjangoWhiteNoise`.
@@ -63,10 +63,10 @@ If you are just getting started learning CloudFoundry, you can use the sandbox s
 7. You should now tell Django where to look for static files. In `settings.py` within the project folder, add these lines below the ``import os`` statement.
 
     ```python
-        PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-        STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-        STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+    STATIC_URL = '/static/'
     ```
 
     In this case, the STATIC_ROOT variable tells Django to look for static files in a directory called ``static`` inside the project folder, and the STATIC_URL variable sets the path where those files will be served.

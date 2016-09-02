@@ -25,6 +25,14 @@ var stickyNav = function(){
 //stickyNav();
  
 $(window).scroll(function() {
-  //stickyNav();
+
 });
+
+var $document = $(document);
+
+$('#proposition-name').addClass('visually-hidden');
+$document.scroll(function() {
+	$('#proposition-name').toggleClass('visually-hidden', $document.scrollTop() <= 60);
+});
+
 });

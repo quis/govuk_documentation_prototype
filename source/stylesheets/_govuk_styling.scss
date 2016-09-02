@@ -161,13 +161,12 @@ aside {
 
 .content div:first-child + h1 {
     font-size: 48px;
-    padding-top: 0;
+    //padding-top: 0;
 }
 
 .content {
 
 	margin-right: 33.33%;
-	//padding-left: 30px;
 
 	& > * {
 		padding-left: 0;
@@ -305,37 +304,21 @@ input:focus {
 
 #global-header{
     position: fixed;
+    z-index: 100;
 }
 #global-header-bar{
 	position: fixed;
     top: 53px;
     width: 100%;
     margin-left: 0;
+    z-index: 100;
 }
 #breadcrumb{
     position: fixed;
     top: 63px;
+    z-index: 100;
 }
 .page-wrapper .content{
-	padding-top: 100px;
-	//border-left: 1px solid $border-colour;
-}
-
-.content div:first-child + h1 {
-    font-size: 28px;
-    padding-top: 0;
-    background: black;
-    margin: 0px;
-    color: white;
-    padding-left: 30px;
-    padding-top: 10px;
-    padding-bottom: 7px;
-    //margin-top: -45px;
-    margin-right: -440px;
-    margin-bottom: 60px;
-    border-bottom: 10px solid #005ea5;
-    position: fixed;
-    top: 0;
-    width: 100%;
+	padding-top: 60px;
 }
 

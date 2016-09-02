@@ -90,7 +90,7 @@
 
             // **scrollTo**: Accepts Number (pixels)
             // The amount of space between the top of page and the selected table of contents item after the page has been scrolled
-            scrollTo: 0,
+            scrollTo: 100,
 
             // **showAndHideOnScroll**: Accepts a boolean: true or false
             // Determines if table of contents nested items should be shown and hidden while scrolling
@@ -131,7 +131,7 @@
             // "pretty" - #looks-like-a-nice-url-and-is-easily-readable
             // function(text, element){} - Your own hash generation function that accepts the text as an
             // argument, and returns the hash value.
-            hashGenerator: "compact",
+            hashGenerator: "pretty",
 
             // **highlightDefault**: Accepts a boolean: true or false
             // Set's the first TOC item as active if no other TOC item is active.
@@ -1025,7 +1025,7 @@
                 $("html, body").animate({
 
                     // Sets the jQuery `scrollTop` to the top offset of the HTML div tag that matches the current list item's `data-unique` tag
-                    "scrollTop": $('div[data-unique="' + elem.attr("data-unique") + '"]').next().offset().top - ($.isFunction(scrollTo) ? scrollTo.call() : scrollTo) + "px"
+                    "scrollTop": $('div[data-unique="' + elem.attr("data-unique") + '"]').next().offset().top - ($.isFunction(scrollTo) ? scrollTo.call() : scrollTo) - 58 + "px"
 
                 }, {
 

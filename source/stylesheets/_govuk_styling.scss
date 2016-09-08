@@ -79,7 +79,7 @@ fieldset{
 
 	.tocify-header > .tocify-item a::after{
 	    float: right;
-	    content: "\203A";		
+	    content: "\203A";
 	}
 
     .search{
@@ -114,15 +114,15 @@ fieldset{
 	    background: $grey-1;
 	    color: white;
 	    font-weight: bold;
-	    text-align: center; 
+	    text-align: center;
     	line-height: 1.5;
 	    &:hover{
 	    	cursor: pointer;
-	    } 
+	    }
   	}
 
 /*
-span.search > input 
+span.search > input
   {
     background: none;
     border: none;
@@ -133,7 +133,7 @@ span.search > input
 
 	    &.visible{
 		    background: white;
-		    padding-top: 5px; 	
+		    padding-top: 5px;
 		    margin-left: 10px;
 		    border: 2px solid $grey-1;
 		    margin-top: -12px;
@@ -145,7 +145,7 @@ span.search > input
 		    }
 	    }
 
-    	li{	
+    	li{
 		    margin: 5px 0 10px 0;
 		    padding-bottom: 9px;
     	}
@@ -216,7 +216,7 @@ aside {
 		h1, h2, h3, p {
 			border: none;
 		}
-		
+
 	}
 
 	h1{
@@ -242,12 +242,12 @@ aside {
 		@include bold-19;
 		clear: both;
 	}
-	
+
 	ol{
 		list-style-type: decimal;
 	}
 
-	ul{  
+	ul{
 		padding: 0;
   		margin: 5px 0 20px 0;
 		list-style-type: disc;
@@ -304,6 +304,11 @@ aside {
 	font-size: 16px;
 }
 
+.page-wrapper .dark-box, .content table pre,
+.page-wrapper .dark-box, .content table code {
+	width: 100%;
+}
+
 .page-wrapper .dark-box{
 	display: none;
 
@@ -315,7 +320,7 @@ aside {
 
 		a{
 	    	color: $text-colour;
-    		padding: 5px 20px;		
+    		padding: 5px 20px;
 		}
 
 		a.active {
@@ -361,4 +366,3 @@ input:focus {
 	padding-top: 60px;
 	padding-left: 30px;
 }
-

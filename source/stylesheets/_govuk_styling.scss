@@ -177,11 +177,14 @@ aside {
 	clear: both;
 }
 
-.content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .content > p, .content > table, .content > ul, .content > ol, .content > aside, .content > dl {
-    //margin-right: 33.33%;
+.content > h1, .content > h2, .content > h3, .content > h4, .content > h5, .content > h6, .content > p, .content > table, .content > ul, .content > ol, .content > dl {
     margin-right: 0;
     margin-left: 0;
-    //padding: 0;
+    padding-left: 0;
+}
+
+.content > aside{
+	margin-right: 0;
 }
 
 .content div:first-child + h1 {
@@ -207,7 +210,6 @@ aside {
 	h1{
 		background-image: none;
 		border-bottom: none;
-		margin-left: 30px;
     	padding-left: 0;
     	border-top: 5px solid $text-colour;
 	}
@@ -235,7 +237,7 @@ aside {
 
 	ul{  
 		padding: 0;
-  		margin: 5px 0 20px 30px;
+  		margin: 5px 0 20px 0;
 		list-style-type: disc;
   		padding-left: 20px;
 	}
@@ -345,5 +347,6 @@ input:focus {
 }
 .page-wrapper .content{
 	padding-top: 60px;
+	padding-left: 30px;
 }
 

@@ -304,6 +304,16 @@ aside {
 	font-size: 16px;
 }
 
+
+
+code{
+    white-space: nowrap;
+}
+pre code{
+    white-space: wrap;
+
+}
+
 .page-wrapper .dark-box{
 	display: none;
 

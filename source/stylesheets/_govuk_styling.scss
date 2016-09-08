@@ -185,7 +185,19 @@ aside {
 
 .content > aside{
 	margin-right: 0;
+	text-shadow: none;
+	padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    &:before{
+    	display: none;
+    }
 }
+
+.content aside.notice{ background-color: $light-blue-25}
+.content aside.warning{ background-color: $mellow-red-50}
+.content aside.success{ background-color: $grass-green-25}
 
 .content div:first-child + h1 {
     font-size: 48px;

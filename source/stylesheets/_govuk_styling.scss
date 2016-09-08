@@ -312,7 +312,10 @@ aside {
 	font-size: 16px;
 }
 
-
+.page-wrapper .dark-box, .content table pre,
+.page-wrapper .dark-box, .content table code {
+	width: 100%;
+}
 
 code{
     white-space: nowrap;

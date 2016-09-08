@@ -1,0 +1,21 @@
+<h1 id="getting-started">Getting started</h1>
+
+<h2 id="installation">Installation</h2>
+<pre class="highlight shell"><code>pip install git+https://github.com/alphagov/notifications-python-client.git
+</code></pre>
+
+<h2 id="set-up">Set up</h2>
+<pre class="highlight python"><code><span class="kn">from</span> <span class="nn">notifications_python_client.notifications</span> <span class="kn">import</span> <span class="n">NotificationsAPIClient</span>
+
+<span class="n">notifications_client</span> <span class="o">=</span> <span class="n">NotificationsAPIClient</span><span class="p">(</span>
+    <span class="s">"https://api.notifications.service.gov.uk"</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="n">service_id</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="n">api_key</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>Generate an API key by logging in to
+<a href="https://www.notifications.service.gov.uk">GOV.UK Notify</a> and going to
+the <strong>API integration</strong> page.</p>
+
+<p>You will find your service ID on the <strong>API integration</strong> page.</p>

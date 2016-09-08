@@ -1,0 +1,97 @@
+<h1 id="sending-a-message">Sending a message</h1>
+
+<h2 id="text-message">Text message</h2>
+<pre class="highlight python"><code><span class="n">notifications_client</span><span class="o">.</span><span class="n">send_sms_notification</span><span class="p">(</span>
+    <span class="n">mobile_number</span><span class="p">,</span>
+    <span class="n">template_id</span><span class="p">,</span>
+    <span class="n">personalisation</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">'name'</span><span class="p">:</span> <span class="s">'Amala'</span><span class="p">,</span>
+        <span class="s">'reference_number'</span><span class="p">:</span> <span class="s">'300241'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<h2 id="email">Email</h2>
+<pre class="highlight python"><code><span class="n">notifications_client</span><span class="o">.</span><span class="n">send_email_notification</span><span class="p">(</span>
+    <span class="n">email_address</span><span class="p">,</span>
+    <span class="n">template_id</span><span class="p">,</span>
+    <span class="n">personalisation</span><span class="o">=</span><span class="p">{</span>
+        <span class="s">'name'</span><span class="p">:</span> <span class="s">'Amala'</span><span class="p">,</span>
+        <span class="s">'reference_number'</span><span class="p">:</span> <span class="s">'300241'</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
+
+<p>Find <code class="prettyprint">template_id</code> by clicking <strong>API info</strong> for the template you want to send.</p>
+
+<p>If a template has placeholders, you need to provide their values in <code class="prettyprint">personalisation</code>.</p>
+
+<p><details>
+    <summary>
+        Response:
+    </summary></p>
+
+<table>
+  <thead>
+    <tr>
+        <td>Status
+        </td>
+        <td>Body
+        </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+        <td>201
+        </td>
+        <td>
+<pre>
+{
+  "data":{
+    "notification": {
+      "id":1
+    },
+    "body": "Dear Bill, your licence is due for renewal on 3 January 2016.",
+    "template_version": 1,
+    "subject": "Licence renewal"
+  }
+}
+</pre>
+        </td>
+    </tr>
+    <tr>
+        <td>429
+        </td>
+        <td>
+<pre>
+{"result": "error",
+"message": "Exceeded send limits (50) for today"}
+</pre>
+        </td>
+    </tr>
+        <tr>
+        <td>400
+        </td>
+        <td>
+<pre>
+{"result":"error",
+"message": "Can’t send to this recipient using a team-only API key"]}
+</pre>
+        </td>
+    </tr>
+        </tr>
+        <tr>
+        <td>400
+        </td>
+        <td>
+<pre>
+{"result":"error",
+"message"="Can’t send to this recipient when service is in trial
+mode - see https://www.notifications.service.gov.uk/trial-mode"]}
+</pre>
+        </td>
+    </tr>
+  </tbody>
+</table>
+
+<p></details></p>

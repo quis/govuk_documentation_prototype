@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Government PaaS Documentation</title>
+    <title>GOV.UK Notify Python client</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -105,13 +105,13 @@
               <img src="" width="35" height="31" alt=""> GOV.UK
             </a>
           </div>
-          
+
         </div>
         <div class="header-proposition">
           <div class="content">
             <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
             <nav id="proposition-menu">
-               <a href="/" id="proposition-name"> Government PaaS </a>
+               <a href="/" id="proposition-name">GOV.UK Notify Python client</a>
             </nav>
           </div>
         </div>
@@ -123,12 +123,12 @@
 <!--
     <div class="breadcrumbs" id="breadcrumb">
       <ol>
-        <li><a href="/">Home</a></li>  
-        <li><a href="/">Government PaaS</a></li>   
+        <li><a href="/">Home</a></li>
+        <li><a href="/">Government PaaS</a></li>
       </ol>
     </div>
   -->
-    
+
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -136,13 +136,13 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <!-- <p class="docs-name">GOV.UK Elements</p> 
+      <!-- <p class="docs-name">GOV.UK Elements</p>
       <div class="docs-name">
         <img src="images/logo.png" />
         <h3>Elements</h3>
       </div>
       -->
-      
+
         <div class="lang-selector">
               <a href="#" data-language-name="bash">bash</a>
         </div>
@@ -152,15 +152,17 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         
+          <h1 id="gov-uk-notify-python-client">GOV.UK Notify Python client</h1>
+
+<p>Client for the
+<a href="https://www.notifications.service.gov.uk/">GOV.UK Notify</a> API, for
+Python 2 and 3.</p>
+
           <h1 id="getting-started">Getting started</h1>
 
 <h2 id="installation">Installation</h2>
@@ -364,7 +366,10 @@ mode - see https://www.notifications.service.gov.uk/trial-mode"]}
 <p></details></p>
 
 <h2 id="get-the-status-of-all-messages">Get the status of all messages</h2>
-<pre class="highlight python"><code><span class="n">notifications_client</span><span class="o">.</span><span class="n">get_all_notifications</span><span class="p">(</span><span class="n">template_type</span><span class="o">=</span><span class="n">email</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">sending</span><span class="p">)</span>
+<pre class="highlight python"><code><span class="n">notifications_client</span><span class="o">.</span><span class="n">get_all_notifications</span><span class="p">(</span>
+  <span class="n">template_type</span><span class="o">=</span><span class="n">email</span><span class="p">,</span>
+  <span class="n">status</span><span class="o">=</span><span class="n">sending</span>
+<span class="p">)</span>
 </code></pre>
 
 <p>Optional <code class="prettyprint">template_type</code> can be one of:</p>

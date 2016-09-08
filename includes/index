@@ -1,1 +1,5 @@
 <h1 id="gov-uk-notify-python-client">GOV.UK Notify Python client</h1>
+
+<p>Client for the
+<a href="https://www.notifications.service.gov.uk/">GOV.UK Notify</a> API, for
+Python 2 and 3.</p>

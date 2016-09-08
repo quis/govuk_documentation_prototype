@@ -42,6 +42,14 @@ fieldset{
 		color: #005ea5;
 	}
 
+	.tocify-header ul ul{
+		a:before{
+			content: "-";
+			padding-right: 5px;
+		}
+		
+	}
+
 	.docs-name {
 		padding: 25px;
 		img {

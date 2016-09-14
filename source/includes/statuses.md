@@ -89,8 +89,8 @@ notifications_client.get_notification_by_id(notification_id)
 
 ```python
 notifications_client.get_all_notifications(
-  template_type=email,
-  status=sending
+  template_type="email",
+  status="sending"
 )
 ```
 Optional `template_type` can be one of:

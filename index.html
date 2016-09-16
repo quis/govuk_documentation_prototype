@@ -174,8 +174,8 @@ Python 2 and 3.</p>
 
 <span class="n">notifications_client</span> <span class="o">=</span> <span class="n">NotificationsAPIClient</span><span class="p">(</span>
     <span class="s">"https://api.notifications.service.gov.uk"</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="n">service_id</span><span class="o">&gt;</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="n">api_key</span><span class="o">&gt;</span>
+    <span class="n">service_id</span><span class="o">=&lt;</span><span class="n">service_id</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=&lt;</span><span class="n">api_key</span><span class="o">&gt;</span>
 <span class="p">)</span>
 </code></pre>
 
@@ -367,8 +367,8 @@ mode - see https://www.notifications.service.gov.uk/trial-mode"]}
 
 <h2 id="get-the-status-of-all-messages">Get the status of all messages</h2>
 <pre class="highlight python"><code><span class="n">notifications_client</span><span class="o">.</span><span class="n">get_all_notifications</span><span class="p">(</span>
-  <span class="n">template_type</span><span class="o">=</span><span class="n">email</span><span class="p">,</span>
-  <span class="n">status</span><span class="o">=</span><span class="n">sending</span>
+  <span class="n">template_type</span><span class="o">=</span><span class="s">"email"</span><span class="p">,</span>
+  <span class="n">status</span><span class="o">=</span><span class="s">"sending"</span>
 <span class="p">)</span>
 </code></pre>
 
